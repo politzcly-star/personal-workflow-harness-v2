@@ -29,6 +29,47 @@ Phase 2 增加“可执行任务控制面最小闭环”的纸面 artifacts：
 
 这些模板只定义人工和 agent 可填写的控制面，不调度线程、不运行命令、不接外部系统。
 
+## Documentation Navigation
+
+v2 is a markdown control plane, not runner/CI/automation. Use these links to reload the current authority chain and examples before changing the harness.
+
+### Start Here
+
+- [README](README.md): repository orientation, phase boundaries, authority order, and non-bypass rules.
+- [v1/v2 Routing](docs/route-v2.md): when to use v2 and when to fall back to v1.
+- [Architecture](docs/architecture.md): roles, layers, and artifact authority.
+
+### Architecture &amp; Protocol
+
+- [Parent Agent Protocol](docs/parent-agent-protocol.md): Parent duties, schema, and Evaluator constraints.
+- [Context Survival](docs/context-survival.md): handoff, compression, recovery, and conflict handling.
+
+### Templates
+
+- [Task State](templates/task-state.md)
+- [Task Instance](templates/task-instance.md)
+- [Dispatch Matrix](templates/dispatch-matrix.md)
+- [Child Report](templates/child-report.md)
+- [Evaluator Gate Card](templates/evaluator-gate-card.md)
+- [Parent Synthesis](templates/parent-synthesis.md)
+
+### Examples &amp; Rehearsals
+
+- [Phase 2 Paper Drill](examples/phase-2-paper-drill.md)
+- [Phase 3 Task Instance](examples/phase-3-docs-index-rehearsal/task-instance.md)
+- [Phase 3 Dispatch Matrix](examples/phase-3-docs-index-rehearsal/dispatch-matrix.md)
+- [Phase 3 Research Child Report](examples/phase-3-docs-index-rehearsal/child-report-research.md)
+- [Phase 3 Proposal Child Report](examples/phase-3-docs-index-rehearsal/child-report-proposal.md)
+- [Phase 3 Evaluator Gate Card](examples/phase-3-docs-index-rehearsal/evaluator-gate-card.md)
+- [Phase 3 Parent Synthesis](examples/phase-3-docs-index-rehearsal/parent-synthesis.md)
+- [Phase 3 Human Decision](examples/phase-3-docs-index-rehearsal/human-decision.md)
+- [Phase 4 Task Instance](examples/phase-4-docs-index-implementation/task-instance.md)
+- [Phase 4 Dispatch Matrix](examples/phase-4-docs-index-implementation/dispatch-matrix.md)
+- [Phase 4 Docs Edit Child Report](examples/phase-4-docs-index-implementation/child-report-docs-edit.md)
+- [Phase 4 Evaluator Gate Card](examples/phase-4-docs-index-implementation/evaluator-gate-card.md)
+- [Phase 4 Parent Synthesis](examples/phase-4-docs-index-implementation/parent-synthesis.md)
+- [Phase 4 Human Decision](examples/phase-4-docs-index-implementation/human-decision.md)
+
 ## 权威顺序
 
 ```text
