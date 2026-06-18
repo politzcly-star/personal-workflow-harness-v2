@@ -44,6 +44,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Parent Agent Protocol](docs/parent-agent-protocol.md): Parent duties, schema, and Evaluator constraints.
 - [Context Survival](docs/context-survival.md): handoff, compression, recovery, and conflict handling.
 - [Phase 5 Gate Hardening Guide](docs/phase-5-gate-hardening-guide.md): parent responses to Conditional Go, No-Go, authority conflict, and child exhaustion.
+- [Phase 6 Dispatch Discipline Guide](docs/phase-6-dispatch-discipline-guide.md): when Parent may control artifacts and when Generator/Evaluator work must be delegated.
 
 ### Templates
 
@@ -79,6 +80,12 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 5 Evaluator Gate Card](examples/phase-5-gate-hardening-drill/evaluator-gate-card.md)
 - [Phase 5 Parent Synthesis](examples/phase-5-gate-hardening-drill/parent-synthesis.md)
 - [Phase 5 Human Decision](examples/phase-5-gate-hardening-drill/human-decision.md)
+- [Phase 6 Task Instance](examples/phase-6-dispatch-discipline-rehearsal/task-instance.md)
+- [Phase 6 Dispatch Matrix](examples/phase-6-dispatch-discipline-rehearsal/dispatch-matrix.md)
+- [Phase 6 Dispatch Discipline Child Report](examples/phase-6-dispatch-discipline-rehearsal/child-report-dispatch-discipline.md)
+- [Phase 6 Evaluator Gate Card](examples/phase-6-dispatch-discipline-rehearsal/evaluator-gate-card.md)
+- [Phase 6 Parent Synthesis](examples/phase-6-dispatch-discipline-rehearsal/parent-synthesis.md)
+- [Phase 6 Human Decision](examples/phase-6-dispatch-discipline-rehearsal/human-decision.md)
 
 ## 权威顺序
 
