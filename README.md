@@ -46,6 +46,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 5 Gate Hardening Guide](docs/phase-5-gate-hardening-guide.md): parent responses to Conditional Go, No-Go, authority conflict, and child exhaustion.
 - [Phase 6 Dispatch Discipline Guide](docs/phase-6-dispatch-discipline-guide.md): when Parent may control artifacts and when Generator/Evaluator work must be delegated.
 - [Phase 7 Context Handoff Guide](docs/phase-7-context-handoff-guide.md): context compression, reload paths, and handoff recovery without chat memory authority.
+- [Phase 8 Evaluator Dispute Guide](docs/phase-8-evaluator-dispute-guide.md): evaluator dispute, No-Go blocking, and human-decision recovery paths.
 
 ### Templates
 
@@ -95,6 +96,14 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 7 Evaluator Gate Card](examples/phase-7-context-handoff-rehearsal/evaluator-gate-card.md)
 - [Phase 7 Parent Synthesis](examples/phase-7-context-handoff-rehearsal/parent-synthesis.md)
 - [Phase 7 Human Decision](examples/phase-7-context-handoff-rehearsal/human-decision.md)
+- [Phase 8 Task Instance](examples/phase-8-evaluator-dispute-recovery-drill/task-instance.md)
+- [Phase 8 Dispatch Matrix](examples/phase-8-evaluator-dispute-recovery-drill/dispatch-matrix.md)
+- [Phase 8 Evaluator Dispute Child Report](examples/phase-8-evaluator-dispute-recovery-drill/child-report-evaluator-dispute.md)
+- [Phase 8 Evaluator Gate Card](examples/phase-8-evaluator-dispute-recovery-drill/evaluator-gate-card.md)
+- [Phase 8 Evaluator Dispute Record](examples/phase-8-evaluator-dispute-recovery-drill/evaluator-dispute-record.md)
+- [Phase 8 Human Decision Recovery Record](examples/phase-8-evaluator-dispute-recovery-drill/human-decision-recovery-record.md)
+- [Phase 8 Parent Synthesis](examples/phase-8-evaluator-dispute-recovery-drill/parent-synthesis.md)
+- [Phase 8 Human Decision](examples/phase-8-evaluator-dispute-recovery-drill/human-decision.md)
 
 ## 权威顺序
 
