@@ -19,9 +19,10 @@ Practical reload path:
 
 1. Human-signed North Star in the task's Task State instance.
 2. Full Task State.
-3. Evaluator Decision records.
-4. Parent Synthesis.
-5. Child Reports and diffs through Evidence Index refs.
+3. Dispatch Matrix.
+4. Child Reports and verification outputs through Evidence Index refs.
+5. Evaluator Gate Card records.
+6. Parent Synthesis.
 
 Chat context can explain intent, but never overrides artifacts. Chat context is never an authority source.
 
@@ -85,6 +86,7 @@ Omitted details must include a concrete reload path:
 - evidence refs: artifact path plus Evidence ID
 - synthesis draft: version number or file path
 - verification output: command and output file/path if externalized
+- child test result: Child Report path plus Evidence ID
 
 ## Handoff
 
@@ -93,6 +95,8 @@ Handoff is a recovery entry point, not an authority source.
 Handoff must point to:
 
 - Task State
+- Dispatch Matrix
+- Child Reports with verification evidence
 - latest Context Compression Snapshot
 - Parent Synthesis
 - Evaluator Decision
@@ -110,3 +114,18 @@ When child reports conflict:
 4. If conflict remains, task becomes `blocked: needs-human-decision`.
 
 Parent cannot skip Evaluator and cannot silently pick one child report.
+
+## Phase 2 Control Plane Survival
+
+Phase 2 survives context loss through the paper artifact chain:
+
+```text
+Human-signed North Star
+> Dispatch Matrix
+> Child Report
+> Evaluator Gate Card
+> Parent Synthesis
+> Human Decision
+```
+
+Parent Synthesis must be rebuildable from evidence refs. Child verification and test results must be preserved in Child Reports, and Evidence Index remains append-only across compression, handoff, and resume.

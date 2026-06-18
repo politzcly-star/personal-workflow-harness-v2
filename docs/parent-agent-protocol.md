@@ -2,6 +2,8 @@
 
 本文件定义 Parent Agent 在 v2 中的职责、限制、schema 和质量 gate 规则。核心目标是避免 Parent 自定方向、自派自做、自评自过。
 
+Phase 2 把 v2 明确为 `goal-first / agent-orchestrated control plane`。Parent 维护 markdown artifacts，不实现 runner、CI、Docker、浏览器自动化、GitHub issue tracker integration 或生产系统操作。
+
 ## Parent 可以做
 
 - 草拟 North Star Contract。
@@ -26,6 +28,8 @@
 Parent 只能修改 v2 控制面 artifacts，例如 task-state、goal、dispatch、synthesis、handoff。
 
 Parent cannot assign itself.
+
+Parent 不能用聊天记忆替代 Child Report、verification output、Evaluator Gate Card 或 Evidence Index。
 
 ## Human Signoff
 
@@ -70,6 +74,7 @@ Rules:
 - Generator ownership must be disjoint unless Human explicitly accepts overlap.
 - Evaluator read scope is automatic and must not be narrowed by Parent.
 - Shared files are parent-owned unless exactly one child owns them.
+- Stop conditions and report contract must be explicit before child work starts.
 
 ## Child Goal Schema
 
@@ -114,6 +119,8 @@ Recommended Parent Action:
 
 `Self-Verification Result` must include command, exit code, or reason verification was not run.
 
+Child test results and verification evidence must be written into the report. Parent must not infer a pass/fail result from chat memory.
+
 ## Evaluator Rules
 
 Evaluator is a quality gate, not a normal child.
@@ -157,6 +164,7 @@ Rules:
 - Parent can record `Evaluator Dispute` only by entering `blocked: needs-human-decision`.
 - `Conditional Go` requires a second lightweight Evaluator pass that checks only whether listed conditions are satisfied.
 - A task cannot become `accepted` until Conditional Go conditions are verified.
+- Evidence Index `append-only` violations are review blockers.
 
 ## Parent Synthesis Schema
 
@@ -174,6 +182,7 @@ Recommended Human Decision:
 Parent Synthesis rules:
 
 - Use evidence refs, not memory.
+- Cite Child Reports for child test results.
 - Record conflicts instead of silently resolving them.
 - Record scope changes as blocked until Human approves.
 - Do not include `rejected evaluator findings`; Evaluator findings cannot be rejected by Parent.

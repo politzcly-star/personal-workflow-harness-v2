@@ -2,6 +2,8 @@
 
 This repository is v2, but v2 is not the default for every task. Route conservatively.
 
+v2 means a `goal-first / agent-orchestrated control plane`: the goal is signed first, then Parent dispatches child work, collects Child Reports, sends evidence through Evaluator Gate Cards, and produces Parent Synthesis for Human decision. It does not mean automatic execution.
+
 ## Use v1
 
 Use `D:\个人工作流` v1 Workflow-first Harness when the task is:
@@ -65,6 +67,8 @@ Needs exploration or synthesis? YES | NO
 Recommended route: v1 | v2 | blocked
 Reason:
 ```
+
+For v2, the route must also be able to produce a Dispatch Matrix, Child Report, Parent Synthesis, Evaluator Gate Card, and append-only Evidence Index entries before acceptance.
 
 ## Mixed Tasks
 
