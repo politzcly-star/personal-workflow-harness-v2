@@ -45,6 +45,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Context Survival](docs/context-survival.md): handoff, compression, recovery, and conflict handling.
 - [Phase 5 Gate Hardening Guide](docs/phase-5-gate-hardening-guide.md): parent responses to Conditional Go, No-Go, authority conflict, and child exhaustion.
 - [Phase 6 Dispatch Discipline Guide](docs/phase-6-dispatch-discipline-guide.md): when Parent may control artifacts and when Generator/Evaluator work must be delegated.
+- [Phase 7 Context Handoff Guide](docs/phase-7-context-handoff-guide.md): context compression, reload paths, and handoff recovery without chat memory authority.
 
 ### Templates
 
@@ -86,6 +87,14 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 6 Evaluator Gate Card](examples/phase-6-dispatch-discipline-rehearsal/evaluator-gate-card.md)
 - [Phase 6 Parent Synthesis](examples/phase-6-dispatch-discipline-rehearsal/parent-synthesis.md)
 - [Phase 6 Human Decision](examples/phase-6-dispatch-discipline-rehearsal/human-decision.md)
+- [Phase 7 Task Instance](examples/phase-7-context-handoff-rehearsal/task-instance.md)
+- [Phase 7 Dispatch Matrix](examples/phase-7-context-handoff-rehearsal/dispatch-matrix.md)
+- [Phase 7 Context Handoff Child Report](examples/phase-7-context-handoff-rehearsal/child-report-context-handoff.md)
+- [Phase 7 Context Compression Snapshot](examples/phase-7-context-handoff-rehearsal/context-compression-snapshot.md)
+- [Phase 7 Handoff Recovery Record](examples/phase-7-context-handoff-rehearsal/handoff-recovery-record.md)
+- [Phase 7 Evaluator Gate Card](examples/phase-7-context-handoff-rehearsal/evaluator-gate-card.md)
+- [Phase 7 Parent Synthesis](examples/phase-7-context-handoff-rehearsal/parent-synthesis.md)
+- [Phase 7 Human Decision](examples/phase-7-context-handoff-rehearsal/human-decision.md)
 
 ## 权威顺序
 
