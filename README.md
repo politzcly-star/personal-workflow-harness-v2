@@ -43,6 +43,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 
 - [Parent Agent Protocol](docs/parent-agent-protocol.md): Parent duties, schema, and Evaluator constraints.
 - [Context Survival](docs/context-survival.md): handoff, compression, recovery, and conflict handling.
+- [Phase 5 Gate Hardening Guide](docs/phase-5-gate-hardening-guide.md): parent responses to Conditional Go, No-Go, authority conflict, and child exhaustion.
 
 ### Templates
 
@@ -69,6 +70,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 4 Evaluator Gate Card](examples/phase-4-docs-index-implementation/evaluator-gate-card.md)
 - [Phase 4 Parent Synthesis](examples/phase-4-docs-index-implementation/parent-synthesis.md)
 - [Phase 4 Human Decision](examples/phase-4-docs-index-implementation/human-decision.md)
+- [Phase 5 Task Instance](examples/phase-5-gate-hardening-drill/task-instance.md)
+- [Phase 5 Dispatch Matrix](examples/phase-5-gate-hardening-drill/dispatch-matrix.md)
+- [Phase 5 Conditional Child Report](examples/phase-5-gate-hardening-drill/child-report-conditional-followup.md)
+- [Phase 5 No-Go Child Report](examples/phase-5-gate-hardening-drill/child-report-no-go.md)
+- [Phase 5 Authority Conflict Child Report](examples/phase-5-gate-hardening-drill/child-report-authority-conflict.md)
+- [Phase 5 Exhausted Child Report](examples/phase-5-gate-hardening-drill/child-report-exhausted.md)
+- [Phase 5 Evaluator Gate Card](examples/phase-5-gate-hardening-drill/evaluator-gate-card.md)
+- [Phase 5 Parent Synthesis](examples/phase-5-gate-hardening-drill/parent-synthesis.md)
+- [Phase 5 Human Decision](examples/phase-5-gate-hardening-drill/human-decision.md)
 
 ## 权威顺序
 
