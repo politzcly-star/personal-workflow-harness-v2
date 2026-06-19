@@ -52,6 +52,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 11 Release Packet Guide](docs/phase-11-release-packet-guide.md): release packet preparation, origin/master..HEAD summary, and remote-sync authorization request checks.
 - [Phase 12 Remote-Sync Decision Guide](docs/phase-12-remote-sync-decision-guide.md): remote-sync decision validity, authorization expiry, and blocking conditions.
 - [Phase 13 Remote-Sync Execution Handoff Guide](docs/phase-13-remote-sync-execution-handoff-guide.md): remote-sync execution handoff, final preflight, and separate execution Human Go checks.
+- [Phase 14 Remote-Sync Outcome Audit Guide](docs/phase-14-remote-sync-outcome-audit-guide.md): post-execution audit, remote evidence requirements, and outcome acceptance blockers.
 
 ### Templates
 
@@ -146,6 +147,14 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 13 Evaluator Gate Card](examples/phase-13-remote-sync-execution-handoff-drill/evaluator-gate-card.md)
 - [Phase 13 Parent Synthesis](examples/phase-13-remote-sync-execution-handoff-drill/parent-synthesis.md)
 - [Phase 13 Human Decision](examples/phase-13-remote-sync-execution-handoff-drill/human-decision.md)
+- [Phase 14 Task Instance](examples/phase-14-remote-sync-outcome-audit-drill/task-instance.md)
+- [Phase 14 Dispatch Matrix](examples/phase-14-remote-sync-outcome-audit-drill/dispatch-matrix.md)
+- [Phase 14 Remote-Sync Outcome Audit Child Report](examples/phase-14-remote-sync-outcome-audit-drill/child-report-remote-sync-outcome-audit.md)
+- [Phase 14 Remote-Sync Outcome Record](examples/phase-14-remote-sync-outcome-audit-drill/remote-sync-outcome-record.md)
+- [Phase 14 Post-Execution Audit Checklist](examples/phase-14-remote-sync-outcome-audit-drill/post-execution-audit-checklist.md)
+- [Phase 14 Evaluator Gate Card](examples/phase-14-remote-sync-outcome-audit-drill/evaluator-gate-card.md)
+- [Phase 14 Parent Synthesis](examples/phase-14-remote-sync-outcome-audit-drill/parent-synthesis.md)
+- [Phase 14 Human Decision](examples/phase-14-remote-sync-outcome-audit-drill/human-decision.md)
 
 ## 权威顺序
 
