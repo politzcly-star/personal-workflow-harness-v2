@@ -1,6 +1,6 @@
 # Task Instance Template
 
-This template is the fillable Phase 2 task instance derived from `templates/task-state.md`.
+This template is the fillable v2 task instance derived from `templates/task-state.md`.
 It is a paper control-plane artifact, not an automation runner.
 
 ## Instance Header

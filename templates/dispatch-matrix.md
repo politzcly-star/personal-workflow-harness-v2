@@ -1,6 +1,6 @@
 # Dispatch Matrix Template
 
-The Dispatch Matrix is the Phase 2 assignment surface for a goal-first, agent-orchestrated control plane.
+The Dispatch Matrix is the v2 assignment surface for a goal-first, agent-orchestrated control plane.
 It records ownership and stop rules for child work; it does not execute work automatically.
 
 ## Header

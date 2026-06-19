@@ -1,6 +1,6 @@
 # Child Report Template
 
-Child Report is the standard output for every Phase 2 child thread.
+Child Report is the standard output for every v2 child thread.
 It is the place where work, evidence, verification, and exhaustion are recorded.
 
 ## Header

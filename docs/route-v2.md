@@ -1,39 +1,47 @@
 # v1 / v2 Routing
 
-This repository is v2, but v2 is not the default for every task. Route conservatively.
-
-v2 means a `goal-first / agent-orchestrated control plane`: the goal is signed first, then Parent dispatches child work, collects Child Reports, sends evidence through Evaluator Gate Cards, and produces Parent Synthesis for Human decision. It does not mean automatic execution.
+Use this file before starting any task. v2 is powerful, but it is not the safe
+default for every kind of work.
 
 ## Use v1
 
-Use `D:\个人工作流` v1 Workflow-first Harness when the task is:
+Use the v1 workflow-first harness when the task is:
 
 - fixed-process automation
 - known bugfix
-- low-creativity high-stability work
+- low-creativity, high-stability work
 - custom webpage operation agent
 - strong audit / strong boundary work
-- auth, permissions, secrets, billing, database, migration, production, quota, or destructive-write related
-- narrow enough for Task Packet, Scope Gate, Local Gate, and Gate Report
+- auth, permissions, secrets, billing, database, migration, quota, production,
+  or destructive-write related
+- narrow enough for a gated Task Packet, Scope Gate, Local Gate, and Gate Report
 
-v1 is the safe default when the task values stability more than exploration.
+When in doubt on high-risk work, choose v1 or block for Human decision.
 
 ## Use v2
 
-Use v2 only when:
+Use v2 when:
 
 - the goal is clear but the path is uncertain
 - exploration, decomposition, or parallel research is valuable
 - multiple agents can improve speed or quality
-- Parent must synthesize reports from several agents
-- the work is architectural design, migration planning, or option comparison
-- North Star fields can be defined before implementation
-- blast radius can be bounded
-- acceptance criteria can be verified
+- Parent synthesis across multiple reports is useful
+- the work is architecture, migration planning, option comparison, or complex
+  discovery before implementation
+
+v2 may be used only when the task can define:
+
+- North Star
+- blast radius
+- child ownership
+- allowed reads and allowed changes
+- stop conditions
+- acceptance criteria
+- verification evidence
 
 ## Do Not Use v2 Directly
 
-Do not route directly to v2 when:
+Do not start v2 implementation when:
 
 - North Star required fields cannot be defined
 - blast radius cannot be bounded
@@ -42,17 +50,13 @@ Do not route directly to v2 when:
 - the task is high-risk and lacks a v1 gated Task Packet
 - the route is uncertain
 
-These blockers mean v2 must not start implementation directly.
-
-## Fallback
+Fallback:
 
 ```text
-禁止直接用 v2
-→ 退回 v1 gated delivery
-→ 或 blocked: needs-human-decision
+do not use v2 directly
+> use v1 gated delivery
+> or blocked: needs-human-decision
 ```
-
-Route uncertainty defaults to v1 or blocked. Do not choose v2 because it is newer or more interesting.
 
 ## Routing Checklist
 
@@ -68,12 +72,11 @@ Recommended route: v1 | v2 | blocked
 Reason:
 ```
 
-For v2, the route must also be able to produce a Dispatch Matrix, Child Report, Parent Synthesis, Evaluator Gate Card, and append-only Evidence Index entries before acceptance.
-
 ## Mixed Tasks
 
-If a task contains both stable implementation and open-ended architecture:
+If a task includes both open-ended design and stable implementation:
 
-- Use v2 for exploration or design only.
-- Convert the accepted design into a v1 gated Task Packet before implementation.
+- Use v2 for exploration or design.
+- Convert accepted design into a v1 gated Task Packet before high-risk
+  implementation.
 - Do not let v2 child agents modify high-risk production code directly.

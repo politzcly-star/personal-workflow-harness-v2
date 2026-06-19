@@ -1,6 +1,6 @@
 # Evaluator Gate Card Template
 
-Evaluator Gate Card records review decisions for the Phase 2 control plane.
+Evaluator Gate Card records review decisions for the v2 control plane.
 Supported pass types are `evidence-first`, `synthesis-comparison`, and `conditional-followup`.
 
 ## Header

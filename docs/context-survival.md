@@ -1,10 +1,11 @@
 # Context Survival
 
-v2 assumes that long chat context is unreliable. Parent Agent must preserve task direction through artifacts, not memory.
+v2 assumes long chat context is unreliable. Parent must preserve task direction
+through artifacts, not memory.
 
-## Recovery Sources
+## Recovery Order
 
-When resuming a task, reload in this order:
+Reload in this order:
 
 ```text
 Human-signed North Star
@@ -17,26 +18,26 @@ Human-signed North Star
 
 Practical reload path:
 
-1. Human-signed North Star in the task's Task State instance.
+1. Human-signed North Star in Task State.
 2. Full Task State.
 3. Dispatch Matrix.
 4. Child Reports and verification outputs through Evidence Index refs.
 5. Evaluator Gate Card records.
 6. Parent Synthesis.
 
-Chat context can explain intent, but never overrides artifacts. Chat context is never an authority source.
+Chat context can explain intent, but it never overrides artifacts.
 
 ## Context Compression Triggers
 
-Create a Context Compression Snapshot when any condition is met:
+Create a Context Compression Snapshot when:
 
 - active child reports >= 3
 - child conflict appears
-- Parent is about to handoff or resume
-- Parent thinks context may be insufficient; if there is doubt, compression is required
+- Parent is about to hand off or resume
+- Parent believes context may be insufficient
 - tool or model context exceeds the environment's recommended threshold
 
-Parent cannot skip compression by claiming the context is still enough after doubt appears, and cannot skip it for "评估后足够" or similar reasoning.
+If there is doubt, compression is required.
 
 ## Snapshot Required Content
 
@@ -62,7 +63,7 @@ Created By:
 
 ## What Cannot Be Dropped
 
-A snapshot must not drop:
+A snapshot must preserve:
 
 - unresolved P0/P1
 - conflict
@@ -73,13 +74,12 @@ A snapshot must not drop:
 - Human decision
 - authority conflict
 
-If Evaluator has not completed the current review, the snapshot must preserve all child reports in full or provide exact reload paths.
-
-Omitted details must always include reload paths. If there is no reload path, the detail must remain in the snapshot.
+If Evaluator has not completed review, the snapshot must preserve all child
+reports in full or provide exact reload paths.
 
 ## Reload Path Format
 
-Omitted details must include a concrete reload path:
+Omitted details must include concrete reload paths:
 
 - child report full text: original report file path
 - diff content: commit hash or exact diff command
@@ -87,6 +87,8 @@ Omitted details must include a concrete reload path:
 - synthesis draft: version number or file path
 - verification output: command and output file/path if externalized
 - child test result: Child Report path plus Evidence ID
+
+If there is no reload path, keep the detail in the snapshot.
 
 ## Handoff
 
@@ -102,7 +104,8 @@ Handoff must point to:
 - Evaluator Decision
 - Gate or verification evidence
 
-If handoff conflicts with Task State or Evaluator Decision, use the authoritative artifact and mark `blocked: authority-conflict`.
+If handoff conflicts with Task State or Evaluator Decision, use the authoritative
+artifact and mark `blocked: authority-conflict`.
 
 ## Conflict Handling
 
@@ -115,9 +118,9 @@ When child reports conflict:
 
 Parent cannot skip Evaluator and cannot silently pick one child report.
 
-## Phase 2 Control Plane Survival
+## Control Plane Survival
 
-Phase 2 survives context loss through the paper artifact chain:
+The control plane survives context loss through this artifact chain:
 
 ```text
 Human-signed North Star
@@ -128,4 +131,6 @@ Human-signed North Star
 > Human Decision
 ```
 
-Parent Synthesis must be rebuildable from evidence refs. Child verification and test results must be preserved in Child Reports, and Evidence Index remains append-only across compression, handoff, and resume.
+Parent Synthesis must be rebuildable from evidence refs. Child verification and
+test results must remain in Child Reports. Evidence Index remains append-only
+across compression, handoff, and resume.

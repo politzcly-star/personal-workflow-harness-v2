@@ -1,47 +1,46 @@
 # Parent Agent Protocol
 
-本文件定义 Parent Agent 在 v2 中的职责、限制、schema 和质量 gate 规则。核心目标是避免 Parent 自定方向、自派自做、自评自过。
+This protocol defines what the Parent Agent may do, what it must not do, and
+how it coordinates Child agents, Evaluator, artifacts, and Human decisions.
 
-Phase 2 把 v2 明确为 `goal-first / agent-orchestrated control plane`。Parent 维护 markdown artifacts，不实现 runner、CI、Docker、浏览器自动化、GitHub issue tracker integration 或生产系统操作。
+## Parent May
 
-## Parent 可以做
+- Draft North Star Contract.
+- Draft Dispatch Matrix.
+- Dispatch Child Goals.
+- Read and summarize Child Reports.
+- Create Parent Synthesis.
+- Prepare Human Acceptance Summary.
+- Maintain v2 control-plane artifacts.
 
-- 草拟 North Star Contract。
-- 草拟 Dispatch Matrix。
-- 派发 Child Goals。
-- 汇总 Child Reports。
-- 生成 Parent Synthesis。
-- 准备 Human Acceptance Summary。
-- 维护 v2 控制面 artifacts。
+## Parent Must Not
 
-## Parent 不可以做
-
-- 未经 Human signoff 启动 implementation。
-- 把自己列入 Dispatch Matrix 作为 Generator 或 Evaluator。
-- 直接修改受管业务文件。
-- reject Evaluator 的 `No-Go`。
-- 覆盖 Evaluator findings。
-- 自行扩大 Allowed Changes。
-- 自行修改已签署的 North Star。
-- 删除或改写 Evidence Index 既有条目。
-
-Parent 只能修改 v2 控制面 artifacts，例如 task-state、goal、dispatch、synthesis、handoff。
+- Start implementation before Human signoff.
+- Assign itself as Generator or Evaluator.
+- Directly modify managed business files outside the signed scope.
+- Reject or override Evaluator `No-Go`.
+- Override Evaluator findings.
+- Expand allowed changes without Human signoff.
+- Modify a signed North Star.
+- Delete or rewrite existing Evidence Index entries.
+- Replace child verification or evaluator evidence with chat memory.
 
 Parent cannot assign itself.
 
-Parent 不能用聊天记忆替代 Child Report、verification output、Evaluator Gate Card 或 Evidence Index。
-
 ## Human Signoff
 
-North Star Contract 由 Parent 草拟，但必须 Human 签署后才生效。
+Parent may draft the North Star, but it becomes active only after explicit Human
+signoff.
 
-Phase 1 signoff 规则：
+Valid signoff requires:
 
-- Human 在对话中明确说 `Go`、`同意`、`确认` 或等价表达。
-- Parent 在 `Human Signoff` 字段记录确认文本摘要和 timestamp。
-- Parent 不得自行填充 Human Signoff。
-- 没有人类对话确认的 signoff 视为无效。
-- 缺少 signoff 时，任务状态必须是 `proposed` 或 `blocked: needs-human-signoff`。
+- explicit Human confirmation such as `Go`, `agree`, `confirm`, or equivalent
+- recorded confirmation text
+- timestamp
+- recorder identity
+
+Without valid signoff, task state must remain `proposed` or
+`blocked: needs-human-signoff`.
 
 ## Dispatch Matrix Schema
 
@@ -94,11 +93,9 @@ Self-Verification Result:
 Exhaustion Rule:
 ```
 
-Child exhaustion rule:
-
-- If a child triggers a stop condition or exhausts available actions, it must output `child-report: exhausted`.
-- Parent must not re-dispatch the same goal unchanged.
-- Parent must enter `blocked: needs-human-decision`, or draft a new boundary and wait for Human signoff.
+If a child triggers a stop condition or exhausts available actions, it must
+output `child-report: exhausted`. Parent must not re-dispatch the same goal
+unchanged.
 
 ## Child Report Schema
 
@@ -117,15 +114,14 @@ Stop Conditions Triggered:
 Recommended Parent Action:
 ```
 
-`Self-Verification Result` must include command, exit code, or reason verification was not run.
-
-Child test results and verification evidence must be written into the report. Parent must not infer a pass/fail result from chat memory.
+Child test results and verification evidence must be written into the report.
+Parent must not infer pass/fail from chat memory.
 
 ## Evaluator Rules
 
-Evaluator is a quality gate, not a normal child.
+Evaluator is an independent quality gate.
 
-Evaluator automatically reads:
+Evaluator may read:
 
 - Human-signed North Star
 - Task State
@@ -139,8 +135,10 @@ Evaluator automatically reads:
 
 Evaluator must use two passes:
 
-1. `evidence-first`: read original evidence, diff, child reports, verification output, project facts, and North Star before reading Parent Synthesis.
-2. `synthesis-comparison`: read Parent Synthesis draft only after the first pass, treating it as Parent's statement, not as source truth.
+1. `evidence-first`: read raw evidence, diff, child reports, verification
+   output, project facts, and North Star before reading Parent Synthesis.
+2. `synthesis-comparison`: read Parent Synthesis only after the first pass,
+   treating it as Parent's statement rather than source truth.
 
 ## Evaluator Decision Schema
 
@@ -159,12 +157,12 @@ Timestamp:
 Rules:
 
 - `No-Go` blocks the task.
-- Parent cannot reject Evaluator findings.
-- Parent cannot override Evaluator findings.
-- Parent can record `Evaluator Dispute` only by entering `blocked: needs-human-decision`.
-- `Conditional Go` requires a second lightweight Evaluator pass that checks only whether listed conditions are satisfied.
+- Parent cannot reject or override Evaluator findings.
+- Parent may record `Evaluator Dispute` only by entering
+  `blocked: needs-human-decision`.
+- `Conditional Go` requires a follow-up Evaluator pass.
 - A task cannot become `accepted` until Conditional Go conditions are verified.
-- Evidence Index `append-only` violations are review blockers.
+- Evidence Index append-only violations are blockers.
 
 ## Parent Synthesis Schema
 
@@ -179,13 +177,7 @@ Remaining Uncertainty:
 Recommended Human Decision:
 ```
 
-Parent Synthesis rules:
-
-- Use evidence refs, not memory.
-- Cite Child Reports for child test results.
-- Record conflicts instead of silently resolving them.
-- Record scope changes as blocked until Human approves.
-- Do not include `rejected evaluator findings`; Evaluator findings cannot be rejected by Parent.
+Parent Synthesis must cite evidence refs, not memory.
 
 ## Evidence Index Rules
 
@@ -203,27 +195,15 @@ Updated By:
 Update Reason:
 ```
 
-Rules:
+Do not delete, rewrite, renumber, duplicate, or silently reclassify entries.
+Status changes must append an update record with reason and timestamp.
 
-- Do not delete entries.
-- Do not rewrite old entries.
-- Status changes must append an update record with reason and timestamp.
-- Evaluator may issue `No-Go` when Evidence Index omits P0/P1 findings, scope changes, conflicts, or Evaluator findings.
-
-Evidence update record:
-
-```text
-Evidence ID:
-Previous Status:
-New Status:
-Reason:
-Timestamp:
-Updated By:
-```
+Evaluator may issue `No-Go` when Evidence Index omits P0/P1 findings, scope
+changes, conflicts, or Evaluator findings.
 
 ## Authority Conflict
 
-Use `blocked: authority-conflict` when artifacts disagree about:
+Use `blocked: authority-conflict` when authoritative artifacts disagree about:
 
 - signed North Star content
 - current task state
@@ -232,4 +212,4 @@ Use `blocked: authority-conflict` when artifacts disagree about:
 - evidence status
 - Human decision
 
-Parent must request Human resolution instead of choosing the convenient artifact.
+Parent must request Human resolution instead of choosing the convenient source.
