@@ -49,6 +49,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 8 Evaluator Dispute Guide](docs/phase-8-evaluator-dispute-guide.md): evaluator dispute, No-Go blocking, and human-decision recovery paths.
 - [Phase 9 Evidence Integrity Guide](docs/phase-9-evidence-integrity-guide.md): append-only Evidence Index audit, scope-change records, and evidence recovery blockers.
 - [Phase 10 Release Gate Guide](docs/phase-10-release-gate-guide.md): release gate, remote-sync readiness, and separate push/PR authorization checks.
+- [Phase 11 Release Packet Guide](docs/phase-11-release-packet-guide.md): release packet preparation, origin/master..HEAD summary, and remote-sync authorization request checks.
 
 ### Templates
 
@@ -121,6 +122,13 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 10 Release Gate Checklist](examples/phase-10-release-gate-drill/release-gate-checklist.md)
 - [Phase 10 Parent Synthesis](examples/phase-10-release-gate-drill/parent-synthesis.md)
 - [Phase 10 Human Decision](examples/phase-10-release-gate-drill/human-decision.md)
+- [Phase 11 Task Instance](examples/phase-11-release-packet-drill/task-instance.md)
+- [Phase 11 Dispatch Matrix](examples/phase-11-release-packet-drill/dispatch-matrix.md)
+- [Phase 11 Release Packet Child Report](examples/phase-11-release-packet-drill/child-report-release-packet.md)
+- [Phase 11 Release Packet](examples/phase-11-release-packet-drill/release-packet.md)
+- [Phase 11 Evaluator Gate Card](examples/phase-11-release-packet-drill/evaluator-gate-card.md)
+- [Phase 11 Parent Synthesis](examples/phase-11-release-packet-drill/parent-synthesis.md)
+- [Phase 11 Human Decision](examples/phase-11-release-packet-drill/human-decision.md)
 
 ## 权威顺序
 
