@@ -53,6 +53,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 12 Remote-Sync Decision Guide](docs/phase-12-remote-sync-decision-guide.md): remote-sync decision validity, authorization expiry, and blocking conditions.
 - [Phase 13 Remote-Sync Execution Handoff Guide](docs/phase-13-remote-sync-execution-handoff-guide.md): remote-sync execution handoff, final preflight, and separate execution Human Go checks.
 - [Phase 14 Remote-Sync Outcome Audit Guide](docs/phase-14-remote-sync-outcome-audit-guide.md): post-execution audit, remote evidence requirements, and outcome acceptance blockers.
+- [Phase 15 Baseline Closure Guide](docs/phase-15-baseline-closure-guide.md): baseline closure, end-to-end evidence map, and chat-memory-free reconstruction blockers.
 
 ### Templates
 
@@ -155,6 +156,14 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 14 Evaluator Gate Card](examples/phase-14-remote-sync-outcome-audit-drill/evaluator-gate-card.md)
 - [Phase 14 Parent Synthesis](examples/phase-14-remote-sync-outcome-audit-drill/parent-synthesis.md)
 - [Phase 14 Human Decision](examples/phase-14-remote-sync-outcome-audit-drill/human-decision.md)
+- [Phase 15 Task Instance](examples/phase-15-baseline-closure-drill/task-instance.md)
+- [Phase 15 Dispatch Matrix](examples/phase-15-baseline-closure-drill/dispatch-matrix.md)
+- [Phase 15 Baseline Closure Child Report](examples/phase-15-baseline-closure-drill/child-report-baseline-closure.md)
+- [Phase 15 Baseline Closure Record](examples/phase-15-baseline-closure-drill/baseline-closure-record.md)
+- [Phase 15 End-to-End Evidence Map](examples/phase-15-baseline-closure-drill/end-to-end-evidence-map.md)
+- [Phase 15 Evaluator Gate Card](examples/phase-15-baseline-closure-drill/evaluator-gate-card.md)
+- [Phase 15 Parent Synthesis](examples/phase-15-baseline-closure-drill/parent-synthesis.md)
+- [Phase 15 Human Decision](examples/phase-15-baseline-closure-drill/human-decision.md)
 
 ## 权威顺序
 
