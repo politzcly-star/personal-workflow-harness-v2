@@ -59,6 +59,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 18 Route Selection Decision Guide](docs/phase-18-route-selection-decision-guide.md): route selection decision capture, single-route binding, and ambiguity blockers.
 - [Phase 19 Route-Specific Execution Authorization Guide](docs/phase-19-route-specific-execution-authorization-guide.md): route-specific execution authorization, candidate command isolation, and separate execution Human Go checks.
 - [Phase 20 Execution Human Go Capture Guide](docs/phase-20-execution-human-go-capture-guide.md): execution Human Go capture, exact command binding, and authorization expiry checks.
+- [Phase 21 Execution Denial / Abort and Recovery Guide](docs/phase-21-execution-denial-abort-recovery-guide.md): execution denial, abort trigger, and recovery decision checks.
 
 ### Templates
 
@@ -212,6 +213,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 20 Evaluator Gate Card](examples/phase-20-execution-human-go-capture-drill/evaluator-gate-card.md)
 - [Phase 20 Parent Synthesis](examples/phase-20-execution-human-go-capture-drill/parent-synthesis.md)
 - [Phase 20 Human Decision](examples/phase-20-execution-human-go-capture-drill/human-decision.md)
+- [Phase 21 Task Instance](examples/phase-21-execution-denial-abort-recovery-drill/task-instance.md)
+- [Phase 21 Dispatch Matrix](examples/phase-21-execution-denial-abort-recovery-drill/dispatch-matrix.md)
+- [Phase 21 Execution Denial / Abort and Recovery Child Report](examples/phase-21-execution-denial-abort-recovery-drill/child-report-execution-denial-abort-recovery.md)
+- [Phase 21 Execution Denial Record](examples/phase-21-execution-denial-abort-recovery-drill/execution-denial-record.md)
+- [Phase 21 Abort Trigger Checklist](examples/phase-21-execution-denial-abort-recovery-drill/abort-trigger-checklist.md)
+- [Phase 21 Recovery Decision Matrix](examples/phase-21-execution-denial-abort-recovery-drill/recovery-decision-matrix.md)
+- [Phase 21 Evaluator Gate Card](examples/phase-21-execution-denial-abort-recovery-drill/evaluator-gate-card.md)
+- [Phase 21 Parent Synthesis](examples/phase-21-execution-denial-abort-recovery-drill/parent-synthesis.md)
+- [Phase 21 Human Decision](examples/phase-21-execution-denial-abort-recovery-drill/human-decision.md)
 
 ## 权威顺序
 
