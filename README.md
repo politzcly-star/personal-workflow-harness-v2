@@ -54,6 +54,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 13 Remote-Sync Execution Handoff Guide](docs/phase-13-remote-sync-execution-handoff-guide.md): remote-sync execution handoff, final preflight, and separate execution Human Go checks.
 - [Phase 14 Remote-Sync Outcome Audit Guide](docs/phase-14-remote-sync-outcome-audit-guide.md): post-execution audit, remote evidence requirements, and outcome acceptance blockers.
 - [Phase 15 Baseline Closure Guide](docs/phase-15-baseline-closure-guide.md): baseline closure, end-to-end evidence map, and chat-memory-free reconstruction blockers.
+- [Phase 16 Remote-Sync Authorization Packet Guide](docs/phase-16-remote-sync-authorization-packet-guide.md): paper-only authorization packet, push/PR route decision, and Human route-selection blockers.
 
 ### Templates
 
@@ -164,6 +165,14 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 15 Evaluator Gate Card](examples/phase-15-baseline-closure-drill/evaluator-gate-card.md)
 - [Phase 15 Parent Synthesis](examples/phase-15-baseline-closure-drill/parent-synthesis.md)
 - [Phase 15 Human Decision](examples/phase-15-baseline-closure-drill/human-decision.md)
+- [Phase 16 Task Instance](examples/phase-16-remote-sync-authorization-packet-drill/task-instance.md)
+- [Phase 16 Dispatch Matrix](examples/phase-16-remote-sync-authorization-packet-drill/dispatch-matrix.md)
+- [Phase 16 Remote-Sync Authorization Packet Child Report](examples/phase-16-remote-sync-authorization-packet-drill/child-report-remote-sync-authorization-packet.md)
+- [Phase 16 Remote-Sync Authorization Packet](examples/phase-16-remote-sync-authorization-packet-drill/remote-sync-authorization-packet.md)
+- [Phase 16 Route Decision Matrix](examples/phase-16-remote-sync-authorization-packet-drill/route-decision-matrix.md)
+- [Phase 16 Evaluator Gate Card](examples/phase-16-remote-sync-authorization-packet-drill/evaluator-gate-card.md)
+- [Phase 16 Parent Synthesis](examples/phase-16-remote-sync-authorization-packet-drill/parent-synthesis.md)
+- [Phase 16 Human Decision](examples/phase-16-remote-sync-authorization-packet-drill/human-decision.md)
 
 ## 权威顺序
 
