@@ -50,6 +50,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 9 Evidence Integrity Guide](docs/phase-9-evidence-integrity-guide.md): append-only Evidence Index audit, scope-change records, and evidence recovery blockers.
 - [Phase 10 Release Gate Guide](docs/phase-10-release-gate-guide.md): release gate, remote-sync readiness, and separate push/PR authorization checks.
 - [Phase 11 Release Packet Guide](docs/phase-11-release-packet-guide.md): release packet preparation, origin/master..HEAD summary, and remote-sync authorization request checks.
+- [Phase 12 Remote-Sync Decision Guide](docs/phase-12-remote-sync-decision-guide.md): remote-sync decision validity, authorization expiry, and blocking conditions.
 
 ### Templates
 
@@ -129,6 +130,13 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 11 Evaluator Gate Card](examples/phase-11-release-packet-drill/evaluator-gate-card.md)
 - [Phase 11 Parent Synthesis](examples/phase-11-release-packet-drill/parent-synthesis.md)
 - [Phase 11 Human Decision](examples/phase-11-release-packet-drill/human-decision.md)
+- [Phase 12 Task Instance](examples/phase-12-remote-sync-decision-drill/task-instance.md)
+- [Phase 12 Dispatch Matrix](examples/phase-12-remote-sync-decision-drill/dispatch-matrix.md)
+- [Phase 12 Remote-Sync Decision Child Report](examples/phase-12-remote-sync-decision-drill/child-report-remote-sync-decision.md)
+- [Phase 12 Remote-Sync Decision Request](examples/phase-12-remote-sync-decision-drill/remote-sync-decision-request.md)
+- [Phase 12 Evaluator Gate Card](examples/phase-12-remote-sync-decision-drill/evaluator-gate-card.md)
+- [Phase 12 Parent Synthesis](examples/phase-12-remote-sync-decision-drill/parent-synthesis.md)
+- [Phase 12 Human Decision](examples/phase-12-remote-sync-decision-drill/human-decision.md)
 
 ## 权威顺序
 
