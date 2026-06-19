@@ -61,6 +61,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 20 Execution Human Go Capture Guide](docs/phase-20-execution-human-go-capture-guide.md): execution Human Go capture, exact command binding, and authorization expiry checks.
 - [Phase 21 Execution Denial / Abort and Recovery Guide](docs/phase-21-execution-denial-abort-recovery-guide.md): execution denial, abort trigger, and recovery decision checks.
 - [Phase 22 Authorization State Canonicalization Guide](docs/phase-22-authorization-state-canonicalization-guide.md): canonical authorization status fields, non-authorization input inventory, and cross-artifact consistency blockers.
+- [Phase 23 Release Candidate Freeze Guide](docs/phase-23-release-candidate-freeze-guide.md): release-candidate freeze, canonical evidence snapshot, and chat-memory-free reconstruction blockers.
 
 ### Templates
 
@@ -232,6 +233,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 22 Evaluator Gate Card](examples/phase-22-authorization-state-canonicalization-drill/evaluator-gate-card.md)
 - [Phase 22 Parent Synthesis](examples/phase-22-authorization-state-canonicalization-drill/parent-synthesis.md)
 - [Phase 22 Human Decision](examples/phase-22-authorization-state-canonicalization-drill/human-decision.md)
+- [Phase 23 Task Instance](examples/phase-23-release-candidate-freeze-drill/task-instance.md)
+- [Phase 23 Dispatch Matrix](examples/phase-23-release-candidate-freeze-drill/dispatch-matrix.md)
+- [Phase 23 Release Candidate Freeze Child Report](examples/phase-23-release-candidate-freeze-drill/child-report-release-candidate-freeze.md)
+- [Phase 23 Release Candidate Snapshot](examples/phase-23-release-candidate-freeze-drill/release-candidate-snapshot.md)
+- [Phase 23 Canonical Authorization State Snapshot](examples/phase-23-release-candidate-freeze-drill/canonical-authorization-state-snapshot.md)
+- [Phase 23 Evidence Freeze Checklist](examples/phase-23-release-candidate-freeze-drill/evidence-freeze-checklist.md)
+- [Phase 23 Evaluator Gate Card](examples/phase-23-release-candidate-freeze-drill/evaluator-gate-card.md)
+- [Phase 23 Parent Synthesis](examples/phase-23-release-candidate-freeze-drill/parent-synthesis.md)
+- [Phase 23 Human Decision](examples/phase-23-release-candidate-freeze-drill/human-decision.md)
 
 ## 权威顺序
 
