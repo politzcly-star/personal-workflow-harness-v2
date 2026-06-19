@@ -63,6 +63,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 22 Authorization State Canonicalization Guide](docs/phase-22-authorization-state-canonicalization-guide.md): canonical authorization status fields, non-authorization input inventory, and cross-artifact consistency blockers.
 - [Phase 23 Release Candidate Freeze Guide](docs/phase-23-release-candidate-freeze-guide.md): release-candidate freeze, canonical evidence snapshot, and chat-memory-free reconstruction blockers.
 - [Phase 24 Release Candidate Review Guide](docs/phase-24-release-candidate-review-guide.md): release-candidate review packet, freeze freshness revalidation, and stale freeze blockers.
+- [Phase 25 Current Release Candidate Refreeze Guide](docs/phase-25-current-release-candidate-refreeze-guide.md): current release candidate refreeze, refreshed evidence snapshot, and authorization No-Go preservation.
 
 ### Templates
 
@@ -252,6 +253,16 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 24 Evaluator Gate Card](examples/phase-24-release-candidate-review-drill/evaluator-gate-card.md)
 - [Phase 24 Parent Synthesis](examples/phase-24-release-candidate-review-drill/parent-synthesis.md)
 - [Phase 24 Human Decision](examples/phase-24-release-candidate-review-drill/human-decision.md)
+- [Phase 25 Task Instance](examples/phase-25-current-release-candidate-refreeze-drill/task-instance.md)
+- [Phase 25 Dispatch Matrix](examples/phase-25-current-release-candidate-refreeze-drill/dispatch-matrix.md)
+- [Phase 25 Current Release Candidate Refreeze Child Report](examples/phase-25-current-release-candidate-refreeze-drill/child-report-current-release-candidate-refreeze.md)
+- [Phase 25 Current Release Candidate Refreeze Packet](examples/phase-25-current-release-candidate-refreeze-drill/current-release-candidate-refreeze-packet.md)
+- [Phase 25 Refreshed Evidence Snapshot](examples/phase-25-current-release-candidate-refreeze-drill/refreshed-evidence-snapshot.md)
+- [Phase 25 Canonical Authorization State Snapshot](examples/phase-25-current-release-candidate-refreeze-drill/canonical-authorization-state-snapshot.md)
+- [Phase 25 Evidence Refresh Checklist](examples/phase-25-current-release-candidate-refreeze-drill/evidence-refresh-checklist.md)
+- [Phase 25 Evaluator Gate Card](examples/phase-25-current-release-candidate-refreeze-drill/evaluator-gate-card.md)
+- [Phase 25 Parent Synthesis](examples/phase-25-current-release-candidate-refreeze-drill/parent-synthesis.md)
+- [Phase 25 Human Decision](examples/phase-25-current-release-candidate-refreeze-drill/human-decision.md)
 
 ## 权威顺序
 
