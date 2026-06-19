@@ -60,6 +60,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 19 Route-Specific Execution Authorization Guide](docs/phase-19-route-specific-execution-authorization-guide.md): route-specific execution authorization, candidate command isolation, and separate execution Human Go checks.
 - [Phase 20 Execution Human Go Capture Guide](docs/phase-20-execution-human-go-capture-guide.md): execution Human Go capture, exact command binding, and authorization expiry checks.
 - [Phase 21 Execution Denial / Abort and Recovery Guide](docs/phase-21-execution-denial-abort-recovery-guide.md): execution denial, abort trigger, and recovery decision checks.
+- [Phase 22 Authorization State Canonicalization Guide](docs/phase-22-authorization-state-canonicalization-guide.md): canonical authorization status fields, non-authorization input inventory, and cross-artifact consistency blockers.
 
 ### Templates
 
@@ -222,6 +223,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 21 Evaluator Gate Card](examples/phase-21-execution-denial-abort-recovery-drill/evaluator-gate-card.md)
 - [Phase 21 Parent Synthesis](examples/phase-21-execution-denial-abort-recovery-drill/parent-synthesis.md)
 - [Phase 21 Human Decision](examples/phase-21-execution-denial-abort-recovery-drill/human-decision.md)
+- [Phase 22 Task Instance](examples/phase-22-authorization-state-canonicalization-drill/task-instance.md)
+- [Phase 22 Dispatch Matrix](examples/phase-22-authorization-state-canonicalization-drill/dispatch-matrix.md)
+- [Phase 22 Authorization State Canonicalization Child Report](examples/phase-22-authorization-state-canonicalization-drill/child-report-authorization-state-canonicalization.md)
+- [Phase 22 Authorization State Field Registry](examples/phase-22-authorization-state-canonicalization-drill/authorization-state-field-registry.md)
+- [Phase 22 Non-Authorization Input Inventory](examples/phase-22-authorization-state-canonicalization-drill/non-authorization-input-inventory.md)
+- [Phase 22 Cross-Artifact Consistency Checklist](examples/phase-22-authorization-state-canonicalization-drill/cross-artifact-consistency-checklist.md)
+- [Phase 22 Evaluator Gate Card](examples/phase-22-authorization-state-canonicalization-drill/evaluator-gate-card.md)
+- [Phase 22 Parent Synthesis](examples/phase-22-authorization-state-canonicalization-drill/parent-synthesis.md)
+- [Phase 22 Human Decision](examples/phase-22-authorization-state-canonicalization-drill/human-decision.md)
 
 ## 权威顺序
 
