@@ -56,6 +56,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 15 Baseline Closure Guide](docs/phase-15-baseline-closure-guide.md): baseline closure, end-to-end evidence map, and chat-memory-free reconstruction blockers.
 - [Phase 16 Remote-Sync Authorization Packet Guide](docs/phase-16-remote-sync-authorization-packet-guide.md): paper-only authorization packet, push/PR route decision, and Human route-selection blockers.
 - [Phase 17 Route Selection Readiness Guide](docs/phase-17-route-selection-readiness-guide.md): route selection readiness, evidence refresh, and push/PR non-authorization expiry blockers.
+- [Phase 18 Route Selection Decision Guide](docs/phase-18-route-selection-decision-guide.md): route selection decision capture, single-route binding, and ambiguity blockers.
 
 ### Templates
 
@@ -182,6 +183,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 17 Evaluator Gate Card](examples/phase-17-route-selection-readiness-drill/evaluator-gate-card.md)
 - [Phase 17 Parent Synthesis](examples/phase-17-route-selection-readiness-drill/parent-synthesis.md)
 - [Phase 17 Human Decision](examples/phase-17-route-selection-readiness-drill/human-decision.md)
+- [Phase 18 Task Instance](examples/phase-18-route-selection-decision-drill/task-instance.md)
+- [Phase 18 Dispatch Matrix](examples/phase-18-route-selection-decision-drill/dispatch-matrix.md)
+- [Phase 18 Route Selection Decision Child Report](examples/phase-18-route-selection-decision-drill/child-report-route-selection-decision.md)
+- [Phase 18 Route Selection Decision Packet](examples/phase-18-route-selection-decision-drill/route-selection-decision-packet.md)
+- [Phase 18 Single-Route Binding Record](examples/phase-18-route-selection-decision-drill/single-route-binding-record.md)
+- [Phase 18 Ambiguity Rejection Checklist](examples/phase-18-route-selection-decision-drill/ambiguity-rejection-checklist.md)
+- [Phase 18 Evaluator Gate Card](examples/phase-18-route-selection-decision-drill/evaluator-gate-card.md)
+- [Phase 18 Parent Synthesis](examples/phase-18-route-selection-decision-drill/parent-synthesis.md)
+- [Phase 18 Human Decision](examples/phase-18-route-selection-decision-drill/human-decision.md)
 
 ## 权威顺序
 
