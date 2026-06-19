@@ -55,6 +55,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 14 Remote-Sync Outcome Audit Guide](docs/phase-14-remote-sync-outcome-audit-guide.md): post-execution audit, remote evidence requirements, and outcome acceptance blockers.
 - [Phase 15 Baseline Closure Guide](docs/phase-15-baseline-closure-guide.md): baseline closure, end-to-end evidence map, and chat-memory-free reconstruction blockers.
 - [Phase 16 Remote-Sync Authorization Packet Guide](docs/phase-16-remote-sync-authorization-packet-guide.md): paper-only authorization packet, push/PR route decision, and Human route-selection blockers.
+- [Phase 17 Route Selection Readiness Guide](docs/phase-17-route-selection-readiness-guide.md): route selection readiness, evidence refresh, and push/PR non-authorization expiry blockers.
 
 ### Templates
 
@@ -173,6 +174,14 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 16 Evaluator Gate Card](examples/phase-16-remote-sync-authorization-packet-drill/evaluator-gate-card.md)
 - [Phase 16 Parent Synthesis](examples/phase-16-remote-sync-authorization-packet-drill/parent-synthesis.md)
 - [Phase 16 Human Decision](examples/phase-16-remote-sync-authorization-packet-drill/human-decision.md)
+- [Phase 17 Task Instance](examples/phase-17-route-selection-readiness-drill/task-instance.md)
+- [Phase 17 Dispatch Matrix](examples/phase-17-route-selection-readiness-drill/dispatch-matrix.md)
+- [Phase 17 Route Selection Readiness Child Report](examples/phase-17-route-selection-readiness-drill/child-report-route-selection-readiness.md)
+- [Phase 17 Route Selection Readiness Record](examples/phase-17-route-selection-readiness-drill/route-selection-readiness-record.md)
+- [Phase 17 Evidence Refresh Checklist](examples/phase-17-route-selection-readiness-drill/evidence-refresh-checklist.md)
+- [Phase 17 Evaluator Gate Card](examples/phase-17-route-selection-readiness-drill/evaluator-gate-card.md)
+- [Phase 17 Parent Synthesis](examples/phase-17-route-selection-readiness-drill/parent-synthesis.md)
+- [Phase 17 Human Decision](examples/phase-17-route-selection-readiness-drill/human-decision.md)
 
 ## 权威顺序
 
