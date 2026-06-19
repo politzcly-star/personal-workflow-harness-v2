@@ -64,6 +64,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 23 Release Candidate Freeze Guide](docs/phase-23-release-candidate-freeze-guide.md): release-candidate freeze, canonical evidence snapshot, and chat-memory-free reconstruction blockers.
 - [Phase 24 Release Candidate Review Guide](docs/phase-24-release-candidate-review-guide.md): release-candidate review packet, freeze freshness revalidation, and stale freeze blockers.
 - [Phase 25 Current Release Candidate Refreeze Guide](docs/phase-25-current-release-candidate-refreeze-guide.md): current release candidate refreeze, refreshed evidence snapshot, and authorization No-Go preservation.
+- [Phase 26 Freeze Finalization Boundary Guide](docs/phase-26-freeze-finalization-boundary-guide.md): freeze finalization boundary, no-commit-after-freeze rule, and stale-freeze risk acceptance blockers.
 
 ### Templates
 
@@ -263,6 +264,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 25 Evaluator Gate Card](examples/phase-25-current-release-candidate-refreeze-drill/evaluator-gate-card.md)
 - [Phase 25 Parent Synthesis](examples/phase-25-current-release-candidate-refreeze-drill/parent-synthesis.md)
 - [Phase 25 Human Decision](examples/phase-25-current-release-candidate-refreeze-drill/human-decision.md)
+- [Phase 26 Task Instance](examples/phase-26-freeze-finalization-boundary-drill/task-instance.md)
+- [Phase 26 Dispatch Matrix](examples/phase-26-freeze-finalization-boundary-drill/dispatch-matrix.md)
+- [Phase 26 Freeze Finalization Boundary Child Report](examples/phase-26-freeze-finalization-boundary-drill/child-report-freeze-finalization-boundary.md)
+- [Phase 26 Freeze Finalization Boundary Record](examples/phase-26-freeze-finalization-boundary-drill/freeze-finalization-boundary-record.md)
+- [Phase 26 Self-Invalidation Analysis](examples/phase-26-freeze-finalization-boundary-drill/self-invalidation-analysis.md)
+- [Phase 26 No-Commit-After-Freeze Checklist](examples/phase-26-freeze-finalization-boundary-drill/no-commit-after-freeze-checklist.md)
+- [Phase 26 Evaluator Gate Card](examples/phase-26-freeze-finalization-boundary-drill/evaluator-gate-card.md)
+- [Phase 26 Parent Synthesis](examples/phase-26-freeze-finalization-boundary-drill/parent-synthesis.md)
+- [Phase 26 Human Decision](examples/phase-26-freeze-finalization-boundary-drill/human-decision.md)
 
 ## 权威顺序
 
