@@ -62,6 +62,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 21 Execution Denial / Abort and Recovery Guide](docs/phase-21-execution-denial-abort-recovery-guide.md): execution denial, abort trigger, and recovery decision checks.
 - [Phase 22 Authorization State Canonicalization Guide](docs/phase-22-authorization-state-canonicalization-guide.md): canonical authorization status fields, non-authorization input inventory, and cross-artifact consistency blockers.
 - [Phase 23 Release Candidate Freeze Guide](docs/phase-23-release-candidate-freeze-guide.md): release-candidate freeze, canonical evidence snapshot, and chat-memory-free reconstruction blockers.
+- [Phase 24 Release Candidate Review Guide](docs/phase-24-release-candidate-review-guide.md): release-candidate review packet, freeze freshness revalidation, and stale freeze blockers.
 
 ### Templates
 
@@ -242,6 +243,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 23 Evaluator Gate Card](examples/phase-23-release-candidate-freeze-drill/evaluator-gate-card.md)
 - [Phase 23 Parent Synthesis](examples/phase-23-release-candidate-freeze-drill/parent-synthesis.md)
 - [Phase 23 Human Decision](examples/phase-23-release-candidate-freeze-drill/human-decision.md)
+- [Phase 24 Task Instance](examples/phase-24-release-candidate-review-drill/task-instance.md)
+- [Phase 24 Dispatch Matrix](examples/phase-24-release-candidate-review-drill/dispatch-matrix.md)
+- [Phase 24 Release Candidate Review Child Report](examples/phase-24-release-candidate-review-drill/child-report-release-candidate-review.md)
+- [Phase 24 Release Candidate Review Packet](examples/phase-24-release-candidate-review-drill/release-candidate-review-packet.md)
+- [Phase 24 Freeze Freshness Revalidation Checklist](examples/phase-24-release-candidate-review-drill/freeze-freshness-revalidation-checklist.md)
+- [Phase 24 Authorization State Comparison Record](examples/phase-24-release-candidate-review-drill/authorization-state-comparison-record.md)
+- [Phase 24 Evaluator Gate Card](examples/phase-24-release-candidate-review-drill/evaluator-gate-card.md)
+- [Phase 24 Parent Synthesis](examples/phase-24-release-candidate-review-drill/parent-synthesis.md)
+- [Phase 24 Human Decision](examples/phase-24-release-candidate-review-drill/human-decision.md)
 
 ## 权威顺序
 
