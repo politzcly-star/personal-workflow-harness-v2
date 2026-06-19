@@ -48,6 +48,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 7 Context Handoff Guide](docs/phase-7-context-handoff-guide.md): context compression, reload paths, and handoff recovery without chat memory authority.
 - [Phase 8 Evaluator Dispute Guide](docs/phase-8-evaluator-dispute-guide.md): evaluator dispute, No-Go blocking, and human-decision recovery paths.
 - [Phase 9 Evidence Integrity Guide](docs/phase-9-evidence-integrity-guide.md): append-only Evidence Index audit, scope-change records, and evidence recovery blockers.
+- [Phase 10 Release Gate Guide](docs/phase-10-release-gate-guide.md): release gate, remote-sync readiness, and separate push/PR authorization checks.
 
 ### Templates
 
@@ -113,6 +114,13 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 9 Scope Change Record](examples/phase-9-evidence-integrity-drill/scope-change-record.md)
 - [Phase 9 Parent Synthesis](examples/phase-9-evidence-integrity-drill/parent-synthesis.md)
 - [Phase 9 Human Decision](examples/phase-9-evidence-integrity-drill/human-decision.md)
+- [Phase 10 Task Instance](examples/phase-10-release-gate-drill/task-instance.md)
+- [Phase 10 Dispatch Matrix](examples/phase-10-release-gate-drill/dispatch-matrix.md)
+- [Phase 10 Release Gate Child Report](examples/phase-10-release-gate-drill/child-report-release-gate.md)
+- [Phase 10 Evaluator Gate Card](examples/phase-10-release-gate-drill/evaluator-gate-card.md)
+- [Phase 10 Release Gate Checklist](examples/phase-10-release-gate-drill/release-gate-checklist.md)
+- [Phase 10 Parent Synthesis](examples/phase-10-release-gate-drill/parent-synthesis.md)
+- [Phase 10 Human Decision](examples/phase-10-release-gate-drill/human-decision.md)
 
 ## 权威顺序
 
