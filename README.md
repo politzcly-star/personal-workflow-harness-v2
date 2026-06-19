@@ -58,6 +58,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 17 Route Selection Readiness Guide](docs/phase-17-route-selection-readiness-guide.md): route selection readiness, evidence refresh, and push/PR non-authorization expiry blockers.
 - [Phase 18 Route Selection Decision Guide](docs/phase-18-route-selection-decision-guide.md): route selection decision capture, single-route binding, and ambiguity blockers.
 - [Phase 19 Route-Specific Execution Authorization Guide](docs/phase-19-route-specific-execution-authorization-guide.md): route-specific execution authorization, candidate command isolation, and separate execution Human Go checks.
+- [Phase 20 Execution Human Go Capture Guide](docs/phase-20-execution-human-go-capture-guide.md): execution Human Go capture, exact command binding, and authorization expiry checks.
 
 ### Templates
 
@@ -202,6 +203,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 19 Evaluator Gate Card](examples/phase-19-route-specific-execution-authorization-drill/evaluator-gate-card.md)
 - [Phase 19 Parent Synthesis](examples/phase-19-route-specific-execution-authorization-drill/parent-synthesis.md)
 - [Phase 19 Human Decision](examples/phase-19-route-specific-execution-authorization-drill/human-decision.md)
+- [Phase 20 Task Instance](examples/phase-20-execution-human-go-capture-drill/task-instance.md)
+- [Phase 20 Dispatch Matrix](examples/phase-20-execution-human-go-capture-drill/dispatch-matrix.md)
+- [Phase 20 Execution Human Go Capture Child Report](examples/phase-20-execution-human-go-capture-drill/child-report-execution-human-go-capture.md)
+- [Phase 20 Execution Human Go Capture Packet](examples/phase-20-execution-human-go-capture-drill/execution-human-go-capture-packet.md)
+- [Phase 20 Exact Command Binding Record](examples/phase-20-execution-human-go-capture-drill/exact-command-binding-record.md)
+- [Phase 20 Authorization Expiry Checklist](examples/phase-20-execution-human-go-capture-drill/authorization-expiry-checklist.md)
+- [Phase 20 Evaluator Gate Card](examples/phase-20-execution-human-go-capture-drill/evaluator-gate-card.md)
+- [Phase 20 Parent Synthesis](examples/phase-20-execution-human-go-capture-drill/parent-synthesis.md)
+- [Phase 20 Human Decision](examples/phase-20-execution-human-go-capture-drill/human-decision.md)
 
 ## 权威顺序
 
