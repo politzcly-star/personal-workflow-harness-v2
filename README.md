@@ -65,6 +65,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 24 Release Candidate Review Guide](docs/phase-24-release-candidate-review-guide.md): release-candidate review packet, freeze freshness revalidation, and stale freeze blockers.
 - [Phase 25 Current Release Candidate Refreeze Guide](docs/phase-25-current-release-candidate-refreeze-guide.md): current release candidate refreeze, refreshed evidence snapshot, and authorization No-Go preservation.
 - [Phase 26 Freeze Finalization Boundary Guide](docs/phase-26-freeze-finalization-boundary-guide.md): freeze finalization boundary, no-commit-after-freeze rule, and stale-freeze risk acceptance blockers.
+- [Phase 27 Local Baseline Closure Guide](docs/phase-27-local-baseline-closure-guide.md): local baseline closure, stop condition declaration, and fresh future-objective blockers.
 
 ### Templates
 
@@ -273,6 +274,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 26 Evaluator Gate Card](examples/phase-26-freeze-finalization-boundary-drill/evaluator-gate-card.md)
 - [Phase 26 Parent Synthesis](examples/phase-26-freeze-finalization-boundary-drill/parent-synthesis.md)
 - [Phase 26 Human Decision](examples/phase-26-freeze-finalization-boundary-drill/human-decision.md)
+- [Phase 27 Task Instance](examples/phase-27-local-baseline-closure-drill/task-instance.md)
+- [Phase 27 Dispatch Matrix](examples/phase-27-local-baseline-closure-drill/dispatch-matrix.md)
+- [Phase 27 Local Baseline Closure Child Report](examples/phase-27-local-baseline-closure-drill/child-report-local-baseline-closure.md)
+- [Phase 27 Local Baseline Closure Record](examples/phase-27-local-baseline-closure-drill/local-baseline-closure-record.md)
+- [Phase 27 Stop Condition Declaration](examples/phase-27-local-baseline-closure-drill/stop-condition-declaration.md)
+- [Phase 27 Future Work Handoff](examples/phase-27-local-baseline-closure-drill/future-work-handoff.md)
+- [Phase 27 Evaluator Gate Card](examples/phase-27-local-baseline-closure-drill/evaluator-gate-card.md)
+- [Phase 27 Parent Synthesis](examples/phase-27-local-baseline-closure-drill/parent-synthesis.md)
+- [Phase 27 Human Decision](examples/phase-27-local-baseline-closure-drill/human-decision.md)
 
 ## 权威顺序
 
