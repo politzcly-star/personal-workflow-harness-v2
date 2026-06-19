@@ -57,6 +57,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 16 Remote-Sync Authorization Packet Guide](docs/phase-16-remote-sync-authorization-packet-guide.md): paper-only authorization packet, push/PR route decision, and Human route-selection blockers.
 - [Phase 17 Route Selection Readiness Guide](docs/phase-17-route-selection-readiness-guide.md): route selection readiness, evidence refresh, and push/PR non-authorization expiry blockers.
 - [Phase 18 Route Selection Decision Guide](docs/phase-18-route-selection-decision-guide.md): route selection decision capture, single-route binding, and ambiguity blockers.
+- [Phase 19 Route-Specific Execution Authorization Guide](docs/phase-19-route-specific-execution-authorization-guide.md): route-specific execution authorization, candidate command isolation, and separate execution Human Go checks.
 
 ### Templates
 
@@ -192,6 +193,15 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 18 Evaluator Gate Card](examples/phase-18-route-selection-decision-drill/evaluator-gate-card.md)
 - [Phase 18 Parent Synthesis](examples/phase-18-route-selection-decision-drill/parent-synthesis.md)
 - [Phase 18 Human Decision](examples/phase-18-route-selection-decision-drill/human-decision.md)
+- [Phase 19 Task Instance](examples/phase-19-route-specific-execution-authorization-drill/task-instance.md)
+- [Phase 19 Dispatch Matrix](examples/phase-19-route-specific-execution-authorization-drill/dispatch-matrix.md)
+- [Phase 19 Route-Specific Execution Authorization Child Report](examples/phase-19-route-specific-execution-authorization-drill/child-report-route-specific-execution-authorization.md)
+- [Phase 19 Route-Specific Execution Authorization Packet](examples/phase-19-route-specific-execution-authorization-drill/route-specific-execution-authorization-packet.md)
+- [Phase 19 Candidate Command Isolation Record](examples/phase-19-route-specific-execution-authorization-drill/candidate-command-isolation-record.md)
+- [Phase 19 Execution Authorization Checklist](examples/phase-19-route-specific-execution-authorization-drill/execution-authorization-checklist.md)
+- [Phase 19 Evaluator Gate Card](examples/phase-19-route-specific-execution-authorization-drill/evaluator-gate-card.md)
+- [Phase 19 Parent Synthesis](examples/phase-19-route-specific-execution-authorization-drill/parent-synthesis.md)
+- [Phase 19 Human Decision](examples/phase-19-route-specific-execution-authorization-drill/human-decision.md)
 
 ## 权威顺序
 
