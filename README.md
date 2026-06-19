@@ -51,6 +51,7 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 10 Release Gate Guide](docs/phase-10-release-gate-guide.md): release gate, remote-sync readiness, and separate push/PR authorization checks.
 - [Phase 11 Release Packet Guide](docs/phase-11-release-packet-guide.md): release packet preparation, origin/master..HEAD summary, and remote-sync authorization request checks.
 - [Phase 12 Remote-Sync Decision Guide](docs/phase-12-remote-sync-decision-guide.md): remote-sync decision validity, authorization expiry, and blocking conditions.
+- [Phase 13 Remote-Sync Execution Handoff Guide](docs/phase-13-remote-sync-execution-handoff-guide.md): remote-sync execution handoff, final preflight, and separate execution Human Go checks.
 
 ### Templates
 
@@ -137,6 +138,14 @@ v2 is a markdown control plane, not runner/CI/automation. Use these links to rel
 - [Phase 12 Evaluator Gate Card](examples/phase-12-remote-sync-decision-drill/evaluator-gate-card.md)
 - [Phase 12 Parent Synthesis](examples/phase-12-remote-sync-decision-drill/parent-synthesis.md)
 - [Phase 12 Human Decision](examples/phase-12-remote-sync-decision-drill/human-decision.md)
+- [Phase 13 Task Instance](examples/phase-13-remote-sync-execution-handoff-drill/task-instance.md)
+- [Phase 13 Dispatch Matrix](examples/phase-13-remote-sync-execution-handoff-drill/dispatch-matrix.md)
+- [Phase 13 Remote-Sync Execution Child Report](examples/phase-13-remote-sync-execution-handoff-drill/child-report-remote-sync-execution-handoff.md)
+- [Phase 13 Remote-Sync Execution Runbook](examples/phase-13-remote-sync-execution-handoff-drill/remote-sync-execution-runbook.md)
+- [Phase 13 Remote-Sync Preflight Checklist](examples/phase-13-remote-sync-execution-handoff-drill/remote-sync-preflight-checklist.md)
+- [Phase 13 Evaluator Gate Card](examples/phase-13-remote-sync-execution-handoff-drill/evaluator-gate-card.md)
+- [Phase 13 Parent Synthesis](examples/phase-13-remote-sync-execution-handoff-drill/parent-synthesis.md)
+- [Phase 13 Human Decision](examples/phase-13-remote-sync-execution-handoff-drill/human-decision.md)
 
 ## 权威顺序
 
