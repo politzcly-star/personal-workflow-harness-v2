@@ -58,13 +58,15 @@ try {
         "templates/feature-plan.md",
         "templates/deployment-checklist.md",
         "templates/database-checklist.md",
+        "templates/branch-finish.md",
         ".codex/hooks.json",
         ".codex/hooks/harness-hook.ps1",
         "scripts/health-check.ps1",
         "scripts/scope-check.ps1",
         "scripts/stop-check.ps1",
         "scripts/init-project-profile.ps1",
-        "scripts/check-codegraph.ps1"
+        "scripts/check-codegraph.ps1",
+        "scripts/branch-finish-check.ps1"
     )
 
     foreach ($file in $requiredFiles) {

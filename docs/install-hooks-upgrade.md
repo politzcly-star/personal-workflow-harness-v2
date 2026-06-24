@@ -85,6 +85,7 @@ It checks:
 
 - required files;
 - project profile template;
+- branch finish template;
 - hook-ready files;
 - script syntax;
 - `.env` / private key / secret keyword file-name risk;
@@ -101,7 +102,7 @@ Keep upgrades boring:
 3. Preserve project-specific commands and safety rules.
 4. Do not overwrite local secrets or profiles.
 5. Do not install global hooks without explicit Human approval.
-6. Run health, scope, stop, and syntax checks.
+6. Run health, scope, stop, branch-finish, and syntax checks.
 7. Commit with a clear message.
 
 ## Version

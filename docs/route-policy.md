@@ -33,6 +33,7 @@ lab_ai_delivery / formal module -> full_formal_gate
 | `review_gated` | Boundary, security, permissions, exports, public API, hidden acceptance risk. | Independent read-only reviewer before acceptance. | Reviewer returns No-Go or risk requires formal delivery. |
 | `deployment_route` | Production config, environment, nginx, certs, reload/restart, CI/CD, Docker/compose. | Pre-change evidence, rollback, dry-run/config-test, operator boundary, smoke plan. | Live blast radius, missing rollback, credentials, restart risk, or production uncertainty. |
 | `database_route` | Schema, migration, SQL, ORM, data repair, import/export, permission data. | Environment/database identity, impact preview, backup/rollback, transaction/dry-run, row-count/destructive guards. | Production, privacy, destructive, broad row-count, permission, export/import, or rollback uncertainty. |
+| `branch_finish` | Implementation is complete and the agent is preparing commit, push, PR, merge, keep, or cleanup. | Verify tests/checks first, inspect branch/worktree state, summarize options, preserve worktree for PR iteration, require confirmation for discard/delete. | Tests fail, base branch is unclear, branch cleanup is destructive, or PR/merge needs human approval. |
 | `lab_ai_delivery` | Formal module, high-risk delivery, required evaluator/Gate Report. | Task Packet, child/generator, parent gates, evaluator, Gate Report. | Human decides to stop or change scope. |
 
 ## Daily Route Rules
@@ -47,6 +48,7 @@ lightweight_fix
 > feature_discovery / feature_plan / docs_assisted
 > review_gated
 > deployment_route / database_route
+> branch_finish
 > lab_ai_delivery
 ```
 
@@ -170,6 +172,37 @@ Blocked by default:
 - proceeding without rollback or row-count bounds.
 
 Use `templates/database-checklist.md`.
+
+## Branch Finish Work
+
+Use `branch_finish` when implementation is complete and the next step is commit, push, PR, merge, keep, discard, branch deletion, or worktree cleanup.
+
+This route adapts the useful part of Superpowers `finishing-a-development-branch`: verify first, detect repo state, present clear integration options, execute only the chosen option, and clean up only when safe.
+
+Required before presenting integration options:
+
+- required tests/checks have passed, or a narrow not-verified reason is recorded;
+- `git status` is reviewed;
+- current branch, base branch, remote, and worktree state are known;
+- changed files and residual risk are summarized;
+- destructive cleanup is not automatic.
+
+Default options:
+
+```text
+1. Push branch / create PR when platform and auth support it
+2. Keep branch as-is for later
+3. Merge locally only with explicit Human approval
+4. Discard/delete only after exact confirmation
+```
+
+Rules:
+
+- Do not offer merge/PR as ready when tests or required checks failed.
+- Do not delete a branch or worktree before merge/PR success is verified.
+- Preserve the worktree for PR feedback unless the Human asks to clean it.
+- Detect GitHub versus non-GitHub remotes before suggesting `gh pr create`.
+- Use `templates/branch-finish.md` and `scripts/branch-finish-check.ps1`.
 
 ## Formal Delivery
 

@@ -95,7 +95,7 @@ switch ($Event) {
             }
         }
         $status = if ($missing.Count -eq 0) { "all required harness files found" } else { "missing: " + ($missing -join ", ") }
-        Additional-Context ("v2.1 production harness active. Read order: README.md > AGENTS.md > project profile > route/capability/verification docs. Route first, use the smallest safe route, verify before completion. Status: {0}" -f $status) "SessionStart"
+        Additional-Context ("v2.1 production harness active. Read order: README.md > AGENTS.md > project profile > route/capability/verification docs. Route first, use the smallest safe route, verify before completion. Use branch_finish before push/PR/merge/cleanup. Status: {0}" -f $status) "SessionStart"
         break
     }
     "PreToolUse" {
@@ -107,8 +107,13 @@ switch ($Event) {
             break
         }
 
-        if ($lower -match "(rm\s+-rf|remove-item[^`n]*(recurse)[^`n]*(force)|git\s+reset\s+--hard|git\s+checkout\s+--\s)") {
+        if ($lower -match "(rm\s+-rf|remove-item[^`n]*(recurse)[^`n]*(force)|git\s+reset\s+--hard|git\s+checkout\s+--\s|git\s+clean\s+-[a-z]*f|git\s+branch\s+(-d|--delete)|git\s+worktree\s+remove)") {
             Block-PreTool "Blocked by v2.1 harness: destructive filesystem or git reset/checkout command needs explicit fresh Human approval and route justification."
+            break
+        }
+
+        if ($lower -match "(git\s+push|git\s+merge|gh\s+pr\s+create|git\s+checkout\s+(main|master)|git\s+switch\s+(main|master))") {
+            Additional-Context "v2.1 branch_finish reminder: before push/PR/merge, run scripts/branch-finish-check.ps1 or document equivalent checks, changed files, branch/worktree state, and residual risk." "PreToolUse"
             break
         }
 

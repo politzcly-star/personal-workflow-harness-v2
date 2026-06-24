@@ -36,6 +36,7 @@ Before editing, classify the task and name the route:
 - boundary/security/permission -> `review_gated`
 - deployment/config -> `deployment_route`
 - database/schema/migration -> `database_route`
+- finished implementation, ready to push/PR/merge/cleanup -> `branch_finish`
 - formal/high-risk delivery -> `lab_ai_delivery`
 
 Use `docs/route-policy.md` for details.
@@ -119,6 +120,20 @@ On first use in a new project:
 This harness may include repo-local Codex hooks under `.codex/hooks.json` and `.codex/hooks/`. Hooks are a guardrail and memory layer, not a complete sandbox.
 
 Do not install or modify global Codex configuration unless the Human explicitly asks. If local hooks require trust review, state that they are hook-ready and need Codex trust before running.
+
+## Branch Finish
+
+When implementation is complete and the next step is commit, push, PR, merge, keep, discard, or cleanup, use `branch_finish`.
+
+Before offering integration choices:
+
+- run or cite required tests/checks;
+- inspect `git status`, current branch, base branch, remote, and worktree state;
+- summarize changed files and residual risk;
+- preserve worktree state for PR feedback;
+- require explicit confirmation before branch deletion, worktree removal, discard, or force cleanup.
+
+Use `templates/branch-finish.md` and `scripts/branch-finish-check.ps1`.
 
 ## Context Survival
 

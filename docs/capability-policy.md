@@ -147,6 +147,18 @@ Task Packet
 > commit
 ```
 
+### Branch Finish
+
+```text
+verification
+> scope guard
+> branch/worktree detection
+> integration options
+> explicit chosen action
+```
+
+Use this only when work is complete and the next action is commit, push, PR, merge, keep, discard, or cleanup.
+
 ## Lightweight Trace Fields
 
 Production traces and reports should stay compact:
