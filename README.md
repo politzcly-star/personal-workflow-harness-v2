@@ -1,109 +1,154 @@
-# Agent-Native Delivery Harness v2
+# Production Harness Starter
 
-This repository is a markdown control plane for coordinating agent work.
-It does not contain a runner, CI pipeline, browser automation, production
-integration, or remote-sync automation.
+一套开箱即用的 AI 开发工作流模板。
 
-The goal is to make agentic delivery auditable:
+适合 Codex、Claude Code、Cursor、Gemini CLI 等智能体开发环境。新项目和已有项目都可以使用。
+
+它解决的问题很简单：
+
+- 什么时候直接改代码，什么时候先问清需求
+- 哪些文件、配置、数据库、部署动作不能乱碰
+- 修完或开发完以后必须怎么验证
+- 什么时候该用 CodeGraph、docs、reviewer、debug skill
+- 什么时候必须升级到正式交付流程
+
+Production Harness Starter 把这些规则沉淀成轻量路线、护栏和检查清单。默认足够快，遇到高风险任务时自动变谨慎。
+
+## What This Is
+
+This repo is a production-ready agent harness starter. It is a small control layer you copy into a project so an AI coding agent can work with better routing, safer defaults, and clearer completion evidence.
+
+It is not an eval platform, benchmark runner, dashboard, CI system, or deployment tool.
+
+The core idea:
 
 ```text
-Human-signed North Star
-> Task State
-> Evaluator Decision
-> Parent Synthesis
-> Child Reports / Evidence Refs
-> Chat Context
+Task type
+> route
+> capability choice
+> scoped work
+> verification-before-completion
+> lightweight trace
+> high-risk escalation when needed
 ```
 
-Chat context is never the authority source. A new agent should reload task
-state from artifacts before acting.
+## What It Adds
 
-## What This Repo Is
+### Tool Orchestration
 
-v2 is a `goal-first / agent-orchestrated control plane`.
+The harness tells the agent when to use each capability:
 
-Use it when:
+- `rg`: default fast search
+- CodeGraph/MCP: cross-file localization and impact understanding
+- `code-audit-fix`: bug diagnosis and repair loop
+- `openai-docs`: current OpenAI/Codex/API uncertainty
+- reviewer child: boundary, security, permission, deployment, or database risk
+- `lab-ai-delivery`: formal module delivery with Task Packet, evaluator, Gate Report
 
-- the goal is clear but the path is uncertain
-- decomposition, exploration, or parallel child work is useful
-- a Parent agent must synthesize multiple reports
-- an Evaluator gate should independently review evidence before Human decision
+### Verification Loops
 
-Do not treat this repo as an execution system. It only defines the artifacts
-and rules for controlled agent work.
+The agent should not say "done" until it has verified the relevant behavior, or has recorded why verification could not be run.
 
-## What This Repo Is Not
+For normal code this may be tests, build, lint, typecheck, screenshot, or focused reproduction.
 
-This repo does not authorize or implement:
+For docs and policy it may be JSON parse, required literal coverage, link checks, and `git diff --check`.
 
-- source-code delivery by itself
-- runner / CI / Docker / browser automation
-- production, database, secrets, billing, or paid external actions
-- push, PR, release, remote command, or remote-sync
-- bypassing Human signoff or Evaluator `No-Go`
+### Context And Memory
 
-High-risk execution should fall back to the v1 workflow-first harness or to a
-separate gated objective.
+Important decisions live in files, not chat memory. A new agent can reload:
 
-## Repository Layout
+```text
+README
+> AGENTS.md
+> route policy
+> task brief
+> verification report
+> handoff
+```
 
-Start here:
+### Guardrails
 
-- [v1 / v2 Routing](docs/route-v2.md): decide whether to use v2, v1, or blocked.
-- [Architecture](docs/architecture.md): roles, layers, authority order, and guardrails.
-- [Parent Agent Protocol](docs/parent-agent-protocol.md): Parent/Child/Evaluator duties and schemas.
-- [Context Survival](docs/context-survival.md): context compression, handoff, and recovery.
+The harness separates everyday work from dangerous work.
 
-Templates:
+Database writes, production deployment, secrets, permissions, destructive changes, billing, auth, and broad refactors require stronger evidence and often reviewer or `lab-ai-delivery` escalation.
 
-- [Task State](templates/task-state.md): durable task state and Evidence Index.
-- [Task Instance](templates/task-instance.md): fillable task instance derived from task state.
-- [Dispatch Matrix](templates/dispatch-matrix.md): child ownership, read/write scope, stop conditions.
-- [Child Report](templates/child-report.md): child output, evidence, verification, exhaustion.
-- [Evaluator Gate Card](templates/evaluator-gate-card.md): evidence-first and synthesis-comparison gate.
-- [Parent Synthesis](templates/parent-synthesis.md): parent summary that cites evidence refs only.
+### Observability
 
-Historical phase drills and review reports were intentionally removed from the
-working tree. They were useful for building the harness, but they are noisy for
-new-project agent onboarding.
+Production use should keep trace records lightweight. Record route, capabilities used, verification, changed files, skipped checks, and residual risk.
 
-## Minimal Operating Flow
+Detailed benchmark fields, comparison metrics, cost studies, and observability experiments belong outside normal project work unless you are explicitly running an evaluation.
 
-1. Route the task with `docs/route-v2.md`.
-2. Parent drafts a North Star Contract.
-3. Human signs the North Star.
-4. Parent creates a Task Instance and Dispatch Matrix.
-5. Child agents work only within assigned read/change boundaries.
-6. Child agents write Child Reports with verification results.
-7. Evaluator performs `evidence-first`, then `synthesis-comparison`.
-8. Parent creates Parent Synthesis using evidence refs only.
-9. Human decides Go, Conditional Go, No-Go, Reject, or accepted-risk.
+## Routes
 
-The Parent must not use chat memory as evidence, must not self-assign as
-Generator or Evaluator, and must not override Evaluator findings.
+| Task type | Default route | What changes |
+| --- | --- | --- |
+| Small clear edit | `lightweight_fix` | Direct scoped edit plus focused verification. |
+| Bug / failing test | `audit_fix` | Reproduce, localize, fix, verify. |
+| Cross-file unknown area | `structural_localization` | Use CodeGraph/MCP before editing. |
+| Vague new feature | `feature_discovery` | Ask/assume, brainstorm briefly, then implement. |
+| Mid-size feature | `feature_plan` | Short plan before implementation. |
+| API/docs uncertainty | `docs_assisted` | Use official docs before deciding. |
+| Boundary/security/permission | `review_gated` | Independent reviewer before acceptance. |
+| Deployment/config | `deployment_route` | Pre-change evidence, rollback, dry-run, smoke plan. |
+| Database/schema/migration | `database_route` | Impact preview, backup/rollback, transaction/dry-run, row-count guards. |
+| Formal/high-risk module | `lab_ai_delivery` | Task Packet, child, evaluator, Gate Report. |
 
-## New Agent Quickstart
+## Quick Start
 
-When a new agent enters this repo:
+1. Copy this repo into a project or keep it as a workflow reference.
+2. Ask the agent to read `README.md` and `AGENTS.md`.
+3. For each task, create a short task brief from `templates/task-brief.md`.
+4. Let the agent choose a route from `docs/route-policy.md`.
+5. Require completion evidence from `templates/verification-report.md`.
+6. For risky work, use `templates/risk-review.md` or escalate to `lab-ai-delivery`.
 
-1. Read this README.
-2. Read `docs/route-v2.md`.
-3. Read `docs/parent-agent-protocol.md`.
-4. Use the templates to create task-specific artifacts.
-5. Keep all task evidence append-only.
-6. Ask for Human signoff before implementation or scope expansion.
+Example prompt:
 
-If the task cannot define a North Star, blast radius, child ownership, and
-acceptance criteria, do not start v2 implementation. Route to v1 or mark the
-task `blocked: needs-human-decision`.
+```text
+Use this production harness. Route the task first, keep the smallest safe workflow,
+verify before completion, and escalate only if the risk triggers require it.
+```
 
-## Non-Bypass Rules
+## Hook Ideas
 
-- Human-signed North Star is the highest goal source.
-- Parent cannot assign itself as Generator or Evaluator.
-- Parent cannot reject or override Evaluator `No-Go`.
-- `Conditional Go` requires a follow-up Evaluator pass.
-- Evidence Index is append-only.
-- Child exhaustion must be reported as `child-report: exhausted`.
-- Authority conflicts become `blocked: authority-conflict`.
-- Push, PR, release, and remote-sync require a separate fresh objective.
+If your agent environment supports hooks, use these lifecycle ideas:
+
+```text
+SessionStart  -> inject README, AGENTS.md, current task brief
+PreToolUse    -> block secrets, destructive commands, unsafe production/db actions
+PostToolUse   -> record changed files, verification, and warnings
+PreCompact    -> write a handoff snapshot
+Stop          -> require verification report or allowed not-verified reason
+```
+
+Hooks are optional. The harness still works as plain Markdown rules.
+
+## What Not To Copy From Eval Work
+
+Do not put these in normal production projects by default:
+
+- benchmark scores
+- evaluation comparison fields
+- cost experiments
+- marked task histories
+- Langfuse credentials
+- long trace payloads
+- research-only caveats
+
+Keep production traces small and useful.
+
+## Philosophy
+
+Good agent workflow is not "always use the biggest process".
+
+It is:
+
+```text
+fast by default
+cautious when risk rises
+honest about verification
+clear about evidence
+able to escalate when needed
+```
+
+The goal is not to slow the agent down. The goal is to help it know when to move fast, when to ask, when to verify, and when to stop.

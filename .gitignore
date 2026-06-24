@@ -1,0 +1,17 @@
+# Local agent/editor state
+.claude/settings.local.json
+.codex/
+.cursor/
+
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+
+# Runtime and temporary output
+*.log
+tmp/
+temp/
+dist/
+build/
+node_modules/
