@@ -1,7 +1,11 @@
 # Local agent/editor state
 .claude/settings.local.json
-.codex/
+.codex/*
+!.codex/hooks.json
+!.codex/hooks/
+!.codex/hooks/**
 .cursor/
+.vs/
 
 # Secrets and environment files
 .env

@@ -1,6 +1,6 @@
 # Production Harness Starter Instructions
 
-This file is the default instruction layer for agents working in projects that adopt this harness.
+This file is the durable instruction layer for agents working in projects that adopt this harness.
 
 ## Authority Order
 
@@ -25,7 +25,7 @@ Do not turn every task into a formal module. Do not skip verification because a 
 
 ## Route First
 
-Before editing, classify the task:
+Before editing, classify the task and name the route:
 
 - clear small edit -> `lightweight_fix`
 - bug, failing test, regression -> `audit_fix`
@@ -40,14 +40,47 @@ Before editing, classify the task:
 
 Use `docs/route-policy.md` for details.
 
+## Four-Layer Execution Model
+
+Map routes to these production tiers:
+
+```text
+lightweight_fix -> lightweight
+audit_fix / structural_localization / docs_assisted / feature_plan -> medium
+review_gated / deployment_route / database_route high-risk state -> review_gated
+lab_ai_delivery / formal module -> full_formal_gate
+```
+
+Keep daily work light. Escalate only when uncertainty, blast radius, or hidden acceptance risk justifies it.
+
+## Parent-router / Child-executor
+
+- Tiny / obvious single-file work: the parent thread may execute directly.
+- Non trivial work: the parent owns requirement understanding, route selection, task decomposition, acceptance, and final report; child executors do scoped implementation.
+- Cross-file, new feature, high-risk, or long tasks: default to parent-router + child-executor.
+- High-risk or hidden acceptance tasks: run a reviewer after the child report.
+
+Use `templates/child-task.md` and `templates/child-report.md` when delegation is used.
+
 ## Capability Defaults
 
-- Prefer `rg` for fast literal search.
-- Use CodeGraph/MCP for cross-file relationships, callers/callees, route ownership, and impact radius.
-- Use `code-audit-fix` for bugs, failing verification, regressions, suspicious behavior, and quick local repair.
-- Use official docs for current API/platform uncertainty.
-- Use reviewer only when risk or hidden acceptance justifies it.
-- Use `lab-ai-delivery` only for formal modules, high-risk tasks, or required evaluator/Gate Report workflows.
+- `rg`: default fast local search.
+- verification: default before completion.
+- scope_guard: default before completion.
+- CodeGraph/MCP: use for new project onboarding, medium or higher routes, cross-file work, unfamiliar code, structural localization, callers/callees, route ownership, and impact radius.
+- `code-audit-fix`: use for bugs, failing verification, regressions, suspicious behavior, repair loops, and quick local diagnosis.
+- `openai-docs`: use for OpenAI / Codex / API / SDK / current docs uncertainty.
+- reviewer: use only when risk or hidden acceptance justifies it, especially boundary/security/permission/API/deployment/database/scope risk or formal work.
+- actionable browser/UI: use on demand or eval/manual only; do not use personal logged-in browser state by default.
+- `lab-ai-delivery`: use only for formal modules, high-risk tasks, or required Task Packet / Evaluator / Gate Report workflows.
+
+Evidence limits:
+
+- CodeGraph improves structural localization; it does not prove correctness.
+- `code-audit-fix` improves diagnosis; it does not guarantee automatic repair.
+- reviewer is high-risk-only, not decoration for every small task.
+- `openai-docs` is for OpenAI/Codex/API uncertainty, not general web research.
+- browser/UI should use a dedicated profile or explicit approval; avoid personal logged-in state.
 
 ## Verification-Before-Completion
 
@@ -72,6 +105,21 @@ Do not run production deployment, database writes, destructive commands, credent
 
 For deployment and database work, Codex should normally prepare checklists and consume redacted operator evidence rather than execute live actions.
 
+## New Project Onboarding
+
+On first use in a new project:
+
+1. Create or update `templates/project-profile.md` into the project-specific profile location.
+2. Try CodeGraph / structural indexing.
+3. If CodeGraph is unavailable, record fallback: `rg` + file tree + test entry points + manual dependency/call relationship notes.
+4. Capture package manager, start/test/build commands, ports, main directories, forbidden areas, database boundary, deployment boundary, CodeGraph status, common verification commands, and risk boundaries.
+
+## Hook-ready Layer
+
+This harness may include repo-local Codex hooks under `.codex/hooks.json` and `.codex/hooks/`. Hooks are a guardrail and memory layer, not a complete sandbox.
+
+Do not install or modify global Codex configuration unless the Human explicitly asks. If local hooks require trust review, state that they are hook-ready and need Codex trust before running.
+
 ## Context Survival
 
 Before long handoff, compaction, or stopping mid-task, write a handoff snapshot from `templates/handoff.md`.
@@ -80,6 +128,6 @@ The next agent should be able to continue from files without relying on chat mem
 
 ## Non-Claims
 
-This production harness does not promise universal productivity gains, pass-rate gains, token savings, or autonomous repair.
+This production harness does not promise universal productivity gains, pass-rate gains, token savings, deployment safety, database safety, or autonomous repair.
 
-It improves route quality, scope control, verification honesty, and high-risk escalation. Measure broader outcomes separately.
+It improves route quality, scope control, verification honesty, high-risk escalation, and lightweight guardrails. Measure broader outcomes separately.

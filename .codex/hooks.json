@@ -1,0 +1,54 @@
+{
+  "version": "1",
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event SessionStart",
+        "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event SessionStart"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event PreToolUse",
+        "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event PreToolUse"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event PostToolUse",
+        "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event PostToolUse"
+      }
+    ],
+    "PreCompact": [
+      {
+        "type": "command",
+        "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event PreCompact",
+        "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event PreCompact"
+      }
+    ],
+    "SubagentStart": [
+      {
+        "type": "command",
+        "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event SubagentStart",
+        "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event SubagentStart"
+      }
+    ],
+    "SubagentStop": [
+      {
+        "type": "command",
+        "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event SubagentStop",
+        "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event SubagentStop"
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event Stop",
+        "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File .codex/hooks/harness-hook.ps1 -Event Stop"
+      }
+    ]
+  }
+}

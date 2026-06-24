@@ -5,10 +5,12 @@ Use this before claiming completion.
 ```text
 Task ID:
 Selected Route:
+Layer: lightweight | medium | review_gated | full_formal_gate
 Status: passed | partial | failed | not-verified
 
 Changed Files:
 - TODO
+
 Checks Run:
 - Command:
   Exit Code:
@@ -31,14 +33,19 @@ Capability Use:
   Used: yes | no
   Reason:
   Result:
+  Evidence Limit:
 
-Reviewer:
-Used: yes | no
-Decision:
-Findings:
+Parent / Child:
+Parent Direct Execution: yes | no
+Child Executor Used: yes | no
+Child Report:
+Reviewer Used: yes | no
+Reviewer Decision:
+Reviewer Findings:
 
 Completion Claim:
 What is proven:
 What is not proven:
+Residual Risk:
 Next Recommended Action:
 ```
