@@ -18,6 +18,13 @@ Target:
 - paths allowed:
 - paths forbidden:
 
+New Project Alias Check:
+- alias supplied by Human/project profile: yes | no
+- check command: scripts/server-inspection-check.ps1 -HostAlias <alias>
+- if alias exists: proceed with read-only server_inspection
+- if alias missing: ask Human to configure Windows SSH config alias once
+- raw password requested from Human: no
+
 Access Boundary:
 - access method: SSH config alias | SSH agent | operator session | platform CLI
 - BatchMode/no-interactive-password: yes | no

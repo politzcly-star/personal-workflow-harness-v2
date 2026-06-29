@@ -116,7 +116,10 @@ On first use in a new project:
 1. Create or update `templates/project-profile.md` into the project-specific profile location.
 2. Try CodeGraph / structural indexing.
 3. If CodeGraph is unavailable, record fallback: `rg` + file tree + test entry points + manual dependency/call relationship notes.
-4. Capture package manager, start/test/build commands, ports, main directories, forbidden areas, database boundary, deployment boundary, CodeGraph status, common verification commands, and risk boundaries.
+4. Check whether the Human supplied or documented a server SSH alias for the project.
+5. If a server alias exists, run `scripts/server-inspection-check.ps1 -HostAlias <alias>` and use `server_inspection` for read-only queries.
+6. If no alias exists, ask the Human to configure a Windows SSH config alias once; do not ask for raw passwords.
+7. Capture package manager, start/test/build commands, ports, main directories, forbidden areas, database boundary, deployment boundary, server alias status, CodeGraph status, common verification commands, and risk boundaries.
 
 ## Hook-ready Layer
 

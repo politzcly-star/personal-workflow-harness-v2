@@ -53,6 +53,14 @@ Deployment Boundary:
 - Operator-owned actions:
 - Prohibited actions:
 
+Server Inspection:
+- Server alias configured: yes | no | unknown
+- SSH alias:
+- Alias check command:
+- Read-only paths allowed:
+- Paths forbidden:
+- Fallback if no alias: ask Human to configure Windows SSH config alias once; do not request raw password
+
 CodeGraph Status:
 - Available: yes | no | unknown
 - Checked by:

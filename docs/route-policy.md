@@ -153,6 +153,16 @@ Use `templates/deployment-checklist.md`.
 
 Use `server_inspection` when the Human wants Codex to inspect server state directly for a project, but not mutate the server.
 
+New project default:
+
+```text
+project profile
+> check for server SSH alias
+> if alias exists: run server-inspection-check and proceed with read-only queries
+> if alias missing: ask Human to configure Windows SSH config alias once
+> never request raw password or password screenshot
+```
+
 Allowed access pattern:
 
 - Human gives a fresh objective for the specific inspection.

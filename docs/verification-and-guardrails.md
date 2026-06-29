@@ -160,6 +160,13 @@ Forbidden:
 
 If server inspection needs credentials that are not already configured, stop and ask the Human to configure a no-secret access method or provide redacted operator evidence.
 
+New project rule:
+
+- first check whether a server alias is documented in the project profile or user prompt;
+- if yes, verify it with `scripts/server-inspection-check.ps1 -HostAlias <alias>`;
+- if no, ask the Human to configure one Windows SSH config alias once;
+- do not request, read, or store a raw password as a shortcut.
+
 ## Database Guard
 
 Database work should normally produce a checklist, not execute data changes.

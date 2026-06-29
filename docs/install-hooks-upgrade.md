@@ -29,6 +29,7 @@ Run:
 .\scripts\health-check.ps1
 .\scripts\init-project-profile.ps1 -ProjectName "my-project"
 .\scripts\check-codegraph.ps1
+.\scripts\server-inspection-check.ps1 -HostAlias "my-prod-alias"
 ```
 
 ## Adapt Into An Existing Project
@@ -37,8 +38,9 @@ Run:
 2. Merge this harness into a section called "Production Harness".
 3. Keep project-specific commands, tests, ports, and deployment rules in the project repo.
 4. Add or update a project profile from `templates/project-profile.md`.
-5. Remove eval-only examples that do not help daily work.
-6. Add one task brief and one verification report for the first real task.
+5. Check whether a server SSH alias exists. If yes, record it in the project profile and use `server_inspection`; if no, ask the Human to configure the alias once.
+6. Remove eval-only examples that do not help daily work.
+7. Add one task brief and one verification report for the first real task.
 
 ## Codex Hook Status
 
