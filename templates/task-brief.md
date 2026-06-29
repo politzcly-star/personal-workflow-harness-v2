@@ -10,8 +10,11 @@ Layer: lightweight | medium | review_gated | full_formal_gate
 Why This Route:
 
 Parent / Child:
-- Parent direct execution:
-- Child executor needed:
+- Direct execution exception used: yes | no
+- If yes, why all direct-execution criteria are met:
+- Child executor needed by default: yes | no
+- Child task path or summary:
+- Child report required: yes | no
 - Reviewer needed:
 
 Goal:

@@ -98,10 +98,12 @@ flowchart TD
 
 默认心智模型：
 
+- 父线程默认是 router 和 acceptor，不是默认 implementer。
 - tiny / obvious single-file：父线程可直接执行。
-- 非 trivial：父线程负责需求理解、路由、拆包、验收；child 执行。
+- 非 trivial：父线程必须先写 child task，child 执行，父线程读取 child report 后验收。
 - 跨文件 / 新功能 / 高风险 / 长任务：默认 parent-router + child-executor。
 - 高风险 / hidden acceptance：child 完成后再 reviewer。
+- 如果当前 Codex surface 无法创建 child/subagent/thread，父线程必须说明限制并请求授权，不要静默自己执行。
 
 相关模板：
 
@@ -109,6 +111,7 @@ flowchart TD
 - `templates/child-report.md`
 - `templates/risk-review.md`
 - `templates/verification-report.md`
+- `docs/parent-child-execution.md`
 
 ## 新项目接入
 
@@ -118,8 +121,9 @@ flowchart TD
 2. 用 `templates/project-profile.md` 建立项目画像。
 3. 默认尝试 CodeGraph / 结构索引。
 4. 如果 CodeGraph 不可用，不阻塞工作，记录 fallback：`rg` + 文件树 + 测试入口 + 依赖/调用关系手动定位。
-5. 默认检查是否已有项目服务器 SSH alias；如果有，直接使用 `server_inspection` 做只读查询；如果没有，提示用户先在本机配置一次 alias。
-6. 记录包管理器、启动命令、测试命令、构建命令、端口、主要目录、禁止修改区域、数据库边界、部署边界、常用验证命令。
+5. 默认确认 parent-router / child-executor 是否可用；非 trivial 任务必须走 child task / child report。
+6. 默认检查是否已有项目服务器 SSH alias；如果有，直接使用 `server_inspection` 做只读查询；如果没有，提示用户先在本机配置一次 alias。
+7. 记录包管理器、启动命令、测试命令、构建命令、端口、主要目录、禁止修改区域、数据库边界、部署边界、常用验证命令。
 
 可运行：
 

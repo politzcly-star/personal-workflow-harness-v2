@@ -57,9 +57,17 @@ Do not use the highest route by default. Do not use the lowest route when risk i
 
 ## Parent-router / Child-executor
 
-Use direct parent execution only for tiny or obvious single-file work.
+Default: use parent-router + child-executor for all non-trivial tasks.
 
-Use parent-router + child-executor when:
+Use direct parent execution only when all of these are true:
+
+- the task is tiny or obvious single-file work;
+- the target file/area is already known;
+- the route is `lightweight_fix`;
+- there is no cross-file, feature, deployment, database, server, auth, permission, public API, or hidden acceptance risk;
+- focused verification is obvious.
+
+Use parent-router + child-executor when any of these are true:
 
 - work is non trivial;
 - multiple files or concepts are involved;
@@ -72,7 +80,7 @@ Parent responsibilities:
 
 - understand the user request;
 - select route and capabilities;
-- write a scoped child task when delegation is useful;
+- write a scoped child task before implementation unless direct-execution criteria are met;
 - define allowed and forbidden files;
 - accept or reject child output;
 - run final scope and verification checks;
@@ -83,6 +91,10 @@ Child responsibilities:
 - follow `templates/child-task.md`;
 - stay within allowed scope;
 - report changed files, checks run, skipped checks, risks, and next steps using `templates/child-report.md`.
+
+If child execution is unavailable in the current Codex surface, parent must stop and state the limitation, then ask for explicit permission to execute in-parent or ask the Human to create/authorize a child thread.
+
+See `docs/parent-child-execution.md`.
 
 ## Feature Work
 

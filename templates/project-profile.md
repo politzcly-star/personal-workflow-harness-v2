@@ -40,6 +40,12 @@ Forbidden Modification Areas:
 - browser profiles:
 - other:
 
+Parent / Child Execution:
+- Child/subagent/thread available: yes | no | unknown
+- Default for non-trivial tasks: child-executor
+- Direct parent execution allowed only for tiny/obvious single-file tasks: yes
+- Fallback if child unavailable: ask Human to authorize parent execution or create/authorize child thread
+
 Database Boundary:
 - Has database: yes | no | unknown
 - Local only:

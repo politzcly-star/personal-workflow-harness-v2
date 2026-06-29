@@ -95,7 +95,7 @@ switch ($Event) {
             }
         }
         $status = if ($missing.Count -eq 0) { "all required harness files found" } else { "missing: " + ($missing -join ", ") }
-        Additional-Context ("v2.1 production harness active. Read order: README.md > AGENTS.md > project profile > route/capability/verification docs. Route first, use the smallest safe route, verify before completion. Use branch_finish before push/PR/merge/cleanup. Status: {0}" -f $status) "SessionStart"
+        Additional-Context ("v2.1 production harness active. Read order: README.md > AGENTS.md > project profile > route/capability/verification docs. Route first, use parent-router + child-executor for non-trivial work, verify before completion, and use branch_finish before push/PR/merge/cleanup. Status: {0}" -f $status) "SessionStart"
         break
     }
     "PreToolUse" {

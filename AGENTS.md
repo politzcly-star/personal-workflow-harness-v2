@@ -57,12 +57,26 @@ Keep daily work light. Escalate only when uncertainty, blast radius, or hidden a
 
 ## Parent-router / Child-executor
 
-- Tiny / obvious single-file work: the parent thread may execute directly.
-- Non trivial work: the parent owns requirement understanding, route selection, task decomposition, acceptance, and final report; child executors do scoped implementation.
-- Cross-file, new feature, high-risk, or long tasks: default to parent-router + child-executor.
-- High-risk or hidden acceptance tasks: run a reviewer after the child report.
+Default: the parent thread is a router and acceptor, not the main implementer.
 
-Use `templates/child-task.md` and `templates/child-report.md` when delegation is used.
+Parent direct execution is allowed only when all of these are true:
+
+- the task is tiny or obvious single-file work;
+- the target file/area is already known;
+- there is no cross-file behavior, new feature, deployment, database, server, auth, permission, or public API risk;
+- focused verification is obvious.
+
+For every other task:
+
+- Parent must create a scoped child task before implementation.
+- Child executor performs implementation or investigation.
+- Child returns `templates/child-report.md`.
+- Parent reads the report, inspects diff/scope, runs or verifies checks, and writes the final answer.
+- High-risk or hidden acceptance tasks get reviewer after the child report.
+
+If the current Codex surface cannot create a child/subagent/thread, the parent must state that limitation and ask for explicit permission to execute in-parent, or ask the Human to create/authorize a child thread. Do not silently collapse non-trivial work into parent execution.
+
+Use `docs/parent-child-execution.md`, `templates/child-task.md`, and `templates/child-report.md`.
 
 ## Capability Defaults
 
@@ -116,10 +130,11 @@ On first use in a new project:
 1. Create or update `templates/project-profile.md` into the project-specific profile location.
 2. Try CodeGraph / structural indexing.
 3. If CodeGraph is unavailable, record fallback: `rg` + file tree + test entry points + manual dependency/call relationship notes.
-4. Check whether the Human supplied or documented a server SSH alias for the project.
-5. If a server alias exists, run `scripts/server-inspection-check.ps1 -HostAlias <alias>` and use `server_inspection` for read-only queries.
-6. If no alias exists, ask the Human to configure a Windows SSH config alias once; do not ask for raw passwords.
-7. Capture package manager, start/test/build commands, ports, main directories, forbidden areas, database boundary, deployment boundary, server alias status, CodeGraph status, common verification commands, and risk boundaries.
+4. Record parent-router / child-executor availability and default to child execution for non-trivial work.
+5. Check whether the Human supplied or documented a server SSH alias for the project.
+6. If a server alias exists, run `scripts/server-inspection-check.ps1 -HostAlias <alias>` and use `server_inspection` for read-only queries.
+7. If no alias exists, ask the Human to configure a Windows SSH config alias once; do not ask for raw passwords.
+8. Capture package manager, start/test/build commands, ports, main directories, forbidden areas, database boundary, deployment boundary, server alias status, parent/child availability, CodeGraph status, common verification commands, and risk boundaries.
 
 ## Hook-ready Layer
 

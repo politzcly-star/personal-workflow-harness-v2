@@ -7,6 +7,12 @@ Task ID:
 Parent Thread:
 Selected Route:
 Layer:
+Parent Direct Execution Exception Used: no
+
+Parent Instruction:
+- Parent routes, scopes, and accepts.
+- Child executes the scoped work.
+- Parent should read the child report and verify, not silently redo the implementation.
 
 Goal:
 Non-Goals:

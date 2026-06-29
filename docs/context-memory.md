@@ -25,7 +25,7 @@ Record only what helps the next agent:
 
 - selected route and four-layer tier;
 - scope and non-goals;
-- parent/child split if used;
+- parent/child decision, including direct-execution exception if used;
 - files changed;
 - commands run;
 - verification result;

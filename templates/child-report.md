@@ -8,6 +8,7 @@ Child Role:
 Selected Route:
 Layer:
 Status: passed | partial | failed | blocked
+Parent Should Re-implement: no | narrow-repair-only | yes-with-reason
 
 Goal Completed:
 Yes | No

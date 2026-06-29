@@ -38,9 +38,10 @@ Run:
 2. Merge this harness into a section called "Production Harness".
 3. Keep project-specific commands, tests, ports, and deployment rules in the project repo.
 4. Add or update a project profile from `templates/project-profile.md`.
-5. Check whether a server SSH alias exists. If yes, record it in the project profile and use `server_inspection`; if no, ask the Human to configure the alias once.
-6. Remove eval-only examples that do not help daily work.
-7. Add one task brief and one verification report for the first real task.
+5. Confirm parent-router / child-executor availability. Non-trivial work should use child task / child report by default.
+6. Check whether a server SSH alias exists. If yes, record it in the project profile and use `server_inspection`; if no, ask the Human to configure the alias once.
+7. Remove eval-only examples that do not help daily work.
+8. Add one task brief and one verification report for the first real task.
 
 ## Codex Hook Status
 
@@ -86,6 +87,7 @@ Run this quick check after install:
 It checks:
 
 - required files;
+- parent-child execution protocol;
 - project profile template;
 - branch finish template;
 - server inspection template;

@@ -46,6 +46,7 @@ try {
         "docs/verification-and-guardrails.md",
         "docs/install-hooks-upgrade.md",
         "docs/context-memory.md",
+        "docs/parent-child-execution.md",
         "docs/ael-capability-recovery-map.md",
         "docs/production-pilot.md",
         "templates/task-brief.md",
