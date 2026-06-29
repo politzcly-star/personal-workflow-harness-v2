@@ -49,6 +49,12 @@ Operator Boundary:
 - operator confirmation required:
 - approved command placeholders:
 
+Server Inspection:
+- direct read-only inspection needed:
+- access method: SSH alias | SSH agent | operator session | platform CLI | none
+- raw credentials exposed to Codex: no
+- template used: templates/server-inspection.md
+
 Smoke Verification:
 - expected smoke:
 - command or operator evidence:

@@ -29,6 +29,7 @@ Every final answer should know:
 | PowerShell/scripts | `powershell -NoProfile -Command { . <script> }`, dry-run, focused invocation. |
 | Hooks | JSON parse, script syntax check, safe simulated event where possible. |
 | Deployment | config-test, dry-run, smoke plan, rollback plan, operator evidence. |
+| Server inspection | SSH alias resolution, BatchMode read-only command, redacted output summary, no raw credential handling. |
 | Database | impact preview, transaction/dry-run, row-count, rollback evidence, redacted operator result. |
 
 Docs-only changes still need verification: literal coverage, link sanity, parse checks, `git diff --check`, or another focused check.
@@ -136,6 +137,28 @@ Required evidence:
 - secret redaction.
 
 Do not claim production success without operator-provided or safe smoke evidence.
+
+## Server Inspection Guard
+
+Server inspection is allowed only for read-only work through preconfigured no-secret access.
+
+Allowed:
+
+- SSH config host alias, SSH agent, or operator-prepared short-lived session;
+- `ssh -o BatchMode=yes <alias> '<read-only command>'`;
+- compact summaries of file presence, versions, process status, health output, and non-secret config snippets;
+- redacted evidence references.
+
+Forbidden:
+
+- reading passwords from screenshots;
+- pasting passwords/tokens into commands;
+- `sshpass`;
+- writing credentials to files, hooks, prompts, reports, or terminal history;
+- reading `.env`, private keys, database URLs, cookies, secret manager values, or private user data;
+- remote writes, deploys, reload/restart, permission changes, package installs, or destructive commands.
+
+If server inspection needs credentials that are not already configured, stop and ask the Human to configure a no-secret access method or provide redacted operator evidence.
 
 ## Database Guard
 

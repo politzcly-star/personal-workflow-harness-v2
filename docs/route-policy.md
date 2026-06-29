@@ -32,6 +32,7 @@ lab_ai_delivery / formal module -> full_formal_gate
 | `docs_assisted` | Current API, SDK, Codex/OpenAI, or platform docs matter. | Check official docs before deciding, then implement narrowly. | Docs conflict with repo facts or live behavior. |
 | `review_gated` | Boundary, security, permissions, exports, public API, hidden acceptance risk. | Independent read-only reviewer before acceptance. | Reviewer returns No-Go or risk requires formal delivery. |
 | `deployment_route` | Production config, environment, nginx, certs, reload/restart, CI/CD, Docker/compose. | Pre-change evidence, rollback, dry-run/config-test, operator boundary, smoke plan. | Live blast radius, missing rollback, credentials, restart risk, or production uncertainty. |
+| `server_inspection` | Read-only server file/config/process/log inspection through preconfigured no-secret access. | Fresh objective, host alias, read-only command plan, redacted output summary, no raw credential handling. | Command would write, restart, deploy, inspect secrets, use passwords, or change remote state. |
 | `database_route` | Schema, migration, SQL, ORM, data repair, import/export, permission data. | Environment/database identity, impact preview, backup/rollback, transaction/dry-run, row-count/destructive guards. | Production, privacy, destructive, broad row-count, permission, export/import, or rollback uncertainty. |
 | `branch_finish` | Implementation is complete and the agent is preparing commit, push, PR, merge, keep, or cleanup. | Verify tests/checks first, inspect branch/worktree state, summarize options, preserve worktree for PR iteration, require confirmation for discard/delete. | Tests fail, base branch is unclear, branch cleanup is destructive, or PR/merge needs human approval. |
 | `lab_ai_delivery` | Formal module, high-risk delivery, required evaluator/Gate Report. | Task Packet, child/generator, parent gates, evaluator, Gate Report. | Human decides to stop or change scope. |
@@ -47,7 +48,7 @@ lightweight_fix
 > audit_fix / structural_localization
 > feature_discovery / feature_plan / docs_assisted
 > review_gated
-> deployment_route / database_route
+> deployment_route / server_inspection / database_route
 > branch_finish
 > lab_ai_delivery
 ```
@@ -147,6 +148,40 @@ Blocked by default:
 - claiming production success without smoke evidence.
 
 Use `templates/deployment-checklist.md`.
+
+## Server Inspection Work
+
+Use `server_inspection` when the Human wants Codex to inspect server state directly for a project, but not mutate the server.
+
+Allowed access pattern:
+
+- Human gives a fresh objective for the specific inspection.
+- Access is already configured without exposing raw credentials: SSH config host alias, SSH agent, short-lived operator-prepared session, or a platform CLI session.
+- Commands do not contain passwords, tokens, private keys, `.env` values, or connection strings.
+- Commands are read-only and produce compact redacted evidence.
+
+Examples of acceptable read-only checks:
+
+```text
+hostname
+uptime
+pwd
+ls -la /path
+test -f /path/file && echo present
+sed -n '1,80p' /non-secret/config
+tail -n 100 /non-secret/log
+systemctl status service-name
+docker ps
+```
+
+Blocked by default:
+
+- password screenshots, copied passwords, `sshpass`, interactive password entry, or credential values in commands;
+- `sudo` unless the Human explicitly approved the exact read-only command and it does not reveal secrets;
+- writes, deploys, reload/restart, file edits, `rm`, `mv`, `chmod`, `chown`, package installs, database writes;
+- reading `.env`, private keys, secret manager values, database URLs, cookies, or raw user/private data.
+
+Use `templates/server-inspection.md` and `scripts/server-inspection-check.ps1`.
 
 ## Database Work
 

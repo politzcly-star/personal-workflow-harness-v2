@@ -107,6 +107,11 @@ switch ($Event) {
             break
         }
 
+        if ($lower -match "(sshpass|password\s*=|pass\s*=|token\s*=|secret\s*=)") {
+            Block-PreTool "Blocked by v2.1 harness: command appears to embed credentials. Configure SSH alias/agent or operator session instead."
+            break
+        }
+
         if ($lower -match "(rm\s+-rf|remove-item[^`n]*(recurse)[^`n]*(force)|git\s+reset\s+--hard|git\s+checkout\s+--\s|git\s+clean\s+-[a-z]*f|git\s+branch\s+(-d|--delete)|git\s+worktree\s+remove)") {
             Block-PreTool "Blocked by v2.1 harness: destructive filesystem or git reset/checkout command needs explicit fresh Human approval and route justification."
             break
@@ -122,7 +127,16 @@ switch ($Event) {
             break
         }
 
-        if ($lower -match "(kubectl|helm|ssh\s|scp\s|rsync\s|systemctl|service\s+\w+\s+(restart|reload)|docker\s+compose\s+up|docker\s+compose\s+down|npm\s+run\s+deploy|pnpm\s+deploy|vercel\s+--prod|flyctl\s+deploy|railway\s+up)") {
+        if ($lower -match "(ssh\s|scp\s|rsync\s)") {
+            if ($lower -match "harness:server-inspection" -and $lower -notmatch "(sudo\s+su|rm\s+-|mv\s+|chmod\s+|chown\s+|>\s*|tee\s+|systemctl\s+(restart|reload|start|stop|enable|disable)|service\s+\w+\s+(restart|reload|start|stop)|docker\s+compose\s+(up|down)|kubectl\s+(apply|delete|rollout|scale)|helm\s+(upgrade|install|delete)|npm\s+run\s+deploy|pnpm\s+deploy|migrate)") {
+                Additional-Context "v2.1 server_inspection reminder: SSH/scp/rsync access is only for approved read-only inspection through preconfigured no-secret access. Redact output and do not read .env/private keys/database URLs." "PreToolUse"
+                break
+            }
+            Block-PreTool "Blocked by v2.1 harness: remote server command needs server_inspection marker, no raw credentials, and read-only command shape."
+            break
+        }
+
+        if ($lower -match "(kubectl\s+(apply|delete|rollout|scale)|helm\s+(upgrade|install|delete)|systemctl\s+(restart|reload|start|stop|enable|disable)|service\s+\w+\s+(restart|reload|start|stop)|docker\s+compose\s+up|docker\s+compose\s+down|npm\s+run\s+deploy|pnpm\s+deploy|vercel\s+--prod|flyctl\s+deploy|railway\s+up)") {
             Block-PreTool "Blocked by v2.1 harness: remote deploy/reload/restart or production-adjacent command. Use deployment_route checklist and operator boundary."
             break
         }

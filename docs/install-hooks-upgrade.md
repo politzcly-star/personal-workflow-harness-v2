@@ -86,11 +86,13 @@ It checks:
 - required files;
 - project profile template;
 - branch finish template;
+- server inspection template;
 - hook-ready files;
 - script syntax;
 - `.env` / private key / secret keyword file-name risk;
 - `.vs/`, IDE, and runtime artifact risk;
 - CodeGraph availability fallback;
+- server inspection script syntax;
 - verification template availability.
 
 ## Upgrade Policy

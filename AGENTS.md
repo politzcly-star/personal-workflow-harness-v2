@@ -35,6 +35,7 @@ Before editing, classify the task and name the route:
 - docs/API uncertainty -> `docs_assisted`
 - boundary/security/permission -> `review_gated`
 - deployment/config -> `deployment_route`
+- read-only server inspection via preconfigured access -> `server_inspection`
 - database/schema/migration -> `database_route`
 - finished implementation, ready to push/PR/merge/cleanup -> `branch_finish`
 - formal/high-risk delivery -> `lab_ai_delivery`
@@ -105,6 +106,8 @@ Do not read, print, store, or commit secrets.
 Do not run production deployment, database writes, destructive commands, credentialed browser actions, paid external actions, or remote server changes unless the Human explicitly approves a fresh objective and the route policy allows it.
 
 For deployment and database work, Codex should normally prepare checklists and consume redacted operator evidence rather than execute live actions.
+
+Read-only server inspection is allowed only through `server_inspection` when the Human gives a fresh objective and access is already configured without exposing raw credentials. Acceptable access patterns include SSH config host aliases, SSH agent, short-lived operator-prepared sessions, or platform CLIs that do not print or embed secrets. Do not read passwords from screenshots, paste passwords into commands, use `sshpass`, or write credentials into terminal history, files, prompts, hooks, or reports.
 
 ## New Project Onboarding
 
