@@ -8,6 +8,12 @@ The parent thread should route, decompose, review, verify, and report. It should
 
 Use child execution for every non-trivial task.
 
+## Activation Requirement
+
+This protocol must be present in the target project's durable instructions. A first-turn chat note that says "use the harness" is not enough for later turns.
+
+New project onboarding must install or merge `templates/project-agents.md` into the target project root `AGENTS.md`, then create `docs/project-profile.md`. The profile records project facts; root `AGENTS.md` carries the execution protocol every new window reads.
+
 ## Direct Execution Exception
 
 Parent may execute directly only when all criteria are true:

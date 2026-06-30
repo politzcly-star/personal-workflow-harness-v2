@@ -55,6 +55,7 @@ try {
         "templates/handoff.md",
         "templates/child-task.md",
         "templates/child-report.md",
+        "templates/project-agents.md",
         "templates/project-profile.md",
         "templates/feature-plan.md",
         "templates/deployment-checklist.md",

@@ -127,14 +127,15 @@ Read-only server inspection is allowed only through `server_inspection` when the
 
 On first use in a new project:
 
-1. Create or update `templates/project-profile.md` into the project-specific profile location.
-2. Try CodeGraph / structural indexing.
-3. If CodeGraph is unavailable, record fallback: `rg` + file tree + test entry points + manual dependency/call relationship notes.
-4. Record parent-router / child-executor availability and default to child execution for non-trivial work.
-5. Check whether the Human supplied or documented a server SSH alias for the project.
-6. If a server alias exists, run `scripts/server-inspection-check.ps1 -HostAlias <alias>` and use `server_inspection` for read-only queries.
-7. If no alias exists, ask the Human to configure a Windows SSH config alias once; do not ask for raw passwords.
-8. Capture package manager, start/test/build commands, ports, main directories, forbidden areas, database boundary, deployment boundary, server alias status, parent/child availability, CodeGraph status, common verification commands, and risk boundaries.
+1. Install or merge `templates/project-agents.md` into the target project root `AGENTS.md`. A chat-only reference to this harness is not durable.
+2. Create or update `templates/project-profile.md` into the project-specific profile location.
+3. Try CodeGraph / structural indexing.
+4. If CodeGraph is unavailable, record fallback: `rg` + file tree + test entry points + manual dependency/call relationship notes.
+5. Record parent-router / child-executor availability and default to child execution for non-trivial work.
+6. Check whether the Human supplied or documented a server SSH alias for the project.
+7. If a server alias exists, run `scripts/server-inspection-check.ps1 -HostAlias <alias>` and use `server_inspection` for read-only queries.
+8. If no alias exists, ask the Human to configure a Windows SSH config alias once; do not ask for raw passwords.
+9. Capture package manager, start/test/build commands, ports, main directories, forbidden areas, database boundary, deployment boundary, server alias status, parent/child availability, CodeGraph status, common verification commands, and risk boundaries.
 
 ## Hook-ready Layer
 

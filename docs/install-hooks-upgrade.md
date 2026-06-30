@@ -4,6 +4,8 @@ This harness works as plain Markdown. Hook integration is optional and repo-loca
 
 ## Install Into A New Project
 
+Important: a chat instruction such as "refer to `D:\个人工作流-v2`" is not a durable install. New Codex windows keep the protocol only when the target project has a root `AGENTS.md` harness block, or an equivalent project rule, plus the project profile.
+
 Copy these files:
 
 ```text
@@ -27,7 +29,7 @@ Run:
 
 ```powershell
 .\scripts\health-check.ps1
-.\scripts\init-project-profile.ps1 -ProjectName "my-project"
+.\scripts\init-project-profile.ps1 -ProjectPath "D:\path\to\project" -ProjectName "my-project" -InstallAgents
 .\scripts\check-codegraph.ps1
 .\scripts\server-inspection-check.ps1 -HostAlias "my-prod-alias"
 ```
@@ -35,7 +37,7 @@ Run:
 ## Adapt Into An Existing Project
 
 1. Keep the project's existing `AGENTS.md` or rules as highest local authority.
-2. Merge this harness into a section called "Production Harness".
+2. Merge `templates/project-agents.md` into the target project root `AGENTS.md`, or run `scripts/init-project-profile.ps1 -ProjectPath <project> -InstallAgents`.
 3. Keep project-specific commands, tests, ports, and deployment rules in the project repo.
 4. Add or update a project profile from `templates/project-profile.md`.
 5. Confirm parent-router / child-executor availability. Non-trivial work should use child task / child report by default.
@@ -88,6 +90,7 @@ It checks:
 
 - required files;
 - parent-child execution protocol;
+- project AGENTS addendum template;
 - project profile template;
 - branch finish template;
 - server inspection template;
