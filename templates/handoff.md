@@ -2,21 +2,24 @@
 
 Use this when context is long, work pauses, compaction is coming, or another agent will continue.
 
+This is the state anchor, not a transcript dump.
+
 ```text
 Task ID:
-Current Route:
-Layer:
-Current Status:
 Last Updated:
 
-Goal:
-Non-Goals:
+Current Goal:
+User Constraints / Non-Goals:
 
-Parent / Child State:
+Route / S-Level / Layer:
+Parent / Child / Reviewer State:
 - Parent owns:
 - Child task:
 - Child report:
 - Reviewer state:
+
+Decisions Made:
+- TODO
 
 What Has Been Done:
 - TODO
@@ -25,29 +28,42 @@ Files Changed:
 - TODO
 
 Verification Evidence:
+- Command:
+- Exit code:
+- Summary:
+
+Skipped Checks:
+- Check:
+- Reason:
+- Residual risk:
+
+Open Issues / Risks:
 - TODO
 
-Open Issues:
+Forbidden Actions / Boundaries:
+- Secrets:
+- Production:
+- Database:
+- Deployment:
+- Personal browser:
+
+Key Commands:
 - TODO
 
-Reviewer / Risk State:
-- TODO
-
-Secrets / Production / Database State:
-- No secrets stored:
-- No production action run:
-- No database action run:
-- No personal browser profile used:
+Server Alias Status:
+- Unknown | none | alias:
 
 Next Action:
 - TODO
 
-Reload Files:
+Reloadable From Files:
 - README.md
 - AGENTS.md
 - docs/route-policy.md
-- docs/capability-policy.md
-- docs/verification-and-guardrails.md
+- docs/parent-child-execution.md
+- docs/context-compression-policy.md
+- docs/reporting-policy.md
 - templates/project-profile.md or project profile
-- this handoff
+- git diff
+- test logs
 ```

@@ -4,9 +4,9 @@ This harness works as plain Markdown. Hook integration is optional and repo-loca
 
 ## Install Into A New Project
 
-Important: a chat instruction such as "refer to `D:\个人工作流-v2`" is not a durable install. New Codex windows keep the protocol only when the target project has a root `AGENTS.md` harness block, or an equivalent project rule, plus the project profile.
+Important: a chat instruction such as "refer to this harness" is not a durable install. New Codex windows keep the protocol only when the target project has a root `AGENTS.md` harness block, or an equivalent project rule, plus the project profile.
 
-Copy these files:
+Copy or keep access to these files:
 
 ```text
 README.md
@@ -22,7 +22,7 @@ Then ask Codex:
 
 ```text
 Read README.md and AGENTS.md. Use this production harness for the next task.
-Route first, verify before completion, and escalate only when risk requires it.
+Route first, classify S0-S4 task weight, verify before completion, and escalate only when risk requires it.
 ```
 
 Run:
@@ -40,16 +40,16 @@ Run:
 2. Merge `templates/project-agents.md` into the target project root `AGENTS.md`, or run `scripts/init-project-profile.ps1 -ProjectPath <project> -InstallAgents`.
 3. Keep project-specific commands, tests, ports, and deployment rules in the project repo.
 4. Add or update a project profile from `templates/project-profile.md`.
-5. Confirm parent-router / child-executor availability. Non-trivial work should use child task / child report by default.
+5. Confirm parent-router / child-executor availability and record S0-S4 delegation behavior.
 6. Check whether a server SSH alias exists. If yes, record it in the project profile and use `server_inspection`; if no, ask the Human to configure the alias once.
-7. Remove eval-only examples that do not help daily work.
-8. Add one task brief and one verification report for the first real task.
+7. Remove evaluation-only examples that do not help daily work.
+8. Add one task brief and one verification report for the first real S2+ task.
 
 ## Codex Hook Status
 
-Codex official hooks support repo-local hook configuration under `.codex/hooks.json` or `.codex/config.toml`. Project-local hooks are reviewed and trusted by Codex before they run.
+Codex hooks support repo-local hook configuration under `.codex/hooks.json` or `.codex/config.toml`. Project-local hooks are reviewed and trusted by Codex before they run.
 
-v2.1 provides hook-ready files:
+v2.2 provides hook-ready files:
 
 ```text
 .codex/hooks.json
@@ -57,8 +57,6 @@ v2.1 provides hook-ready files:
 ```
 
 This repository does not modify global Codex configuration and does not claim hooks are automatically active. After copying or editing hooks, open the project in Codex and review/trust the local hook configuration when prompted.
-
-Official reference used for this implementation: `https://developers.openai.com/codex/hooks`.
 
 ## Hook Lifecycle
 
@@ -69,14 +67,28 @@ Official reference used for this implementation: `https://developers.openai.com/
 | PostToolUse | Summarizes changed files and warnings for runtime artifacts or suspected secret files. |
 | SubagentStart | Adds child task expectations: allowed files, forbidden files, verification, report shape. |
 | SubagentStop | Requires child report fields: changed files, verification, skipped checks, risks, next step. |
-| PreCompact | Asks for `templates/handoff.md` snapshot before compaction. |
-| Stop | Requires verification evidence or an allowed not-verified reason before final stop. |
+| PreCompact | Reminds the agent to write `templates/handoff.md`; may block only for obvious high-risk work without handoff state. |
+| Stop | Requires verification evidence or an allowed not-verified reason for S1+ completion. |
+
+## Hook Result Levels
+
+Hooks should communicate severity:
+
+- `info`: context or reminder;
+- `warn`: likely safe but needs attention;
+- `block`: unsafe or policy-violating action.
+
+Keep strict blocks for secrets, raw credentials, dangerous deletion, database writes, deployment/restart, and production remote mutations.
+
+Prefer warnings or info for discussion, read-only checks, and docs-only edits. Route-aware exceptions are allowed for `server_inspection` read-only SSH alias commands, `deployment_route` dry-runs/config-tests, and `database_route` `SELECT preview`.
+
+See `docs/hook-tuning.md`.
 
 ## Hook Boundary
 
 Hooks are guardrails, not a complete security boundary.
 
-`PreToolUse` can intercept Bash, `apply_patch`, and MCP guardrail patterns, but it cannot understand every safe or unsafe intent. Keep human approval, route policy, and verification discipline as the real safety model.
+`PreToolUse` can intercept shell, patch, and MCP guardrail patterns, but it cannot understand every safe or unsafe intent. Keep human approval, route policy, and verification discipline as the real safety model.
 
 ## Health Check
 
@@ -89,9 +101,11 @@ Run this quick check after install:
 It checks:
 
 - required files;
+- S0-S4 route/reporting docs;
 - parent-child execution protocol;
 - project AGENTS addendum template;
 - project profile template;
+- product acceptance template;
 - branch finish template;
 - server inspection template;
 - hook-ready files;
@@ -119,7 +133,5 @@ Keep upgrades boring:
 Current production version:
 
 ```text
-v2.1 production freeze
+v2.2 efficiency tuning
 ```
-
-One-week rule: after upgrading, use `docs/production-pilot.md` to record real friction and value. Do not keep expanding the harness during the freeze unless hooks break normal development or a safety issue appears.

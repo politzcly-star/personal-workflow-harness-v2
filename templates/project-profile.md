@@ -42,9 +42,11 @@ Forbidden Modification Areas:
 
 Parent / Child Execution:
 - Child/subagent/thread available: yes | no | unknown
-- Default for non-trivial tasks: child-executor
-- Direct parent execution allowed only for tiny/obvious single-file tasks: yes
-- Fallback if child unavailable: ask Human to authorize parent execution or create/authorize child thread
+- S0/S1 parent direct allowed: yes
+- S2 parent direct allowed when bounded and verification is clear: yes | no | unknown
+- S2 child recommended for cross-file bounded work: yes
+- S3/S4 child/reviewer required or strongly required: yes
+- Fallback if child unavailable: S0-S2 continue with note; S3-S4 ask Human to authorize parent-only execution or create/authorize child/reviewer
 
 Database Boundary:
 - Has database: yes | no | unknown

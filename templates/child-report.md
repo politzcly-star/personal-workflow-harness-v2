@@ -6,6 +6,7 @@ Use this after a child executor finishes scoped work.
 Task ID:
 Child Role:
 Selected Route:
+S-Level:
 Layer:
 Status: passed | partial | failed | blocked
 Parent Should Re-implement: no | narrow-repair-only | yes-with-reason

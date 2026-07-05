@@ -1,14 +1,28 @@
 # Route Policy
 
-Choose the route before editing. The route decides how much thinking, tooling, verification, review, and handoff the task needs.
+Choose the route before editing. Also choose an S-level so the task does not receive more process than it deserves.
+
+## S-Level Overlay
+
+S-level decides execution weight. Route and four-layer tier decide capabilities and acceptance strictness.
+
+| Level | Use When | Execution Weight |
+| --- | --- | --- |
+| `S0` | Discussion, prompt writing, explanation, no-code analysis. | Direct answer. No full route/report unless useful. |
+| `S1` | Known file or small single-point change. | Parent may execute directly. Focused verification. |
+| `S2` | Medium but bounded feature/fix; clear scope and checks. | Parent may plan and implement directly. Child recommended, not mandatory. |
+| `S3` | Cross-module, hidden acceptance, security, permission, public API, deployment, database, production server, unfamiliar risky area. | Child/reviewer required or strongly required. Review-gated evidence. |
+| `S4` | Long product line, multi-stage delivery, formal module. | Parent decomposes stages; child executes; reviewer as needed. |
+
+S-level is not a replacement for route. Example: a small docs typo can be `S1/lightweight_fix`; a bounded multi-file docs upgrade can be `S2/feature_plan`; a database migration is `S3/database_route` even if the diff looks small.
 
 ## Four-Layer Model
 
 | Layer | Use When | Default Behavior |
 | --- | --- | --- |
 | `lightweight` | Small known task, obvious single-file edit, docs literal update. | Parent may execute directly, use `rg`, edit narrowly, run focused verification, report residual risk. |
-| `medium` | Bug, cross-file work, unfamiliar area, docs/API uncertainty, feature planning. | Parent routes and may delegate; use CodeGraph/MCP when structure matters; verify before completion. |
-| `review_gated` | Boundary, security, permissions, public API, deployment/database high-risk state, hidden acceptance risk. | Use medium steps plus read-only reviewer or stronger checklist before acceptance. |
+| `medium` | Bug, bounded cross-file work, unfamiliar area, docs/API uncertainty, feature planning. | Parent routes and may implement if S2-bounded; use CodeGraph/MCP when structure matters; verify before completion. |
+| `review_gated` | Boundary, security, permissions, public API, deployment/database high-risk state, hidden acceptance risk. | Use medium steps plus child/reviewer or stronger checklist before acceptance. |
 | `full_formal_gate` | Formal module, governed delivery, high-risk work requiring audit trail. | Use `lab-ai-delivery`: Task Packet, child, parent gates, evaluator, Gate Report. |
 
 Route mapping:
@@ -26,11 +40,11 @@ lab_ai_delivery / formal module -> full_formal_gate
 | --- | --- | --- | --- |
 | `lightweight_fix` | Small, clear, low-risk edit. | Make scoped change and run focused verification. | Target area becomes unclear or touches shared behavior. |
 | `audit_fix` | Bug, failing test, regression, runtime error, suspicious behavior. | Reproduce or inspect failure, localize, fix, verify. | Root cause crosses auth, data, deployment, or security boundaries. |
-| `structural_localization` | Unfamiliar cross-file code path. | Use `rg` then CodeGraph/MCP to find owner, callers, tests, and impact radius. | Impact radius is broad or risky. |
+| `structural_localization` | Unfamiliar cross-file code path. | Use `rg` and CodeGraph/MCP when available to find owner, callers, tests, and impact radius. | Impact radius is broad or risky. |
 | `feature_discovery` | Feature request is vague or alternatives matter. | Short brainstorm, assumptions/questions, acceptance criteria, route decision. | Feature becomes multi-step, cross-boundary, or high-risk. |
-| `feature_plan` | Mid-size feature with sequencing or multiple areas. | Short implementation plan, scope, steps, verification, risks. | Requires formal module delivery. |
+| `feature_plan` | Mid-size feature with sequencing or multiple areas. | Short implementation plan, scope, steps, verification, risks. Parent may implement when S2-bounded. | Requires formal module delivery or hidden acceptance review. |
 | `docs_assisted` | Current API, SDK, Codex/OpenAI, or platform docs matter. | Check official docs before deciding, then implement narrowly. | Docs conflict with repo facts or live behavior. |
-| `review_gated` | Boundary, security, permissions, exports, public API, hidden acceptance risk. | Independent read-only reviewer before acceptance. | Reviewer returns No-Go or risk requires formal delivery. |
+| `review_gated` | Boundary, security, permissions, exports, public API, hidden acceptance risk. | Independent read-only reviewer or equivalent checklist before acceptance. | Reviewer returns No-Go or risk requires formal delivery. |
 | `deployment_route` | Production config, environment, nginx, certs, reload/restart, CI/CD, Docker/compose. | Pre-change evidence, rollback, dry-run/config-test, operator boundary, smoke plan. | Live blast radius, missing rollback, credentials, restart risk, or production uncertainty. |
 | `server_inspection` | Read-only server file/config/process/log inspection through preconfigured no-secret access. | Fresh objective, host alias, read-only command plan, redacted output summary, no raw credential handling. | Command would write, restart, deploy, inspect secrets, use passwords, or change remote state. |
 | `database_route` | Schema, migration, SQL, ORM, data repair, import/export, permission data. | Environment/database identity, impact preview, backup/rollback, transaction/dry-run, row-count/destructive guards. | Production, privacy, destructive, broad row-count, permission, export/import, or rollback uncertainty. |
@@ -44,55 +58,42 @@ Use the lightest route that still gives trustworthy completion evidence.
 Prefer:
 
 ```text
-lightweight_fix
-> audit_fix / structural_localization
-> feature_discovery / feature_plan / docs_assisted
-> review_gated
-> deployment_route / server_inspection / database_route
-> branch_finish
-> lab_ai_delivery
+S0 direct answer
+> S1 lightweight_fix
+> S2 audit_fix / structural_localization / feature_plan / docs_assisted
+> S3 review_gated / deployment_route / server_inspection / database_route
+> S4 staged delivery / lab_ai_delivery when required
 ```
 
 Do not use the highest route by default. Do not use the lowest route when risk is obvious.
 
 ## Parent-router / Child-executor
 
-Default: use parent-router + child-executor for all non-trivial tasks.
+Default principle: parent routes, scopes, accepts, and verifies. Child execution is reserved for tasks where it improves safety, focus, or throughput.
 
-Use direct parent execution only when all of these are true:
+Use direct parent execution when:
 
-- the task is tiny or obvious single-file work;
-- the target file/area is already known;
-- the route is `lightweight_fix`;
-- there is no cross-file, feature, deployment, database, server, auth, permission, public API, or hidden acceptance risk;
-- focused verification is obvious.
+- task is S0 or S1; or
+- task is S2 with clear boundaries, known allowed files, and an obvious verification path.
 
-Use parent-router + child-executor when any of these are true:
+Use child execution as recommended when:
 
-- work is non trivial;
-- multiple files or concepts are involved;
-- the task may exceed context comfort;
-- a new feature needs decomposition;
-- high-risk boundaries need a separate report;
-- hidden acceptance risk suggests review after implementation.
+- S2 is cross-file but bounded;
+- a medium new feature benefits from a separate implementer;
+- structural localization may exceed context comfort;
+- the parent wants an isolated investigation report before editing.
 
-Parent responsibilities:
+Use child/reviewer as required or strongly required when:
 
-- understand the user request;
-- select route and capabilities;
-- write a scoped child task before implementation unless direct-execution criteria are met;
-- define allowed and forbidden files;
-- accept or reject child output;
-- run final scope and verification checks;
-- produce final completion evidence.
+- task is S3 or S4;
+- hidden acceptance risk exists;
+- deployment, database, server mutation, security, permission, auth, public API, or production boundary is involved;
+- area is unfamiliar and cross-module.
 
-Child responsibilities:
+If child execution is unavailable:
 
-- follow `templates/child-task.md`;
-- stay within allowed scope;
-- report changed files, checks run, skipped checks, risks, and next steps using `templates/child-report.md`.
-
-If child execution is unavailable in the current Codex surface, parent must stop and state the limitation, then ask for explicit permission to execute in-parent or ask the Human to create/authorize a child thread.
+- S0-S2: state the limitation or why a child is not worth opening, then continue.
+- S3-S4: stop, explain risk, and ask for parent-only authorization or child/reviewer support.
 
 See `docs/parent-child-execution.md`.
 
@@ -233,8 +234,6 @@ Use `templates/database-checklist.md`.
 ## Branch Finish Work
 
 Use `branch_finish` when implementation is complete and the next step is commit, push, PR, merge, keep, discard, branch deletion, or worktree cleanup.
-
-This route adapts the useful part of Superpowers `finishing-a-development-branch`: verify first, detect repo state, present clear integration options, execute only the chosen option, and clean up only when safe.
 
 Required before presenting integration options:
 

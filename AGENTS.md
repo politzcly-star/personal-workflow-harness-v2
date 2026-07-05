@@ -23,6 +23,20 @@ Use the smallest safe route that can complete the task with evidence.
 
 Do not turn every task into a formal module. Do not skip verification because a task looks small.
 
+## S0-S4 Task Weight
+
+Before editing, classify both route and task weight.
+
+S-level decides execution weight. The route and four-layer tier decide capabilities and acceptance strictness.
+
+| Level | Meaning | Default Weight |
+| --- | --- | --- |
+| `S0` | Discussion, prompt help, explanation, no-code analysis. | Direct lightweight response. Full production flow is not required. |
+| `S1` | Known file, small fix, single-point change. | Parent direct execution with focused verification. |
+| `S2` | Medium but bounded feature/fix with clear scope and verification. | Parent may plan and implement directly; child is recommended, not mandatory. |
+| `S3` | Cross-module, hidden acceptance, high-risk boundary, deployment, database, security, permission, public API, production server. | Child/reviewer required or strongly required. |
+| `S4` | Long product line, multi-stage delivery, formal module, roadmap-sized work. | Parent splits stages; child executes; reviewer as needed. |
+
 ## Route First
 
 Before editing, classify the task and name the route:
@@ -55,26 +69,34 @@ lab_ai_delivery / formal module -> full_formal_gate
 
 Keep daily work light. Escalate only when uncertainty, blast radius, or hidden acceptance risk justifies it.
 
+S-level and layer are complementary:
+
+- S-level controls how heavy the execution protocol should be.
+- Route/layer controls which capabilities, checks, and acceptance evidence are needed.
+
 ## Parent-router / Child-executor
 
-Default: the parent thread is a router and acceptor, not the main implementer.
+Default principle: the parent thread routes, scopes, accepts, and verifies. It is not required to delegate every medium task.
 
-Parent direct execution is allowed only when all of these are true:
+Use this decision table:
 
-- the task is tiny or obvious single-file work;
-- the target file/area is already known;
-- there is no cross-file behavior, new feature, deployment, database, server, auth, permission, or public API risk;
-- focused verification is obvious.
+```text
+child_required:
+  S3/S4, high-risk, hidden acceptance, deployment, database,
+  security/permission/public API, unfamiliar cross-module work.
 
-For every other task:
+child_recommended:
+  S2, cross-file but bounded work, medium new features,
+  structural localization.
 
-- Parent must create a scoped child task before implementation.
-- Child executor performs implementation or investigation.
-- Child returns `templates/child-report.md`.
-- Parent reads the report, inspects diff/scope, runs or verifies checks, and writes the final answer.
-- High-risk or hidden acceptance tasks get reviewer after the child report.
+parent_allowed:
+  S0/S1, and S2 when boundaries are clear and verification is obvious.
+```
 
-If the current Codex surface cannot create a child/subagent/thread, the parent must state that limitation and ask for explicit permission to execute in-parent, or ask the Human to create/authorize a child thread. Do not silently collapse non-trivial work into parent execution.
+If child execution is unavailable:
+
+- S0-S2: state child is unavailable or not worth opening, then continue in-parent.
+- S3-S4: stop, explain the risk, and ask the Human to authorize parent-only execution or create/authorize child/reviewer support.
 
 Use `docs/parent-child-execution.md`, `templates/child-task.md`, and `templates/child-report.md`.
 
@@ -98,20 +120,31 @@ Evidence limits:
 - `openai-docs` is for OpenAI/Codex/API uncertainty, not general web research.
 - browser/UI should use a dedicated profile or explicit approval; avoid personal logged-in state.
 
+## Developer Efficiency Mode
+
+Use `docs/developer-efficiency-mode.md` as a default operating style:
+
+- establish local or isolated fast feedback first;
+- run the smallest relevant test before broad regression;
+- broaden checks only when risk, shared behavior, or acceptance requires it;
+- avoid refactors that do not reduce real complexity or risk;
+- batch model calls, builds, and browser checks when possible;
+- for remote/deployment work, prefer read-only inspection and dry-run/config-test before operator action.
+
 ## Verification-Before-Completion
 
 Do not claim completion until verification is done or a narrow not-verified reason is recorded.
 
-Minimum report:
+Reporting weight follows S-level:
 
-- route selected
-- files changed
-- commands/checks run
-- result
-- skipped checks and reason
-- residual risk
+- S0: direct answer; no route/report required unless useful.
+- S1: lightweight report: changed files and verification.
+- S2: standard report: route, files changed, checks, skipped checks, residual risk.
+- S3-S4: formal report with child/reviewer/checklist evidence where needed.
 
-Use `templates/verification-report.md`.
+Use `docs/reporting-policy.md` and `templates/verification-report.md`.
+
+For product artifacts, also use `templates/product-acceptance.md` when visual/output quality matters.
 
 ## Guardrails
 
@@ -131,7 +164,7 @@ On first use in a new project:
 2. Create or update `templates/project-profile.md` into the project-specific profile location.
 3. Try CodeGraph / structural indexing.
 4. If CodeGraph is unavailable, record fallback: `rg` + file tree + test entry points + manual dependency/call relationship notes.
-5. Record parent-router / child-executor availability and default to child execution for non-trivial work.
+5. Record parent-router / child-executor availability and the S0-S4 delegation rule.
 6. Check whether the Human supplied or documented a server SSH alias for the project.
 7. If a server alias exists, run `scripts/server-inspection-check.ps1 -HostAlias <alias>` and use `server_inspection` for read-only queries.
 8. If no alias exists, ask the Human to configure a Windows SSH config alias once; do not ask for raw passwords.
@@ -140,6 +173,8 @@ On first use in a new project:
 ## Hook-ready Layer
 
 This harness may include repo-local Codex hooks under `.codex/hooks.json` and `.codex/hooks/`. Hooks are a guardrail and memory layer, not a complete sandbox.
+
+Hook results are classified as `info`, `warn`, or `block`. Keep strict blocks for secrets, private keys, raw credentials, dangerous deletion, database writes, deployment/restart, and production remote changes. Reduce false positives for discussion, read-only checks, and doc-only work. Record tuning notes in `docs/hook-tuning.md`.
 
 Do not install or modify global Codex configuration unless the Human explicitly asks. If local hooks require trust review, state that they are hook-ready and need Codex trust before running.
 
@@ -159,9 +194,11 @@ Use `templates/branch-finish.md` and `scripts/branch-finish-check.ps1`.
 
 ## Context Survival
 
-Before long handoff, compaction, or stopping mid-task, write a handoff snapshot from `templates/handoff.md`.
+Use Codex built-in compaction and parent/child isolation. The repository defines what must survive compaction; it does not replace the internal compaction mechanism.
 
-The next agent should be able to continue from files without relying on chat memory.
+Before long handoff, compaction, or stopping mid-task, write a handoff snapshot from `templates/handoff.md`. Preserve current goal, user constraints, decisions, route/S-level, changed files, verification, unresolved risk, next step, forbidden actions, key commands, and server alias status.
+
+Use `docs/context-compression-policy.md` and `docs/context-memory.md`.
 
 ## Non-Claims
 

@@ -1,17 +1,18 @@
 # Child Task
 
-Use this when the parent delegates non trivial work to a child executor.
+Use this when the parent delegates scoped work to a child executor.
 
 ```text
 Task ID:
 Parent Thread:
 Selected Route:
+S-Level:
 Layer:
-Parent Direct Execution Exception Used: no
+Delegation Decision: child_required | child_recommended
 
 Parent Instruction:
 - Parent routes, scopes, and accepts.
-- Child executes the scoped work.
+- Child executes the scoped work because delegation improves safety, focus, or throughput.
 - Parent should read the child report and verify, not silently redo the implementation.
 
 Goal:
@@ -32,8 +33,10 @@ Required Context To Read:
 - README.md
 - AGENTS.md
 - docs/route-policy.md
+- docs/parent-child-execution.md
 - docs/capability-policy.md
 - docs/verification-and-guardrails.md
+- docs/developer-efficiency-mode.md
 - TODO
 
 Capabilities Allowed:
@@ -50,6 +53,7 @@ Verification Required:
 - TODO
 
 Report Required:
+- route and S-level
 - changed files
 - checks run and results
 - checks skipped with allowed reason

@@ -1,12 +1,12 @@
 # Parent-router / Child-executor Protocol
 
-This protocol makes parent/child execution the default for new projects using v2.1.
+This protocol keeps the parent thread responsible for routing and acceptance while avoiding unnecessary delegation for bounded daily work.
 
-## Default
+## Default Principle
 
-The parent thread should route, decompose, review, verify, and report. It should not be the default implementer.
+Parent owns route, scope, verification, and final acceptance.
 
-Use child execution for every non-trivial task.
+Child execution is used when it improves safety, focus, or throughput. It is not mandatory for every medium task.
 
 ## Activation Requirement
 
@@ -14,29 +14,67 @@ This protocol must be present in the target project's durable instructions. A fi
 
 New project onboarding must install or merge `templates/project-agents.md` into the target project root `AGENTS.md`, then create `docs/project-profile.md`. The profile records project facts; root `AGENTS.md` carries the execution protocol every new window reads.
 
-## Direct Execution Exception
+## Decision Table
 
-Parent may execute directly only when all criteria are true:
+| Decision | Required For | Recommended For | Parent Direct Allowed For |
+| --- | --- | --- | --- |
+| `child_required` | S3/S4, high-risk, hidden acceptance, deployment, database, security/permission/public API, unfamiliar cross-module work. | - | - |
+| `child_recommended` | - | S2 cross-file but bounded work, medium new feature, structural localization, long investigation. | - |
+| `parent_allowed` | - | - | S0/S1 and S2 with clear boundaries and obvious verification. |
 
-- route is `lightweight_fix`;
-- task is tiny or obvious single-file work;
-- target file/area is already known;
-- no cross-file behavior or shared contract is involved;
-- no new feature design is needed;
-- no deployment, database, server, auth, permission, public API, browser profile, or hidden acceptance risk exists;
-- focused verification is obvious and cheap.
+## Parent Direct Execution
 
-If any criterion is false, use child execution.
+Parent may execute directly when:
+
+- task is S0 or S1; or
+- task is S2 and the boundaries are clear;
+- allowed files or target areas are known enough to avoid scope drift;
+- no deployment, database, server mutation, auth, permission, public API, security, or hidden acceptance risk exists;
+- focused verification is obvious and cheap enough to run.
+
+For S2 direct execution, parent should still write a short plan before editing when more than one file or step is involved.
+
+## Child Required
+
+Use child/reviewer support when:
+
+- task is S3 or S4;
+- production, deployment, database, server mutation, auth, permission, security, public API, or privacy boundary is involved;
+- hidden acceptance risk is high;
+- the code area is unfamiliar and cross-module;
+- the task needs a long investigation or staged delivery;
+- formal delivery requires child report or gate evidence.
+
+## Child Recommended
+
+Child is useful but not mandatory when:
+
+- S2 work touches multiple files but has clear boundaries;
+- a medium new feature benefits from separate implementation;
+- structural localization may produce a useful report before edits;
+- the parent is near context limits;
+- isolated exploration would reduce acceptance risk.
+
+For these cases, parent may decide to continue directly and record the reason briefly.
+
+## Unavailable Child Capability
+
+If the current Codex surface cannot create a child/subagent/thread:
+
+- S0-S2: state the limitation or why child is not worth opening, then continue in-parent.
+- S3-S4: stop, explain why parent-only execution is risky, and ask the Human to authorize parent-only execution or create/authorize child/reviewer support.
+
+Do not silently downgrade S3/S4 work into parent-only execution.
 
 ## Parent Duties
 
 Parent owns:
 
 - requirement understanding;
-- route and layer selection;
+- route, S-level, and layer selection;
 - capability selection;
 - allowed and forbidden files;
-- child task packet;
+- child task packet when used;
 - final diff/scope inspection;
 - verification decision;
 - final report and residual risk.
@@ -64,23 +102,11 @@ Use reviewer after child report when:
 - verification is incomplete but acceptance is tempting;
 - formal delivery requires it.
 
-## Unavailable Child Capability
-
-If the current Codex surface cannot create a child/subagent/thread:
-
-1. State the limitation.
-2. Present the intended child task.
-3. Ask the Human to authorize parent execution or create/authorize a child thread.
-
-Do not silently downgrade non-trivial work into parent-only execution.
-
 ## Completion Evidence
 
-Final report should include:
+Final report weight follows `docs/reporting-policy.md`:
 
-- direct execution exception used: yes/no;
-- child task path or summary;
-- child report summary;
-- reviewer status if used;
-- parent verification;
-- residual risk.
+- S0: direct answer.
+- S1: changed files and verification.
+- S2: route, files, checks, skipped checks, residual risk.
+- S3-S4: child/reviewer/checklist evidence as needed.

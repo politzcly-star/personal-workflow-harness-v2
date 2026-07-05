@@ -1,74 +1,56 @@
-# v2.1 Production Pilot
+# Production Pilot Notes
 
-Use this file during the one-week production freeze.
+Use this file to record real usefulness and friction while using the production harness.
 
-Goal: record real usefulness and friction while using v2.1 deeply. Do not turn every note into an immediate harness change.
+Do not turn every note into an immediate harness change. Prefer tuning only when repeated real tasks show the same drag, false positive, or safety gap.
 
-## Freeze Rule
-
-Start date:
-
-End date:
-
-During the pilot, do not make major harness changes unless:
-
-- a Hook blocks normal safe development;
-- a Hook misses an obvious safety issue;
-- a route creates repeated serious confusion;
-- a security/secret/database/deployment guard needs immediate correction.
-
-## Daily Log
+## Lightweight Log
 
 ```text
 Date:
 Project / task:
-Selected route:
-Layer:
-Parent/child used:
+Route / S-level:
+Parent/child decision:
 Hook useful:
-Hook annoying:
-CodeGraph / skill / reviewer useful:
+Hook false positive:
 Flow too heavy:
 Verification result:
 Residual risk:
-Note:
+Suggested tuning:
+Decision:
 ```
 
 ## Weekly Questions
 
-### Hook helped
+### What stayed fast?
 
 - TODO
 
-### Hook interrupted safe work
+### What still felt too heavy?
 
 - TODO
 
-### Route unclear
+### Where did S0-S4 help?
 
 - TODO
 
-### CodeGraph / skill / reviewer truly helped
+### Where did hooks help?
 
 - TODO
 
-### Flow felt too heavy
+### Where did hooks misfire?
 
 - TODO
 
-### Need to add
-
-- TODO
-
-### Need to remove
-
-- TODO
-
-### Decision after pilot
+### What should be downgraded, kept, or removed?
 
 ```text
 Keep:
-Tune:
+Downgrade:
 Delete:
 Defer:
 ```
+
+## Boundary
+
+Do not add heavy evaluation telemetry or cost fields to production v2. Keep that work in separate evaluation projects.

@@ -1,6 +1,8 @@
 # Context And Memory
 
-Agent chat context is useful but fragile. Important state should survive in files.
+Agent chat context is useful but fragile. Important state should survive in files, while reloadable detail should stay in the repository instead of being pasted into handoffs.
+
+Use this with `docs/context-compression-policy.md`.
 
 ## Reload Order
 
@@ -19,20 +21,27 @@ README.md
 
 If chat conflicts with files, follow the authoritative file or ask the Human when the conflict affects safety.
 
+Within the same thread, do not mechanically re-read unchanged durable files. Confirm they are unchanged or reload only the relevant section when that is enough.
+
 ## What To Record
 
 Record only what helps the next agent:
 
-- selected route and four-layer tier;
+- current goal;
+- selected route, S-level, and four-layer tier;
 - scope and non-goals;
-- parent/child decision, including direct-execution exception if used;
+- user constraints that matter;
+- parent/child/reviewer decision;
+- decisions already made;
 - files changed;
 - commands run;
 - verification result;
-- skipped checks;
+- skipped checks and reason;
 - reviewer findings;
 - residual risk;
-- next action.
+- next action;
+- forbidden actions;
+- server alias status when relevant.
 
 Do not store raw prompts, full transcripts, secrets, private payloads, large stdout/stderr, raw production logs, private screenshots, database dumps, or long source dumps.
 
@@ -40,10 +49,10 @@ Do not store raw prompts, full transcripts, secrets, private payloads, large std
 
 Parent should write or preserve:
 
-- task brief;
-- child task;
-- child report;
-- final verification report;
+- task brief when needed;
+- child task when used;
+- child report when used;
+- final verification report when S2+ or risk requires it;
 - risk review when applicable;
 - handoff snapshot if context is long.
 
@@ -70,7 +79,7 @@ Use `templates/handoff.md` when:
 - the next action depends on local state;
 - `PreCompact` fires.
 
-The handoff should be short but reloadable.
+The handoff should be short but reloadable. It is the state anchor before compaction, not a transcript dump.
 
 ## Evidence References
 
@@ -91,7 +100,7 @@ Normal production traces should answer:
 
 ```text
 What task was this?
-What route was selected?
+What route and S-level were selected?
 What layer was used?
 What capabilities were considered?
 What capabilities were used or skipped?
@@ -100,8 +109,4 @@ What verification passed?
 What risk remains?
 ```
 
-Keep eval-only metrics out of normal work unless the Human is explicitly running an evaluation.
-
-## One-Week Pilot Memory
-
-During v2.1 freeze, use `docs/production-pilot.md` for weekly learning. Do not turn pilot notes into immediate harness churn unless a hook blocks safe work or a safety issue appears.
+Keep evaluation-only metrics, heavy traces, and cost fields out of normal production work unless the Human is explicitly running an evaluation in a separate evaluation project.

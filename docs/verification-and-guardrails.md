@@ -4,13 +4,21 @@ Verification-before-completion is the default completion rule.
 
 The agent may finish only when it has checked the result, or when it records a narrow allowed reason verification could not be run.
 
-## Minimum Completion Report
+## Completion Report Weight
 
 Use `templates/verification-report.md` or an equivalent final report.
 
-Every final answer should know:
+Match the report to S-level:
+
+- S0: direct answer; no full report required.
+- S1: changed files and verification.
+- S2: route/S-level, files changed, checks run, skipped checks, residual risk.
+- S3-S4: formal evidence with child/reviewer/checklist when needed.
+
+Every completion with changes should know:
 
 - selected route and four-layer tier;
+- selected S-level;
 - files changed;
 - commands/checks run;
 - result;
@@ -188,4 +196,4 @@ Do not run SQL, migrations, import/export, backup/restore, or remote database co
 
 Hooks are useful guardrails, not a complete security boundary.
 
-`PreToolUse` can block obvious dangerous tool calls, including Bash, `apply_patch`, and MCP usage patterns, but it cannot prove all intent or replace human judgment. Keep hooks conservative, transparent, and easy to disable or tune if they interrupt safe work.
+`PreToolUse` can block obvious dangerous tool calls, including shell, `apply_patch`, and MCP usage patterns, but it cannot prove all intent or replace human judgment. Keep hooks conservative where safety matters and tune them when they interrupt safe S0-S2 work.

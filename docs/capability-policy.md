@@ -83,7 +83,7 @@ Use `lab-ai-delivery` when:
 - reviewer improves high-risk accept/reject quality, not all small-task quality.
 - `openai-docs` improves current OpenAI/Codex/API specificity, not general research.
 - browser/UI evidence can be useful but may expose private state; keep payloads and profiles controlled.
-- Local trace/evidence is useful, but hosted Langfuse is optional and credential-dependent.
+- Local trace/evidence is useful, but production v2.2 does not require hosted tracing or cost instrumentation.
 
 ## Recommended Patterns
 
@@ -177,7 +177,7 @@ scope:
 residual_risk:
 ```
 
-Do not include benchmark-only comparison metrics unless the task is explicitly an evaluation.
+Do not include evaluation-only comparison metrics unless the task is explicitly an evaluation.
 
 ## What To Avoid
 

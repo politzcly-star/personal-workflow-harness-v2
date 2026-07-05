@@ -6,12 +6,22 @@ This project adopts `personal-workflow-harness-v2` for Codex work.
 
 At the start of every task:
 
-1. Name the route before editing.
-2. Read `docs/project-profile.md` when it exists.
+1. Classify S-level and route before editing.
+2. Read `docs/project-profile.md` when it exists, or confirm it is unchanged in the same thread.
 3. Apply the parent-router / child-executor rule below.
 4. Verify before completion or record a narrow not-verified reason.
 
 Referencing the harness repository in chat is not enough. This file or an equivalent block must live in the target project root `AGENTS.md` so new Codex windows keep the protocol.
+
+## S0-S4 Task Weight
+
+| Level | Use When | Default |
+| --- | --- | --- |
+| `S0` | Discussion, prompt help, explanation, no-code analysis. | Direct answer; no full report required. |
+| `S1` | Known file, small fix, single-point change. | Parent direct execution with focused verification. |
+| `S2` | Medium but bounded feature/fix. | Parent may plan and implement directly; child recommended but not mandatory. |
+| `S3` | High-risk/cross-module/hidden acceptance/deployment/database/security/permission/public API/production server. | Child/reviewer required or strongly required. |
+| `S4` | Long product line, multi-stage delivery, formal module. | Parent splits stages; child executes; reviewer as needed. |
 
 ## Routes
 
@@ -30,25 +40,25 @@ Referencing the harness repository in chat is not enough. This file or an equiva
 
 ## Parent-router / Child-executor
 
-Default: parent routes, scopes, accepts, and verifies. Child executes non-trivial work.
+Default principle: parent routes, scopes, accepts, and verifies. Child execution is used when it improves safety, focus, or throughput.
 
-Parent may directly execute only when all are true:
+```text
+child_required:
+  S3/S4, high-risk, hidden acceptance, deployment, database,
+  security/permission/public API, unfamiliar cross-module work.
 
-- route is `lightweight_fix`;
-- task is tiny or obvious single-file work;
-- target file/area is already known;
-- no cross-file behavior, shared contract, new feature, deployment, database, server, auth, permission, public API, browser profile, or hidden acceptance risk exists;
-- focused verification is obvious and cheap.
+child_recommended:
+  S2, cross-file but bounded work, medium new features,
+  structural localization.
 
-For every other task:
+parent_allowed:
+  S0/S1, and S2 when boundaries are clear and verification is obvious.
+```
 
-- Parent creates a scoped child task before implementation.
-- Child performs investigation or implementation.
-- Child returns changed files, checks, skipped checks, assumptions, risks, and next step.
-- Parent reads the report, inspects scope, verifies, and writes the final answer.
-- High-risk or hidden acceptance tasks get reviewer after the child report.
+If the current Codex surface cannot create a child/subagent/thread:
 
-If the current Codex surface cannot create a child/subagent/thread, parent must state that limitation and ask the Human to authorize parent-only execution or create/authorize a child thread. Do not silently collapse non-trivial work into parent-only execution.
+- S0-S2: state child is unavailable or not worth opening, then continue in-parent.
+- S3-S4: stop, explain the risk, and ask the Human to authorize parent-only execution or create/authorize child/reviewer support.
 
 ## Server Inspection
 
@@ -56,14 +66,11 @@ Use `server_inspection` only for read-only server queries through preconfigured 
 
 Do not read, print, store, or commit secrets. Do not use raw passwords from screenshots, `sshpass`, `.env` values, private keys, cookies, or database URLs.
 
-## Completion
+## Reporting
 
-Final report must include:
+- S0: direct answer; optionally say `discussion / no code changes`.
+- S1: changed files and verification.
+- S2: route/S-level, files changed, checks run, skipped checks, residual risk.
+- S3-S4: formal report with child/reviewer/checklist evidence where needed.
 
-- route selected;
-- direct execution exception used: yes/no;
-- child report summary or reason child was unavailable;
-- files changed;
-- checks run and results;
-- skipped checks and reason;
-- residual risk.
+Use `templates/product-acceptance.md` for PPT, dashboard, document, page, agent product, script, or tool deliverables where artifact quality matters.
