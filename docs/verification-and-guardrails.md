@@ -1,199 +1,24 @@
 # Verification And Guardrails
 
-Verification-before-completion is the default completion rule.
+Completion requires the smallest relevant evidence or a narrow, recorded reason evidence cannot be run.
 
-The agent may finish only when it has checked the result, or when it records a narrow allowed reason verification could not be run.
+## Common Evidence
 
-## Completion Report Weight
-
-Use `templates/verification-report.md` or an equivalent final report.
-
-Match the report to S-level:
-
-- S0: direct answer; no full report required.
-- S1: changed files and verification.
-- S2: route/S-level, files changed, checks run, skipped checks, residual risk.
-- S3-S4: formal evidence with child/reviewer/checklist when needed.
-
-Every completion with changes should know:
-
-- selected route and four-layer tier;
-- selected S-level;
-- files changed;
-- commands/checks run;
-- result;
-- skipped checks and allowed reason;
-- residual risk;
-- scope guard result.
-
-## Common Verification
-
-| Work Type | Useful Checks |
+| Change | Useful check |
 | --- | --- |
-| Code | tests, build, lint, typecheck, focused reproduction. |
-| Frontend | screenshot/DOM check, responsive check, no overlap, console errors. |
-| Docs | required literals, link sanity, Markdown parse/render where useful, spelling where useful. |
-| JSON/YAML/TOML | parse checks. |
-| PowerShell/scripts | `powershell -NoProfile -Command { . <script> }`, dry-run, focused invocation. |
-| Hooks | JSON parse, script syntax check, safe simulated event where possible. |
-| Deployment | config-test, dry-run, smoke plan, rollback plan, operator evidence. |
-| Server inspection | SSH alias resolution, BatchMode read-only command, redacted output summary, no raw credential handling. |
-| Database | impact preview, transaction/dry-run, row-count, rollback evidence, redacted operator result. |
+| Docs | required terms, link sanity when relevant, `git diff --check`. |
+| JSON/YAML/TOML | parse check. |
+| PowerShell | parser check and safe fixture/direct invocation. |
+| Hooks | JSON parse plus safe and blocked simulated events. |
+| Code | focused test/build/lint or reproduction. |
+| Deployment/database | dry-run, impact preview, rollback/checklist, and operator boundary. |
 
-Docs-only changes still need verification: literal coverage, link sanity, parse checks, `git diff --check`, or another focused check.
+Before acceptance, inspect actual changed paths for scope drift, runtime artifacts, local profiles, and secrets. Record skipped checks and residual risk.
 
-## Allowed Not-Verified Reasons
+## Strict Boundaries
 
-Use only when true:
+Never read, print, commit, or request raw secrets, `.env` values, private keys, cookies, database URLs, raw production logs, or private data.
 
-- dependency or service unavailable;
-- credentials intentionally absent;
-- verification would mutate production or private data;
-- command is outside the approved scope;
-- user explicitly requested no execution;
-- verification requires a human/operator result;
-- browser/UI verification would require unsafe personal profile or logged-in state.
+Require a fresh Human objective before destructive actions, database mutation or migration, deployment/restart, production remote mutation, credentialed browser work, or paid external action. Prefer read-only previews, redacted evidence, and checklists.
 
-Always state the residual risk.
-
-## Secret Handling
-
-Never print or commit:
-
-- API keys;
-- tokens;
-- passwords;
-- private keys;
-- cookies;
-- `.env` values;
-- database URLs;
-- raw dumps;
-- private production logs;
-- personal data.
-
-Use summaries, presence maps, hashes, redacted values, and evidence references.
-
-Safe scans should list file paths or summaries only. Do not print matched secret values.
-
-## Destructive Action Guard
-
-Treat these as high-risk:
-
-- `rm -rf`, destructive filesystem moves, broad deletes;
-- `Remove-Item -Recurse -Force` against broad paths;
-- database `DROP`, `TRUNCATE`, broad `DELETE`, broad `UPDATE`;
-- schema migrations;
-- production deploy/reload/restart;
-- permission or role changes;
-- billing, quota, auth, secret, tenant, export/import changes;
-- credentialed browser actions or external form submission.
-
-Require explicit Human approval and often reviewer or `lab-ai-delivery`.
-
-## Scope Guard
-
-Before completion and before commit, inspect changed files.
-
-Ask:
-
-```text
-Are changed files expected?
-Were generated/runtime files accidentally added?
-Were secrets or local profiles touched?
-Did the task drift into another module?
-Are hook/script changes inside the intended repo-local scope?
-```
-
-If scope drift happened, stop and report it.
-
-Runtime artifacts to avoid:
-
-- `.vs/`
-- `.env` and `.env.*`
-- local IDE settings;
-- logs, dumps, build output, node_modules;
-- browser profiles, cookies, screenshots with private data;
-- database dumps or exports.
-
-## Reviewer Triggers
-
-Use reviewer when:
-
-- hidden acceptance risk is high;
-- security or permissions are affected;
-- public API contract changes;
-- data export/import changes;
-- production deploy/config changes;
-- database/schema/migration changes;
-- rollback is unclear;
-- verification is incomplete but acceptance is tempting.
-
-Reviewer should be read-only unless explicitly authorized.
-
-## Deployment Guard
-
-Deployment work should normally produce a checklist, not execute live changes.
-
-Required evidence:
-
-- pre-change state;
-- backup/rollback;
-- dry-run/config-test;
-- reload/restart risk;
-- operator boundary;
-- smoke verification;
-- secret redaction.
-
-Do not claim production success without operator-provided or safe smoke evidence.
-
-## Server Inspection Guard
-
-Server inspection is allowed only for read-only work through preconfigured no-secret access.
-
-Allowed:
-
-- SSH config host alias, SSH agent, or operator-prepared short-lived session;
-- `ssh -o BatchMode=yes <alias> '<read-only command>'`;
-- compact summaries of file presence, versions, process status, health output, and non-secret config snippets;
-- redacted evidence references.
-
-Forbidden:
-
-- reading passwords from screenshots;
-- pasting passwords/tokens into commands;
-- `sshpass`;
-- writing credentials to files, hooks, prompts, reports, or terminal history;
-- reading `.env`, private keys, database URLs, cookies, secret manager values, or private user data;
-- remote writes, deploys, reload/restart, permission changes, package installs, or destructive commands.
-
-If server inspection needs credentials that are not already configured, stop and ask the Human to configure a no-secret access method or provide redacted operator evidence.
-
-New project rule:
-
-- first check whether a server alias is documented in the project profile or user prompt;
-- if yes, verify it with `scripts/server-inspection-check.ps1 -HostAlias <alias>`;
-- if no, ask the Human to configure one Windows SSH config alias once;
-- do not request, read, or store a raw password as a shortcut.
-
-## Database Guard
-
-Database work should normally produce a checklist, not execute data changes.
-
-Required evidence for data-affecting work:
-
-- environment/database identity;
-- `SELECT preview` or equivalent impact preview;
-- expected/max row count;
-- backup/rollback;
-- transaction/dry-run/staging/idempotency;
-- destructive guard;
-- privacy/secret redaction;
-- permission/export/import escalation state.
-
-Do not run SQL, migrations, import/export, backup/restore, or remote database commands by default.
-
-## Hook Guard
-
-Hooks are useful guardrails, not a complete security boundary.
-
-`PreToolUse` can block obvious dangerous tool calls, including shell, `apply_patch`, and MCP usage patterns, but it cannot prove all intent or replace human judgment. Keep hooks conservative where safety matters and tune them when they interrupt safe S0-S2 work.
+Hooks can block obvious unsafe calls but cannot prove intent. They must remain strict at these boundaries and quiet for discussion, documentation, and safe inspection.

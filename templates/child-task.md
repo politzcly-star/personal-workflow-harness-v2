@@ -1,69 +1,32 @@
 # Child Task
 
-Use this when the parent delegates scoped work to a child executor.
+Use only when a bounded child task has a concrete throughput, isolation, or risk benefit.
 
 ```text
 Task ID:
-Parent Thread:
-Selected Route:
-S-Level:
-Layer:
-Delegation Decision: child_required | child_recommended
-
-Parent Instruction:
-- Parent routes, scopes, and accepts.
-- Child executes the scoped work because delegation improves safety, focus, or throughput.
-- Parent should read the child report and verify, not silently redo the implementation.
-
 Goal:
-Non-Goals:
+S-Level:
+Route (only if relevant):
 
+Why delegation helps:
 Allowed Files / Areas:
-- TODO
+Forbidden Files / Actions:
 
-Forbidden Files / Areas:
-- secrets and `.env`
-- production config unless explicitly allowed
-- database dumps or private data
-- browser profiles and cookies
-- unrelated refactors
-- TODO
+Read First:
+- current Task Packet or brief
+- only the files needed for this scope
 
-Required Context To Read:
-- README.md
-- AGENTS.md
-- docs/route-policy.md
-- docs/parent-child-execution.md
-- docs/capability-policy.md
-- docs/verification-and-guardrails.md
-- docs/developer-efficiency-mode.md
-- TODO
-
-Capabilities Allowed:
-- rg:
-- CodeGraph/MCP:
-- code-audit-fix:
-- openai-docs:
-- browser/UI:
-
-Implementation Instructions:
-- TODO
-
+Work Required:
 Verification Required:
-- TODO
-
-Report Required:
-- route and S-level
-- changed files
-- checks run and results
-- checks skipped with allowed reason
-- risks and assumptions
-- next recommended action
 
 Stop Conditions:
-- forbidden file is needed
-- secrets or credentials are needed
-- production/database/destructive action is needed
-- scope expands beyond packet
-- verification cannot be run safely
+- forbidden scope or action is needed
+- acceptance changes
+- verification cannot run safely
+
+Return:
+- changed files
+- checks and results
+- skipped checks with reason
+- assumptions, risks, and next action
 ```

@@ -50,10 +50,9 @@ if (-not (Test-Path -LiteralPath $targetDir)) {
 
 $content = Get-Content -Raw -LiteralPath $template
 if ($ProjectName) {
-    $content = $content -replace "Project Name:", ("Project Name: {0}" -f $ProjectName)
+    $content = $content -replace "(?m)^Project:\s*$", ("Project: {0}" -f $ProjectName)
 }
-$content = $content -replace "Project Path:", ("Project Path: {0}" -f $projectRoot)
-$content = $content -replace "Last Updated:", ("Last Updated: {0}" -f (Get-Date -Format "yyyy-MM-dd"))
+$content = $content -replace "(?m)^Repository Root:\s*$", ("Repository Root: {0}" -f $projectRoot)
 
 Set-Content -LiteralPath $target -Value $content -Encoding UTF8
 Write-Output ("[OK] project profile written: {0}" -f $target)
@@ -64,7 +63,9 @@ if ($InstallAgents) {
     }
 
     $agentsTarget = Join-Path $projectRoot "AGENTS.md"
-    $agentsContent = Get-Content -Raw -LiteralPath $agentsTemplate
+    $agentsTemplateText = Get-Content -Raw -LiteralPath $agentsTemplate
+    $agentsMatch = [regex]::Match($agentsTemplateText, '(?s)```text\s*(.*?)\s*```')
+    $agentsContent = if ($agentsMatch.Success) { $agentsMatch.Groups[1].Value.Trim() } else { $agentsTemplateText.Trim() }
     $startMarker = "<!-- production-harness-v2:start -->"
     $endMarker = "<!-- production-harness-v2:end -->"
     $managedBlock = @"

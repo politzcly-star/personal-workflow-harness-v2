@@ -1,137 +1,69 @@
 # Install, Hooks, And Upgrade
 
-This harness works as plain Markdown. Hook integration is optional and repo-local.
+Use the migration script for both new adoption and upgrades from the older harness.
 
-## Install Into A New Project
+## Safe Migration
 
-Important: a chat instruction such as "refer to this harness" is not a durable install. New Codex windows keep the protocol only when the target project has a root `AGENTS.md` harness block, or an equivalent project rule, plus the project profile.
-
-Copy or keep access to these files:
-
-```text
-README.md
-AGENTS.md
-docs/
-templates/
-scripts/
-.codex/hooks.json
-.codex/hooks/
-```
-
-Then ask Codex:
-
-```text
-Read README.md and AGENTS.md. Use this production harness for the next task.
-Route first, classify S0-S4 task weight, verify before completion, and escalate only when risk requires it.
-```
-
-Run:
+Dry Run is the default:
 
 ```powershell
-.\scripts\health-check.ps1
-.\scripts\init-project-profile.ps1 -ProjectPath "D:\path\to\project" -ProjectName "my-project" -InstallAgents
-.\scripts\check-codegraph.ps1
-.\scripts\server-inspection-check.ps1 -HostAlias "my-prod-alias"
+.\scripts\migrate-project-harness.ps1 -ProjectPath "D:\path\to\project"
 ```
 
-## Adapt Into An Existing Project
+The plan reports the managed AGENTS block, root model config, custom agents, hooks, profile state, and old harness candidates. It does not modify the project.
 
-1. Keep the project's existing `AGENTS.md` or rules as highest local authority.
-2. Merge `templates/project-agents.md` into the target project root `AGENTS.md`, or run `scripts/init-project-profile.ps1 -ProjectPath <project> -InstallAgents`.
-3. Keep project-specific commands, tests, ports, and deployment rules in the project repo.
-4. Add or update a project profile from `templates/project-profile.md`.
-5. Confirm parent-router / child-executor availability and record S0-S4 delegation behavior.
-6. Check whether a server SSH alias exists. If yes, record it in the project profile and use `server_inspection`; if no, ask the Human to configure the alias once.
-7. Remove evaluation-only examples that do not help daily work.
-8. Add one task brief and one verification report for the first real S2+ task.
+Apply the non-conflicting plan:
 
-## Codex Hook Status
-
-Codex hooks support repo-local hook configuration under `.codex/hooks.json` or `.codex/config.toml`. Project-local hooks are reviewed and trusted by Codex before they run.
-
-v2.2 provides hook-ready files:
-
-```text
-.codex/hooks.json
-.codex/hooks/harness-hook.ps1
+```powershell
+.\scripts\migrate-project-harness.ps1 -ProjectPath "D:\path\to\project" -Apply
 ```
 
-This repository does not modify global Codex configuration and does not claim hooks are automatically active. After copying or editing hooks, open the project in Codex and review/trust the local hook configuration when prompted.
+If existing project config or hooks must be replaced, review them first and use:
+
+```powershell
+.\scripts\migrate-project-harness.ps1 -ProjectPath "D:\path\to\project" -Apply -ReplaceConfig -ReplaceHooks
+```
+
+An unmarked legacy Harness-only `AGENTS.md`, or a recognized v2.1 workflow preamble above `Project Conventions`, is also a blocker. After review, replace it explicitly. The migration backs up the full file and preserves recognized project conventions while removing the old workflow preamble:
+
+```powershell
+.\scripts\migrate-project-harness.ps1 -ProjectPath "D:\path\to\project" -Apply -ReplaceLegacyAgents
+```
+
+Replacement files are backed up under `.codex/legacy-harness-backup/<timestamp>/`. To make old copied policy files inert without deleting them:
+
+```powershell
+.\scripts\migrate-project-harness.ps1 -ProjectPath "D:\path\to\project" -Apply -ArchiveLegacyHarness
+```
+
+Project facts, architecture, project profile, tasks, audits, tests, and history are never archived by this option.
+
+## Installed Runtime
+
+- `.codex/config.toml`: `gpt-5.6-terra` Medium daily root, max two threads, depth one.
+- `.codex/agents/terra-worker.toml`: implementation role.
+- `.codex/agents/luna-verifier.toml`: read-only review role.
+- `.codex/hooks.json` and `.codex/hooks/harness-hook.ps1`: strict boundary guards.
+- managed block in root `AGENTS.md`: automatic routing and Goal-mode behavior.
+- `docs/project-profile.md`: created only when missing.
+
+Project-scoped Codex configuration loads only after the project is trusted. This harness does not modify global configuration.
 
 ## Hook Lifecycle
 
-| Hook | Behavior |
+| Event | Purpose |
 | --- | --- |
-| SessionStart | Checks key files and returns onboarding context. |
-| PreToolUse | Blocks or warns on `.env`, secrets, broad delete, database writes, remote deploy, production commands, and personal browser profile patterns. |
-| PostToolUse | Summarizes changed files and warnings for runtime artifacts or suspected secret files. |
-| SubagentStart | Adds child task expectations: allowed files, forbidden files, verification, report shape. |
-| SubagentStop | Requires child report fields: changed files, verification, skipped checks, risks, next step. |
-| PreCompact | Reminds the agent to write `templates/handoff.md`; may block only for obvious high-risk work without handoff state. |
-| Stop | Requires verification evidence or an allowed not-verified reason for S1+ completion. |
+| SessionStart | Compact routing reminder. |
+| PreToolUse | Block clearly unsafe tool calls at strict boundaries. |
 
-## Hook Result Levels
+Post-tool snapshots and natural-language stop blocking remain intentionally absent.
 
-Hooks should communicate severity:
+## Verification
 
-- `info`: context or reminder;
-- `warn`: likely safe but needs attention;
-- `block`: unsafe or policy-violating action.
-
-Keep strict blocks for secrets, raw credentials, dangerous deletion, database writes, deployment/restart, and production remote mutations.
-
-Prefer warnings or info for discussion, read-only checks, and docs-only edits. Route-aware exceptions are allowed for `server_inspection` read-only SSH alias commands, `deployment_route` dry-runs/config-tests, and `database_route` `SELECT preview`.
-
-See `docs/hook-tuning.md`.
-
-## Hook Boundary
-
-Hooks are guardrails, not a complete security boundary.
-
-`PreToolUse` can intercept shell, patch, and MCP guardrail patterns, but it cannot understand every safe or unsafe intent. Keep human approval, route policy, and verification discipline as the real safety model.
-
-## Health Check
-
-Run this quick check after install:
+After migration, inspect `git diff`, open the project in Codex, review/trust local configuration, and run the project's own tests. In this harness repository run:
 
 ```powershell
-.\scripts\health-check.ps1
-```
-
-It checks:
-
-- required files;
-- S0-S4 route/reporting docs;
-- parent-child execution protocol;
-- project AGENTS addendum template;
-- project profile template;
-- product acceptance template;
-- branch finish template;
-- server inspection template;
-- hook-ready files;
-- script syntax;
-- `.env` / private key / secret keyword file-name risk;
-- `.vs/`, IDE, and runtime artifact risk;
-- CodeGraph availability fallback;
-- server inspection script syntax;
-- verification template availability.
-
-## Upgrade Policy
-
-Keep upgrades boring:
-
-1. Read the current README and AGENTS.md.
-2. Compare route policy changes.
-3. Preserve project-specific commands and safety rules.
-4. Do not overwrite local secrets or profiles.
-5. Do not install global hooks without explicit Human approval.
-6. Run health, scope, stop, branch-finish, and syntax checks.
-7. Commit with a clear message.
-
-## Version
-
-Current production version:
-
-```text
-v2.2 efficiency tuning
+.\scripts\harness-self-test.ps1
+.\scripts\health-check.ps1 -Strict
+git diff --check
 ```

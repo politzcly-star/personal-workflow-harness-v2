@@ -6,7 +6,7 @@ Use this for `feature_plan` or for `feature_discovery` that becomes multi-step.
 Task ID:
 Feature Name:
 Selected Route: feature_discovery | feature_plan
-Layer: medium
+S-Level: S2
 
 Problem:
 

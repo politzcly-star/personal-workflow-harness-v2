@@ -1,54 +1,28 @@
 # Task Brief
 
-Use this before implementation when the task is not trivial.
+Use for S2+ work or whenever a short written scope prevents drift.
 
 ```text
 Task ID:
-User Request:
-Selected Route:
-Layer: lightweight | medium | review_gated | full_formal_gate
-Why This Route:
-
-Parent / Child:
-- Direct execution exception used: yes | no
-- If yes, why all direct-execution criteria are met:
-- Child executor needed by default: yes | no
-- Child task path or summary:
-- Child report required: yes | no
-- Reviewer needed:
-
 Goal:
+S-Level: S2 | S3 | S4
+Route (only if it changes checks or guardrails):
+
 Non-Goals:
+Allowed Files / Areas:
+Forbidden Actions / Areas:
 
-Allowed Changes:
-- TODO
+Decision Owner: root goal owner | Human
+Why terra_worker delegation is needed (if selected):
+Why luna_verifier review is needed (if selected):
 
-Forbidden Changes:
-- secrets
-- unapproved production/database/deployment actions
-- unrelated refactors
-- browser personal profile state
-- runtime artifacts
-
-Capabilities To Consider:
-- rg:
-- CodeGraph/MCP:
-- code-audit-fix:
-- openai-docs:
-- reviewer:
-- browser/UI:
-- lab-ai-delivery:
-
-Verification Plan:
-- TODO
+Acceptance Checks:
+-
 
 Stop Conditions:
-- scope becomes unclear
-- credentials/secrets are required
-- production/database/destructive action is requested
-- personal browser logged-in state would be needed
-- verification cannot be run and risk is not acceptable
+- scope or acceptance changes
+- credentials, remote mutation, database mutation, deployment, or destructive action is required
+- an unlisted file is required
 
-Residual Risks:
-- TODO
+Residual Risk:
 ```

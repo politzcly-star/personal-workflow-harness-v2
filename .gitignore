@@ -1,9 +1,13 @@
 # Local agent/editor state
 .claude/settings.local.json
 .codex/*
+!.codex/config.toml
+!.codex/agents/
+!.codex/agents/**
 !.codex/hooks.json
 !.codex/hooks/
 !.codex/hooks/**
+.codex/harness-state/
 .cursor/
 .vs/
 

@@ -1,47 +1,18 @@
 # Child Report
 
-Use this after a child executor finishes scoped work.
-
 ```text
 Task ID:
-Child Role:
-Selected Route:
-S-Level:
-Layer:
 Status: passed | partial | failed | blocked
-Parent Should Re-implement: no | narrow-repair-only | yes-with-reason
-
-Goal Completed:
-Yes | No
+Goal Completed: yes | no
 
 Changed Files:
-- TODO
-
-Files Read:
-- TODO
-
 Checks Run:
-- Command:
-  Exit Code:
-  Result Summary:
+Checks Skipped And Reason:
 
-Checks Skipped:
-- Check:
-  Allowed Reason:
-  Residual Risk:
-
-Scope:
 Allowed Scope Followed: yes | no
-Forbidden Files Touched: yes | no
-Runtime Artifacts Created: yes | no
-Secret Risk: yes | no
+Forbidden Files Or Actions Touched: yes | no
+Secret Or Runtime Artifact Risk: yes | no
 
-Risks / Assumptions:
-- TODO
-
-Needs Parent Decision:
-- TODO
-
+Assumptions / Residual Risk:
 Next Recommended Action:
-- TODO
 ```

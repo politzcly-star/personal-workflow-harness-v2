@@ -1,68 +1,15 @@
 # Context Compression Policy
 
-Use Codex's built-in compaction plus parent/child thread isolation. This repository does not replace Codex compaction and does not connect external compression tooling into production v2.
+Use built-in compaction and concise handoff state; this harness does not replace the platform compactor. For an active Goal, checkpoint a bounded incremental Context Capsule at decision boundaries, before long verification, after a changed repair diagnosis, before independent review, and before pausing.
 
-The harness defines what must survive compaction and handoff.
+Before pausing a long or risky task, preserve:
 
-## Preserve
+- goal and constraints;
+- S-level/route when relevant;
+- decisions and allowed/forbidden scope;
+- changed files and verification evidence;
+- open risks, key commands, and next action.
 
-Keep the compact state focused on what a new agent cannot safely infer:
+Link repository artifacts instead of pasting them. Store the frozen contract hash, context epoch, changed-since summary, hot files/symbols, checks, risks, and next action in ignored `.codex/harness-state/`. On compact/resume, inject only a safe capsule pointer and minimum contract context. Missing, malformed, stale, oversized, or secret-like state is ignored with a concise warning; do not parse `transcript_path`.
 
-- current goal;
-- user's real constraints and non-goals;
-- decisions already made;
-- selected route, S-level, and layer;
-- parent/child/reviewer state;
-- files changed;
-- verification commands and results;
-- skipped checks and reasons;
-- unresolved risks;
-- next step;
-- forbidden actions;
-- key commands;
-- server alias status;
-- database/deployment/secret boundary status.
-
-## Compress Or Discard
-
-Do not preserve noise:
-
-- repeated logs;
-- full command output when a summary is enough;
-- stale exploration branches;
-- failed attempts with no follow-up value;
-- source details that can be reloaded from files;
-- raw production logs;
-- secrets, private payloads, database dumps, private screenshots.
-
-## Reloadable From Files
-
-These can be re-read instead of copied into context:
-
-- file contents;
-- `git diff`;
-- test logs;
-- `README.md`;
-- `AGENTS.md`;
-- `docs/project-profile.md` or project profile;
-- route docs;
-- templates.
-
-## Handoff Snapshot
-
-`templates/handoff.md` is the human-readable state anchor before compaction, interruption, or handoff.
-
-Write a handoff when:
-
-- context is getting long;
-- `PreCompact` fires;
-- work pauses mid-task;
-- a child/reviewer is involved;
-- verification is incomplete;
-- the next step depends on local state.
-
-## PreCompact Hook
-
-The PreCompact hook is a reminder/check, not a normal development blocker.
-
-It may block only when the current payload clearly indicates S3/S4 or high-risk work and no handoff/verification state is present. Otherwise it should warn and let normal work continue.
+Use a long-lived worker only while its same-subsystem context remains relevant. Search, builds, test logs, and retry noise belong in a bounded worker; durable architecture decisions remain with the root.

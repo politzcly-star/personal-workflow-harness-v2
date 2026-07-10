@@ -1,239 +1,102 @@
 param(
     [Parameter(Mandatory = $true)]
-    [string]$Event
+    [ValidateSet("SessionStart", "PreToolUse", "PreCompact", "PostCompact")]
+    [string]$Event,
+    [Parameter(ValueFromPipeline = $true)] [string]$HookInput
 )
 
 $ErrorActionPreference = "Stop"
-$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "../..")).Path
-$raw = [Console]::In.ReadToEnd()
-$payload = $null
+$root = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
+$raw = if ($HookInput) { $HookInput } else { [Console]::In.ReadToEnd() }
+$payload = $null; if ($raw.Trim()) { try { $payload = $raw | ConvertFrom-Json -ErrorAction Stop } catch { $payload = $null } }
 
-if ($raw.Trim()) {
+function Write-HookJson([hashtable]$Object) { $Object | ConvertTo-Json -Depth 8 -Compress }
+function Get-PropertyValue($Object, [string[]]$Names) { if ($null -eq $Object) { return $null }; foreach ($name in $Names) { $p = $Object.PSObject.Properties[$name]; if ($null -ne $p -and $null -ne $p.Value) { return $p.Value } }; $null }
+function Deny([string]$Reason) { Write-HookJson @{ hookSpecificOutput = @{ hookEventName = "PreToolUse"; permissionDecision = "deny"; permissionDecisionReason = "[block] $Reason" } } }
+function Add-Context([string]$Message) { Write-HookJson @{ hookSpecificOutput = @{ hookEventName = "SessionStart"; additionalContext = "[info] $Message" } } }
+function Test-SecretLike([string]$Text) { $Text -match '(?i)(-----BEGIN (RSA|OPENSSH|PRIVATE) KEY-----|\b(api[_-]?key|secret|token|password|database_url|connectionstring)\s*[:=]|authorization\s*:\s*bearer)' }
+function Get-ActiveGoal {
+    $statePath = Join-Path $root ".codex/harness-state/active-goal.json"
+    if (-not (Test-Path -LiteralPath $statePath -PathType Leaf)) { return $null }
     try {
-        $payload = $raw | ConvertFrom-Json -ErrorAction Stop
-    } catch {
-        $payload = $null
-    }
+        $state = Get-Content -Raw -LiteralPath $statePath | ConvertFrom-Json -ErrorAction Stop
+        if ($state.Status -ne 'ACTIVE' -or -not $state.ContractPath -or -not $state.ContractHash -or -not $state.CapsuleHash) { return $null }
+        $contract = Join-Path $root $state.ContractPath; $capsule = Join-Path (Split-Path $statePath -Parent) "capsule-$($state.GoalId).md"
+        if (-not (Test-Path -LiteralPath $contract -PathType Leaf) -or -not (Test-Path -LiteralPath $capsule -PathType Leaf)) { return $null }
+        if ((Get-FileHash -LiteralPath $contract -Algorithm SHA256).Hash.ToLowerInvariant() -ne [string]$state.ContractHash) { return $null }
+        if ((Get-Item -LiteralPath $capsule).Length -gt 16KB) { return $null }
+        $capsuleText = Get-Content -Raw -LiteralPath $capsule
+        if ((Test-SecretLike $capsuleText) -or (Get-FileHash -LiteralPath $capsule -Algorithm SHA256).Hash.ToLowerInvariant() -ne [string]$state.CapsuleHash) { return $null }
+        $contractText = Get-Content -Raw -LiteralPath $contract
+        $match = [regex]::Match($contractText, '(?s)<!-- harness:allowed-paths:start -->\s*(.*?)\s*<!-- harness:allowed-paths:end -->')
+        $allowed = if ($match.Success) { @($match.Groups[1].Value -split "`r?`n" | ForEach-Object { ($_.Trim() -replace '^-\s*','') } | Where-Object { $_ }) } else { @() }
+        return @{ State=$state; Contract=$contract; Allowed=$allowed }
+    } catch { return $null }
 }
-
-function Write-HookJson {
-    param([hashtable]$Object)
-    $Object | ConvertTo-Json -Depth 10 -Compress
+function Test-AllowedPath([string]$Path, [string[]]$Allowed) {
+    if (-not $Path -or -not $Allowed -or $Allowed.Count -eq 0) { return $false }
+    $p = ($Path -replace '\\','/').Trim().TrimStart('./')
+    foreach ($entry in $Allowed) { $a = ($entry -replace '\\','/').Trim().TrimStart('./'); if ($p -eq $a -or ($a.EndsWith('/') -and $p.StartsWith($a))) { return $true } }
+    $false
 }
-
-function Get-PayloadText {
-    param($InputObject)
-    if ($null -eq $InputObject) {
-        return ""
-    }
+function Get-PatchTargets([string]$Patch) { @([regex]::Matches($Patch, '(?im)^\*\*\* (?:Update|Add|Delete) File: (.+?)\s*$') | ForEach-Object { $_.Groups[1].Value.Trim() }) }
+function Test-CompletionReportArgument([string]$Command) {
+    $match = [regex]::Match($Command, '(?i)-reportpath\s+(?:"([^"]+)"|''([^'']+)''|([^\s]+))')
+    if (-not $match.Success) { return $false }
+    $path = @($match.Groups[1].Value, $match.Groups[2].Value, $match.Groups[3].Value | Where-Object { $_ })[0]
     try {
-        return ($InputObject | ConvertTo-Json -Depth 12 -Compress)
-    } catch {
-        return [string]$InputObject
-    }
+        $full = if ([IO.Path]::IsPathRooted($path)) { [IO.Path]::GetFullPath($path) } else { [IO.Path]::GetFullPath((Join-Path $root $path)) }
+        if (-not $full.StartsWith($root.TrimEnd('\') + '\', [StringComparison]::OrdinalIgnoreCase) -or -not (Test-Path -LiteralPath $full -PathType Leaf)) { return $false }
+        $text = Get-Content -Raw -LiteralPath $full
+        foreach ($term in @('Task ID','Status','Changed Files','Checks Run','Scope Guard','Residual Risk','Next Recommended Action')) { if ($text -notmatch [regex]::Escape($term)) { return $false } }
+        return $text -notmatch 'TODO'
+    } catch { return $false }
 }
 
-function Add-Context {
-    param(
-        [string]$Level,
-        [string]$Message,
-        [string]$HookEvent = $Event
-    )
-    Write-HookJson @{
-        hookSpecificOutput = @{
-            hookEventName = $HookEvent
-            additionalContext = ("[{0}] {1}" -f $Level, $Message)
-        }
-    }
+if ($Event -eq 'PreCompact') { Write-HookJson @{}; exit 0 }
+if ($Event -eq 'PostCompact') { Write-HookJson @{}; exit 0 }
+if ($Event -eq 'SessionStart') {
+    $source = [string](Get-PropertyValue $payload @('source','session_source'))
+    $goal = Get-ActiveGoal
+    if ($source -match '(?i)compact|resume' -and $goal) { Add-Context "active Goal $($goal.State.GoalId), epoch $($goal.State.ContextEpoch): read frozen contract $($goal.State.ContractPath) and bounded capsule pointer before work; do not reload transcripts." }
+    elseif ($source -match '(?i)compact|resume') { Add-Context "no safe active Goal capsule was injected; reload repository authority files only." }
+    else { Add-Context "v5.6 harness: Human approves one Goal contract, then the Terra root proceeds through implementation, verification, focused repair, and required Luna review without phase-by-phase confirmation." }
+    exit 0
 }
 
-function Block-PreTool {
-    param([string]$Reason)
-    Write-HookJson @{
-        hookSpecificOutput = @{
-            hookEventName = "PreToolUse"
-            permissionDecision = "deny"
-            permissionDecisionReason = ("[block] {0}" -f $Reason)
+$toolName = [string](Get-PropertyValue $payload @('tool_name','toolName','name')); $toolName = $toolName.ToLowerInvariant()
+$input = Get-PropertyValue $payload @('tool_input','toolInput','input','arguments')
+$command = if ($input -is [string]) { $input } else { [string](Get-PropertyValue $input @('command','cmd','script','text')) }
+$isPatch = $toolName -match 'apply[_-]?patch'; $isCommand = $toolName -match 'shell|command|terminal|powershell|exec|mcp'
+$goal = Get-ActiveGoal
+if ($isPatch) {
+    $patchText = if ($input -is [string]) { $input } else { [string](Get-PropertyValue $input @('patch','text')) }
+    $targets = @(Get-PatchTargets $patchText)
+    if ($patchText -match '(?im)^\*\*\* (?:Update|Add|Delete) File: .*?(?:\.env(?:\.[^\s]+)?|id_rsa|id_ed25519|\.pem|\.key)\s*$') { Deny 'patch targets a secret-like file. Record only a redacted presence summary.'; exit 0 }
+    if ($goal) {
+        foreach ($target in $targets) {
+            if ($target -eq $goal.State.ContractPath -or $target -match '^(\.codex/(harness-state|hooks|agents|config)|scripts/goal-state\.ps1|AGENTS\.md|docs/(capability-policy|verification-and-guardrails)\.md)') { Deny 'active Goal contract or Harness authorization-policy self-modification is denied.'; exit 0 }
+            if (-not (Test-AllowedPath $target $goal.Allowed)) { Deny 'patch target is outside the frozen Goal allowed scope.'; exit 0 }
         }
+        if ($targets.Count -eq 0) { Deny 'ambiguous patch has no parseable target under an active Goal.'; exit 0 }
     }
+    Write-HookJson @{}; exit 0
 }
-
-function Block-Stop {
-    param([string]$Reason)
-    Write-HookJson @{
-        decision = "block"
-        reason = ("[block] {0}" -f $Reason)
-    }
+if (-not $isCommand) { Write-HookJson @{}; exit 0 }
+$lower = $command.ToLowerInvariant()
+if ($lower -match '(begin\s+(rsa|openssh|private)\s+key|private\s+key-----)') { Deny 'tool call appears to expose private-key material.'; exit 0 }
+if ($lower -match '\b(get-content|type|cat|gc|select-string|sls|rg|grep|open|notepad|code)\b[^\r\n]{0,200}(\.env($|[^a-z0-9])|id_rsa|id_ed25519|\.pem|\.key)') { Deny 'tool call appears to read a secret-like file.'; exit 0 }
+if (Test-SecretLike $command) { Deny 'command appears to embed credentials.'; exit 0 }
+if ($lower -match '(rm\s+-rf|remove-item[^\r\n]*(recurse)[^\r\n]*(force)|git\s+reset\s+--hard|git\s+checkout\s+--\s|git\s+clean\s+-[a-z]*f|git\s+branch\s+(-d|--delete)|git\s+worktree\s+remove)') { Deny 'destructive filesystem or git command needs fresh Human authority.'; exit 0 }
+if ($lower -match '\b(drop|truncate)\b|\bdelete\s+from\b|\bupdate\s+[\w.\[\]`"]+\s+set\b|\binsert\s+into\b|\b(prisma|sequelize)\s+.*migrate\b') { Deny 'database mutation or migration requires fresh approval.'; exit 0 }
+$remoteMutation = 'sudo\s+su|\brm\s+-|\bmv\s+|\bcp\s+|\bchmod\s+|\bchown\s+|\btee\s+|\b(touch|mkdir|rmdir|ln|install|dd|truncate)\b|\b(sed|perl)\s+-[a-z]*i\b|>{1,2}|systemctl\s+(restart|reload|start|stop|enable|disable)|service\s+\w+\s+(restart|reload|start|stop)|docker\s+compose\s+(up|down)|kubectl\s+(apply|delete|rollout|scale)|helm\s+(upgrade|install|delete)|npm\s+run\s+deploy|pnpm\s+deploy|\bvercel\s+--prod|\bflyctl\s+deploy|\brailway\s+up'
+if ($lower -match '\b(ssh|scp|rsync)\b') { if ($lower -match 'harness:server-inspection' -and $lower -notmatch $remoteMutation) { Write-HookJson @{}; exit 0 }; Deny 'remote command needs a read-only marker or fresh approved mutation route.'; exit 0 }
+if ($lower -match $remoteMutation) { Deny 'deployment, restart, or production-adjacent mutation requires fresh approval.'; exit 0 }
+if ($goal -and $lower -match 'scripts[\\/]goal-state\.ps1' -and $lower -match '(?i)-action\s+(initialize|activate)\b') { Deny 'active Goal authorization contract replacement is denied.'; exit 0 }
+if ($goal -and $lower -match 'scripts[\\/]goal-state\.ps1' -and $lower -match '(?i)-action\s+close\b') {
+    if ($lower -match 'harness:goal-close' -and (Test-CompletionReportArgument $command)) { Write-HookJson @{}; exit 0 }
+    Deny 'Close requires harness:goal-close and a concrete passing completion ReportPath.'; exit 0
 }
-
-function Get-ChangedFilesSummary {
-    Push-Location $repoRoot
-    try {
-        $status = git status --short 2>$null
-        if ($LASTEXITCODE -ne 0 -or -not $status) {
-            return "No changed files detected by git status."
-        }
-        return (($status | Select-Object -First 40) -join "`n")
-    } finally {
-        Pop-Location
-    }
-}
-
-function Has-ChangedFiles {
-    Push-Location $repoRoot
-    try {
-        $status = git status --short 2>$null
-        return [bool]$status
-    } finally {
-        Pop-Location
-    }
-}
-
-switch ($Event) {
-    "SessionStart" {
-        $required = @(
-            "README.md",
-            "AGENTS.md",
-            "docs/route-policy.md",
-            "docs/parent-child-execution.md",
-            "docs/developer-efficiency-mode.md",
-            "docs/reporting-policy.md",
-            "docs/context-compression-policy.md",
-            "templates/project-profile.md"
-        )
-        $missing = @()
-        foreach ($file in $required) {
-            if (-not (Test-Path -LiteralPath (Join-Path $repoRoot $file))) {
-                $missing += $file
-            }
-        }
-        $status = if ($missing.Count -eq 0) { "all required harness files found" } else { "missing: " + ($missing -join ", ") }
-        Add-Context "info" ("v2.2 production harness active. Classify S0-S4 and route first. S0/S1 stay light; bounded S2 may run in-parent; S3/S4 require child/reviewer or explicit authorization. Verify before completion. Status: {0}" -f $status) "SessionStart"
-        break
-    }
-    "PreToolUse" {
-        $text = Get-PayloadText $payload
-        $lower = $text.ToLowerInvariant()
-
-        if ($lower -match '(begin\s+(rsa|openssh|private)\s+key|private\s+key-----)') {
-            Block-PreTool "tool call appears to expose private key material. Use redacted presence summaries instead."
-            break
-        }
-
-        if ($lower -match '(get-content|type|cat|gc|select-string|sls|rg|grep|open|notepad|code|apply_patch|remove-item|copy-item|move-item|set-content|add-content|out-file)[^`r`n]{0,160}(\.env($|[^a-z0-9])|id_rsa|id_ed25519|\.pem|\.key)') {
-            Block-PreTool "tool call appears to read, print, or modify a secret-like file. Do not inspect secret values; record only redacted presence."
-            break
-        }
-
-        if ($lower -match '(sshpass|password\s*=|pass\s*=|token\s*=|secret\s*=|database_url\s*=|connectionstring\s*=)') {
-            Block-PreTool "command appears to embed credentials. Configure SSH alias/agent or use redacted operator evidence instead."
-            break
-        }
-
-        if ($lower -match '(rm\s+-rf|remove-item[^`n]*(recurse)[^`n]*(force)|git\s+reset\s+--hard|git\s+checkout\s+--\s|git\s+clean\s+-[a-z]*f|git\s+branch\s+(-d|--delete)|git\s+worktree\s+remove)') {
-            Block-PreTool "destructive filesystem or git reset/checkout command needs explicit fresh Human approval and route justification."
-            break
-        }
-
-        if ($lower -match '(git\s+push|git\s+merge|gh\s+pr\s+create)') {
-            Add-Context "warn" "branch_finish reminder: before push/PR/merge, run scripts/branch-finish-check.ps1 or document equivalent checks, branch/worktree state, changed files, and residual risk." "PreToolUse"
-            break
-        }
-
-        if ($lower -match '\b(drop|truncate)\b|\bdelete\s+from\b|\bupdate\s+[\w\.\[\]`"]+\s+set\b|\binsert\s+into\b|\bmigrate\b|\bprisma\s+migrate\b|\bsequelize\s+db:migrate\b') {
-            if ($lower -match '(select\s+|explain\s+|preview|dry-run|dry run|plan)' -and $lower -notmatch '\b(drop|truncate|delete\s+from|update\s+[\w\.\[\]`"]+\s+set|insert\s+into)\b') {
-                Add-Context "warn" "database_route preview detected. Keep it read-only, redact private data, and record row-count/impact evidence." "PreToolUse"
-                break
-            }
-            Block-PreTool "database write/migration/destructive command. Use database_route checklist and redacted operator evidence unless explicitly approved."
-            break
-        }
-
-        if ($lower -match '(ssh\s|scp\s|rsync\s)') {
-            $remoteMutation = '(sudo\s+su|rm\s+-|mv\s+|chmod\s+|chown\s+|>\s*|tee\s+|systemctl\s+(restart|reload|start|stop|enable|disable)|service\s+\w+\s+(restart|reload|start|stop)|docker\s+compose\s+(up|down)|kubectl\s+(apply|delete|rollout|scale)|helm\s+(upgrade|install|delete)|npm\s+run\s+deploy|pnpm\s+deploy|migrate)'
-            if ($lower -match 'harness:server-inspection' -and $lower -notmatch $remoteMutation) {
-                Add-Context "info" "server_inspection read-only marker detected. Redact output and do not read .env/private keys/database URLs." "PreToolUse"
-                break
-            }
-            Block-PreTool "remote server command needs server_inspection marker, no raw credentials, and read-only command shape unless the Human approved deployment/server mutation."
-            break
-        }
-
-        if ($lower -match '(kubectl\s+(apply|delete|rollout|scale)|helm\s+(upgrade|install|delete)|systemctl\s+(restart|reload|start|stop|enable|disable)|service\s+\w+\s+(restart|reload|start|stop)|docker\s+compose\s+up|docker\s+compose\s+down|npm\s+run\s+deploy|pnpm\s+deploy|vercel\s+--prod|flyctl\s+deploy|railway\s+up)') {
-            if ($lower -match '(dry-run|dry run|--dry-run|configtest|config-test|nginx\s+-t|plan)') {
-                Add-Context "warn" "deployment_route dry-run/config-test detected. Do not mutate production; record rollback and smoke-check evidence." "PreToolUse"
-                break
-            }
-            Block-PreTool "remote deploy/reload/restart or production-adjacent command. Use deployment_route checklist and operator boundary."
-            break
-        }
-
-        if ($lower -match '(chrome user data|user-data-dir|cookies|login|logged-in|credentialed browser|default profile)') {
-            Add-Context "warn" "browser/profile state mentioned. Use a dedicated profile or explicit Human approval; avoid personal logged-in state." "PreToolUse"
-            break
-        }
-
-        Write-HookJson @{}
-        break
-    }
-    "PostToolUse" {
-        $changed = Get-ChangedFilesSummary
-        $warnings = @()
-        if ($changed -match '\.env|\.vs|\.sqlite|id_rsa|id_ed25519|\.pem|\.key') {
-            $warnings += "Changed files include local/runtime/secret-like path. Run scripts/scope-check.ps1 before completion."
-        }
-        if ($changed -match 'node_modules|dist/|build/|tmp/|temp/') {
-            $warnings += "Changed files include generated/runtime output. Confirm it is not committed."
-        }
-        $level = if ($warnings.Count -gt 0) { "warn" } else { "info" }
-        $message = "Changed files snapshot:`n" + $changed
-        if ($warnings.Count -gt 0) {
-            $message += "`nWarnings:`n" + ($warnings -join "`n")
-        }
-        Add-Context $level $message "PostToolUse"
-        break
-    }
-    "SubagentStart" {
-        Add-Context "info" "Child executor context: use templates/child-task.md. Stay within allowed files, avoid secrets/.env/production/database/browser profiles, verify before reporting, and return changed files, checks, skipped checks, risks, and next step." "SubagentStart"
-        break
-    }
-    "SubagentStop" {
-        $text = Get-PayloadText $payload
-        if ($text -notmatch '(?i)changed files' -or $text -notmatch '(?i)(checks run|verification)' -or $text -notmatch '(?i)(risk|residual)') {
-            Block-Stop "Child report is missing changed files, verification/checks, or risk summary. Use templates/child-report.md."
-            break
-        }
-        Write-HookJson @{}
-        break
-    }
-    "PreCompact" {
-        $text = Get-PayloadText $payload
-        if ($text -match '(?i)(S3|S4|review_gated|deployment_route|database_route|security|permission|public API|production)' -and $text -notmatch '(?i)(handoff|next action|verification|residual risk)') {
-            Block-Stop "High-risk compaction needs a handoff snapshot with route/S-level, changed files, verification, residual risk, forbidden actions, and next step."
-            break
-        }
-        Add-Context "warn" "Before compaction, write or preserve templates/handoff.md state: goal, constraints, route/S-level, decisions, changed files, verification, open risk, key commands, server alias status, and next action." "PreCompact"
-        break
-    }
-    "Stop" {
-        $text = Get-PayloadText $payload
-        if ($text -match '(?i)(discussion / no code changes|no code changes|S0)') {
-            Write-HookJson @{}
-            break
-        }
-        if (-not (Has-ChangedFiles) -and $text -match '(?i)(no files changed|clean worktree|read-only)') {
-            Write-HookJson @{}
-            break
-        }
-        if ($text -match '(?i)verification|checks run|commands/checks|not-verified|allowed reason|residual risk|verified') {
-            Write-HookJson @{}
-            break
-        }
-        Block-Stop "Final response appears to be missing verification evidence or an allowed not-verified reason. For S1+ add route/S-level, files changed, checks run, result, skipped checks, and residual risk."
-        break
-    }
-    default {
-        Add-Context "info" ("Unknown hook event received by v2.2 harness: {0}" -f $Event) $Event
-        break
-    }
-}
+if ($goal -and $lower -match '\.codex[\\/]harness-state[\\/]' -and $lower -match '(set-content|add-content|out-file|copy-item|move-item|remove-item|>\s*[^\s]+)') { Deny 'active Goal authorization-state mutation is denied.'; exit 0 }
+if ($goal -and $lower -match '(set-content|add-content|out-file|copy-item|move-item|>\s*[^\s]+)') { Deny 'shell mutation is ambiguous under an active Goal; use an exact allowed apply_patch target.'; exit 0 }
+Write-HookJson @{}

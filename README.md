@@ -1,166 +1,65 @@
 # Codex Production Harness
 
-A lightweight production workflow harness for Codex in real projects.
+A lightweight, role-routed workflow for daily development and long-running Goal tasks.
 
-It helps Codex choose the right amount of process for each task: small work stays fast, medium work gets enough structure to be reliable, and high-risk work still gets strict guardrails. It is not an evaluation platform; the production flow stays lightweight by default.
-
-## What This Solves
-
-Use this harness when you want Codex to:
-
-- classify work before editing;
-- avoid turning small tasks into formal deliveries;
-- keep medium tasks moving when scope and verification are clear;
-- force extra care for security, permission, database, deployment, server, and public API boundaries;
-- leave enough verification evidence that the next thread can trust what happened;
-- use hook-ready reminders without treating hooks as a complete safety boundary.
-
-## S0-S4 Task Weight
-
-S-level decides execution weight. Route and four-layer tier decide capabilities and acceptance strictness.
-
-| Level | Use When | Default Execution |
-| --- | --- | --- |
-| `S0` | Discussion, prompts, explanation, read-only analysis, no code changes. | Direct answer. No full route/report required; mention `discussion / no code changes` when useful. |
-| `S1` | Known file, small fix, single-point doc/code change. | Parent may execute directly with focused verification. |
-| `S2` | Medium but bounded feature/fix, clear files or clear verification path. | Parent may plan then implement directly; child is recommended, not mandatory. |
-| `S3` | Cross-module, unfamiliar risky area, hidden acceptance, security, permission, deployment, database, public API, production server. | Child/reviewer is required or strongly required; use review-gated evidence. |
-| `S4` | Long product line, multi-stage delivery, formal module, sustained roadmap. | Parent splits stages; child executes; reviewer as needed. |
-
-The goal is simple: do not spend S3 energy on S1 work, and do not treat S3 work like S1.
-
-## Routes And Four Layers
-
-Route first, then scale the execution tier.
-
-| Route | Layer | Use When |
-| --- | --- | --- |
-| `lightweight_fix` | `lightweight` | Clear small edit. |
-| `audit_fix` | `medium` | Bug, failing test, regression. |
-| `structural_localization` | `medium` | Unfamiliar cross-file area. |
-| `feature_discovery` | `medium` | Vague feature or competing approaches. |
-| `feature_plan` | `medium` | Mid-size feature with clear boundaries. |
-| `docs_assisted` | `medium` | API/docs uncertainty. |
-| `review_gated` | `review_gated` | Security, permission, boundary, hidden acceptance, public API. |
-| `deployment_route` | `review_gated` | Deployment/config/reload/restart/CI. |
-| `server_inspection` | `review_gated` | Read-only server inspection through a configured no-secret alias. |
-| `database_route` | `review_gated` | Schema, migration, SQL, data repair/import/export. |
-| `branch_finish` | `medium` or higher | Commit, push, PR, merge, keep, discard, cleanup. |
-| `lab_ai_delivery` | `full_formal_gate` | Formal/high-risk module delivery. |
-
-Daily preference:
+## Operating Model
 
 ```text
-S0/S1 lightweight
-> S2 medium
-> S3 review_gated
-> S4 staged/full_formal_gate when needed
+one gpt-5.6-terra Medium daily root
+> optional one-time gpt-5.6-sol planning before Goal mode
+> direct work for clear S0-S2 tasks
+> terra_worker for bounded implementation when delegation helps
+> luna_verifier for S3/S4 milestone review
+> root accepts, repairs narrowly, and reports
 ```
 
-## Parent And Child Execution
+The Human normally states a requirement, approves one route/acceptance/authorization contract with `GO`, then reviews final evidence. The Human may choose Sol once before Goal mode to freeze that contract, but does not switch models between implementation and verification phases. The root owns progress, automatic focused repair, acceptance, and Goal continuity. Subagents are conditional so daily work does not pay multi-agent cost by default.
 
-The parent thread remains the router and acceptor, but v2.2 avoids forcing every medium task into a child.
+See `AGENTS.md`, `docs/model-routing-policy.md`, and `docs/route-policy.md`.
 
-| Decision | Applies To |
-| --- | --- |
-| `parent_allowed` | S0/S1, plus S2 tasks with clear boundaries and an obvious verification path. |
-| `child_recommended` | S2 cross-file but bounded work, medium new features, structural localization. |
-| `child_required` | S3/S4, high-risk or hidden acceptance work, deployment, database, security/permission/public API, unfamiliar cross-module work. |
+## Project Activation
 
-If child capability is unavailable:
-
-- S0-S2: state that child is unavailable or not worth opening, then continue in-parent.
-- S3-S4: stop, explain the risk, and ask the Human to authorize parent-only execution or create/authorize child/reviewer support.
-
-See `docs/parent-child-execution.md`.
-
-## Developer Efficiency Mode
-
-v2.2 adds explicit efficiency rules:
-
-- build the fastest local or isolated feedback path first;
-- run the smallest relevant test before broader regression;
-- avoid refactors that do not reduce real risk or complexity;
-- use read-only inspection and dry-run/config-test before remote or deployment action;
-- batch model calls, browser checks, and builds instead of repeating them mechanically.
-
-See `docs/developer-efficiency-mode.md`.
-
-## Product Acceptance
-
-For artifacts such as PPTs, dashboards, documents, pages, agent products, and scripts, use `templates/product-acceptance.md` when quality matters. It checks whether the output matches user intent, opens/runs/downloads, looks or reads professionally, avoids noise and leaks, improves on the prior version, and has minimal reproducible evidence.
-
-## Hooks
-
-Hook files live under:
+Project-scoped model routing lives in:
 
 ```text
-.codex/hooks.json
-.codex/hooks/harness-hook.ps1
+.codex/config.toml
+.codex/agents/terra-worker.toml
+.codex/agents/luna-verifier.toml
 ```
 
-Hooks are guardrails, not a sandbox. They classify results as:
-
-- `info`: context or reminder;
-- `warn`: proceed, but record the concern;
-- `block`: stop unsafe action unless the Human gives a fresh objective and the route permits it.
-
-Strict blocks remain for secrets, private keys, raw credentials, dangerous deletion, database writes/migrations, remote deployment/restart, and production mutations. Discussion, read-only checks, and doc-only work should receive fewer false positives. See `docs/hook-tuning.md` and `docs/install-hooks-upgrade.md`.
-
-## Context Survival
-
-Use Codex's built-in compaction plus parent/child isolation. The repository only defines what must survive compaction:
-
-- current goal and real user constraints;
-- route and S-level;
-- decisions made;
-- files changed;
-- verification results;
-- unresolved risk and next step;
-- forbidden actions;
-- key commands;
-- server alias status.
-
-`templates/handoff.md` is the human-readable state anchor before compaction or handoff. See `docs/context-compression-policy.md`.
-
-## New Project Adoption
-
-Chat-only references are not durable. Install the harness into a project by merging the project addendum into the target root `AGENTS.md` and creating a project profile.
+New or old projects should be migrated with a Dry Run first:
 
 ```powershell
-.\scripts\init-project-profile.ps1 -ProjectPath "D:\path\to\project" -ProjectName "my-project" -InstallAgents
+.\scripts\migrate-project-harness.ps1 -ProjectPath "D:\path\to\project"
 ```
 
-Then run the local checks:
+Apply when the plan is correct:
 
 ```powershell
-.\scripts\health-check.ps1
-.\scripts\check-codegraph.ps1
-.\scripts\server-inspection-check.ps1 -HostAlias "my-prod-alias"
+.\scripts\migrate-project-harness.ps1 -ProjectPath "D:\path\to\project" -Apply
 ```
 
-If CodeGraph is unavailable, record the fallback: `rg` + file tree + test entry points + manual dependency/call notes. If no server alias exists, ask the Human to configure a Windows SSH alias once; do not ask for raw passwords.
+Existing project config or hooks are never overwritten implicitly. Use `-ReplaceConfig` or `-ReplaceHooks` only after reviewing the Dry Run; the script backs up replaced files. Use `-ArchiveLegacyHarness` to move known old harness policy copies into an inert backup while preserving project facts, profiles, tasks, audits, and history.
 
-## Completion Evidence
+If the project root contains an unmarked legacy Harness-only `AGENTS.md`, or a recognized v2.1 workflow preamble above `Project Conventions`, review it and add `-ReplaceLegacyAgents`. The file is backed up; recognized project conventions are preserved while the old workflow preamble is removed. Other mixed project-specific `AGENTS.md` content is appended to and preserved.
 
-Use the report weight that matches the task:
+After migration, trust the project in Codex so project-scoped configuration can load.
 
-- S0: direct answer, usually no report.
-- S1: lightweight report: what changed and what was verified.
-- S2: standard report: route/files/checks/residual risk.
-- S3-S4: formal report with child/reviewer/checklist evidence where needed.
+## Verification And Safety
 
-See `docs/reporting-policy.md` and `templates/verification-report.md`.
-
-## Quick Self-Check
+Run:
 
 ```powershell
-.\scripts\health-check.ps1
-.\scripts\branch-finish-check.ps1
+.\scripts\harness-self-test.ps1
+.\scripts\health-check.ps1 -Strict
 ```
 
-Before pushing or making a PR, use `branch_finish`: check tests, branch, remote, worktree state, changed files, and residual risk.
+Hooks block secret exposure, embedded credentials, destructive filesystem/git actions, database mutation, deployment/restart, and unapproved remote mutation. They do not replace Human judgment or a real sandbox.
+
+Long-running Goals use ignored `.codex/harness-state/` for a hashed contract and a bounded incremental Context Capsule. Hooks never parse transcripts or block Codex compaction. See `docs/autonomous-goal-workflow.md`.
+
+External ClaudeCode/Qwen execution remains an explicit Human-enabled adapter, never the default path.
 
 ## Version
 
-Current production version: `v2.2 efficiency tuning`.
+`v5.6.2 verified 5.6 role routing`

@@ -1,59 +1,16 @@
 # Hook Tuning
 
-Hooks are guardrails and memory prompts. They are not a complete sandbox and should not make normal safe development feel hostile.
+Hooks are guardrails, not a general workflow engine.
 
-## Result Levels
+Keep hard blocks for secret-file access, embedded credentials, destructive filesystem/git commands, database mutation, deployment/restart, and unapproved remote mutation.
 
-| Level | Meaning | Typical Action |
-| --- | --- | --- |
-| `info` | Helpful context or reminder. | Continue. |
-| `warn` | Possible risk or missing evidence. | Continue, but record or check it. |
-| `block` | Unsafe or policy-violating action. | Stop unless the Human gives a fresh objective and the route permits it. |
+Prefer no output for safe documentation edits and read-only work. Do not use hooks to inject repeated git status, enforce prose-shaped reports, or block compaction because a phrase is missing.
 
-## Keep Strict Blocks
+When a real task shows friction, record: date, event, safe/unsafe classification, false-positive status, decision, and a minimal reproduction fixture. Update `scripts/harness-self-test.ps1` when the behavior changes.
+# Hook Tuning
 
-Do not weaken guards for:
+Hooks are quiet for safe read-only work and ordinary allowed patches. With an active frozen Goal contract, exact patch targets inside its allowed list proceed; out-of-scope, contract, Hook, agent, and policy modifications are denied. Ambiguous shell mutation is denied instead of being inferred safe.
 
-- `.env` or secret files;
-- private keys;
-- raw passwords, tokens, connection strings, cookies;
-- dangerous deletion or destructive git reset/checkout/clean;
-- database writes, migrations, import/export, destructive SQL;
-- deployment, reload/restart, production remote mutation;
-- commands that would expose secrets in terminal history, files, prompts, hooks, or reports.
+`PreCompact` and `PostCompact` are deliberately non-blocking and do not inspect transcripts. A compact/resume SessionStart may expose only a validated goal id, epoch, contract pointer, and capsule pointer. Invalid, stale, oversized, malformed, or secret-like state is ignored.
 
-## Reduce False Positives
-
-Prefer `info` or `warn` for:
-
-- discussion and planning;
-- read-only inspection;
-- docs-only edits;
-- local checks that do not mutate remote systems;
-- route-aware dry-runs and previews.
-
-Allowed route-aware exceptions:
-
-- `server_inspection`: read-only SSH alias command marked with `# harness:server-inspection`.
-- `deployment_route`: dry-run/config-test/plan without live mutation.
-- `database_route`: `SELECT preview`, explain plan, or migration plan without writes.
-
-## Tuning Log
-
-Record hook tuning here when a real task shows useful friction or false positives.
-
-```text
-Date:
-Project / task:
-Hook event:
-Result level: info | warn | block
-Useful: yes | no
-False positive: yes | no
-Reason:
-Suggested action: keep | downgrade | upgrade | delete | rewrite
-Decision:
-```
-
-## Non-Goal
-
-Do not add heavy evaluation telemetry or cost fields to production hook records. Keep this file about practical tuning.
+Hard blocks remain independent of any Goal contract: secrets, embedded credentials, destructive filesystem/Git operations, database mutation, deployment/restart, and unapproved remote mutation. Hooks are guardrails, not a sandbox; scope verification remains required.
