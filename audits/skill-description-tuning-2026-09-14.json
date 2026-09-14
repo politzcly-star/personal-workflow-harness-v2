@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-14T14:37:42.677151+08:00",
+  "scope": "Four installed skill description fields only; no changes to skill bodies, resources, scripts, invocation metadata, AGENTS.md or workflow policy.",
+  "git_starting_base": "6e469b82f1cf4cb03d6f316debb5d55beeba3d53",
+  "repository_delivery": "Archive the existing v6.1 workflow and this description-change record in local Git. Installed skill files are outside this repository; this audit is not a second discoverable skill tree or a complete backup of those skills.",
+  "skills": [
+    {
+      "skill": "feature-development",
+      "installed_path": "C:\\Users\\32027\\.codex\\skills\\feature-development\\SKILL.md",
+      "description_before": "Implement a normal, bounded new feature as a minimal vertical slice with focused tests and evidence. Use when requirements and ownership are clear enough to build; use feature-discovery first only for consequential ambiguity, and reserve formal lab-ai-delivery for explicit audit-grade or S4 work.",
+      "description_after": "Implement bounded backend, frontend, or full-stack features when requirements are clear. Not for consequential discovery or formal S4 delivery.",
+      "characters_before": 297,
+      "characters_after": 143,
+      "file_sha256_before": "6cd29cbe4a2924ef076fa90ec71a4da339e5fbdeeb088c142b7d16d4b80a04f2",
+      "file_sha256_after": "0f91aca86844d5c3bcfc544206d95a6f9f96162f9398c6e3129bac6e980e81cb",
+      "body_sha256": "85f5fd60d59fbbcf37e533b9f904198ebd8c884b2aaf05d90d893b6a24496891",
+      "only_description_changed": true,
+      "other_skill_files_sha256": {
+        "agents\\openai.yaml": "960667e33158beadeb2881a503784cc1801c841f6e1f55506a52dd146cb89ff7"
+      },
+      "quick_validate": {
+        "result": "PASS",
+        "message": "Skill is valid!"
+      }
+    },
+    {
+      "skill": "code-audit-fix",
+      "installed_path": "C:\\Users\\32027\\.codex\\skills\\code-audit-fix\\SKILL.md",
+      "description_before": "Inspect, review, debug, repair, or test a bug, failing test, CI failure, regression, runtime error, security concern, or suspicious code path with fast local evidence. Use for focused audit/fix work; do not turn ordinary failures into formal module delivery unless risk, uncertainty, hidden acceptance, or the user explicitly requires audit-grade gates.",
+      "description_after": "Review, diagnose, or fix bugs, failing tests/CI, regressions, runtime/configuration errors, and security concerns. Not routine feature development.",
+      "characters_before": 353,
+      "characters_after": 147,
+      "file_sha256_before": "b71fdc05ee954a37ff3880064687e94a7e3e22d3536a0f72ee23ca895b4db2ba",
+      "file_sha256_after": "f98adcec2724bcb29edf835aac0a17f95c25f55c7ee43313891628ceae739957",
+      "body_sha256": "058fae6e4d19d2f3e6108670f58047b51e92a12eeb657b40ccdb92cad64fd581",
+      "only_description_changed": true,
+      "other_skill_files_sha256": {
+        "agents\\openai.yaml": "d9aaa717aabf51157761cf4f9e2246102656b536a8dfb7f519a144eb19ef1980"
+      },
+      "quick_validate": {
+        "result": "PASS",
+        "message": "Skill is valid!"
+      }
+    },
+    {
+      "skill": "scene-distillation-zine-v1-3",
+      "installed_path": "C:\\Users\\32027\\.codex\\skills\\scene-distillation-zine-v1-3\\SKILL.md",
+      "description_before": "Transform a user-supplied photo into an expressive minimal zine poster made only from original source-derived illustration, an artistic proposition, emotional tension, visual metaphor, spacious negative space, art-directed high-chroma color, and unconstrained authorial typography. Let wording, language, amount, placement, type voices, scale, direction, legibility, and image interaction follow expression and aesthetic judgment rather than presets. Preserve source orientation by default with a 3:5 portrait output or 5:3 landscape output. Add source-derived distributed supporting accents and a natural isolated-contour option alongside adaptive paper-edge transitions. Support an exact `单色块模式` trigger for one contiguous saturated color field with all remaining forms in neutral ink. Use for authored abstract or editorial reinterpretations that communicate an emotion or idea without embedding, cropping, tracing, or preserving the original photographic material in the final image.",
+      "description_after": "Turn a supplied photo into an expressive illustrated zine poster, with no original photography in the result. Use for abstract/editorial reinterpretation, including 单色块模式.",
+      "characters_before": 987,
+      "characters_after": 171,
+      "file_sha256_before": "088116c2bbf70b4891e5ece8191ed729d6e8074555895df2c16780ebd5800fbc",
+      "file_sha256_after": "8ed11ec7da7db757f3b20969f5abc4ce7727e8e883687799e600d6cd3a995c31",
+      "body_sha256": "31a3384448ac22561ea18b3db1e67a600ca0c3f3ac3679947a1bb362fc8d37c0",
+      "only_description_changed": true,
+      "other_skill_files_sha256": {
+        "agents\\openai.yaml": "16630e00f1daf9a6fa23464426584c1ab297e6ee1f2ce587f4cbd26b36c357fc"
+      },
+      "quick_validate": {
+        "result": "PASS",
+        "message": "Skill is valid!"
+      }
+    },
+    {
+      "skill": "scenes-gathered-zine-v1-3",
+      "installed_path": "C:\\Users\\32027\\.codex\\skills\\scenes-gathered-zine-v1-3\\SKILL.md",
+      "description_before": "Transform a user-supplied photo into a vertical 3:5 Gathered Scenes Zine poster that anchors truthful photography inside a spacious source-derived abstract illustration field, aggressively compresses dense foliage and other micro-detail into a few large quiet forms, integrates one high-chroma hue as compositional structure, and preserves a visibly hand-torn fibrous photo-to-paper edge. Use when the user wants a tactile minimal paper collage with simplified illustration, active negative space, restrained English-default, Chinese, or bilingual micro-text, and an unmistakable but quiet torn-paper boundary.",
+      "description_after": "Turn a supplied photo into a 3:5 paper-collage zine poster combining truthful photography, simplified illustration, and a torn-paper edge. Use when the photo should remain visible.",
+      "characters_before": 610,
+      "characters_after": 180,
+      "file_sha256_before": "665b4be2cc54830f4ef489f0290e21f0eb123b70b1922bca4cdddf9e5b2eb670",
+      "file_sha256_after": "7762c7b95dcf64f91462c59c25dc449fbef649a6f41448a625190cf41ba9b383",
+      "body_sha256": "d0c758ede0c0fb2ff599ca6bfa157832388065cba63adda673a11a188aff7b6c",
+      "only_description_changed": true,
+      "other_skill_files_sha256": {
+        "agents\\openai.yaml": "bacceae757a428845179377f57414e00088b4b583aa216842349e1ae1f4375fa"
+      },
+      "quick_validate": {
+        "result": "PASS",
+        "message": "Skill is valid!"
+      }
+    }
+  ],
+  "validation": {
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+    "yaml_version": "6.0.3",
+    "validator_path": "C:\\Users\\32027\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+    "validator_sha256": "547af3cec2ae71ac2a4ef606365d23a8c58b586862211e9c7a9be7bfd0e30fbb",
+    "validator_dependency_location": "Task-local ignored tmp/skill-description-validation-20260914; no global Python package changes.",
+    "only_description_changed": true,
+    "unchanged_non_description_metadata_and_body": true,
+    "unchanged_other_skill_files": true,
+    "quick_validate_passed": 4,
+    "live_trigger_evaluation": "Not performed; subsequent normal use will validate routing behavior.",
+    "runtime_reload_verified": false,
+    "speed_cost_improvement_measured": false,
+    "harness_static_health": "PASS using scripts/health-check.ps1 -Strict; not a full behavioral suite",
+    "prior_publication_files_sha256_matched": 90,
+    "prior_postpublication_evidence_sha256_matched": 2,
+    "inherited_harness_tests": "Preserved historical v6.1 results; not rerun or claimed current under the newly installed Python 3.14.7.",
+    "secret_pattern_scan": "No candidates in the explicit delivery set; bounded heuristic scan, not a security guarantee.",
+    "git_diff_check": {
+      "whole_staged_diff_exit": 2,
+      "active_workflow_and_new_audit_exit": 0,
+      "inherited_formatting_only": [
+        "audits/HARNESS-56-LUNA-DAILY-ROUTE-gate-report.md",
+        "audits/HARNESS-56-LUNA-DAILY-ROUTING-PILOT-gate-report.md",
+        "tasks/HARNESS-56-LUNA-DAILY-ROUTE-FOLLOWUP.md",
+        "tasks/HARNESS-56-LUNA-DAILY-ROUTE.md",
+        "tasks/HARNESS-56-LUNA-DAILY-ROUTING-PILOT.md"
+      ],
+      "disposition": "Preserve historical Markdown hard-break spaces and existing blank EOF lines; no cleanup of inherited evidence. No active workflow/new audit whitespace warnings."
+    }
+  },
+  "boundary_review": [
+    {
+      "request": "Add a bounded backend feature with clear requirements.",
+      "expected": "feature-development"
+    },
+    {
+      "request": "Clarify a consequential unresolved product decision before implementation.",
+      "expected": "feature-discovery, not feature-development"
+    },
+    {
+      "request": "Deliver an explicitly formal S4 Task Packet and Gate Report.",
+      "expected": "lab-ai-delivery, not ordinary feature-development"
+    },
+    {
+      "request": "Review a suspicious security path without modifying code.",
+      "expected": "code-audit-fix; unchanged body preserves read-only boundary"
+    },
+    {
+      "request": "Diagnose a failing CI test or runtime configuration error.",
+      "expected": "code-audit-fix"
+    },
+    {
+      "request": "Reinterpret my photo as an expressive illustrated zine without retaining photography.",
+      "expected": "scene-distillation-zine-v1-3"
+    },
+    {
+      "request": "Use 单色块模式 to reinterpret this photo as an illustrated zine.",
+      "expected": "scene-distillation-zine-v1-3"
+    },
+    {
+      "request": "Make a torn-paper collage zine while keeping the photographic scene visible.",
+      "expected": "scenes-gathered-zine-v1-3"
+    },
+    {
+      "request": "Apply a filter to a photo without making a poster.",
+      "expected": "Neither zine skill merely because a photo is supplied"
+    }
+  ],
+  "boundary_review_method": "Root semantic review of descriptions and unchanged existing workflow boundaries, not an independent model experiment or live-routing test."
+}

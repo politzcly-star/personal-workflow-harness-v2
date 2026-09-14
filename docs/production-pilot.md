@@ -1,56 +1,6 @@
-# Production Pilot Notes
+# Passive delivery observations
 
-Use this file to record real usefulness and friction while using the production harness.
-
-Do not turn every note into an immediate harness change. Prefer tuning only when repeated real tasks show the same drag, false positive, or safety gap.
-
-## Lightweight Log
-
-```text
-Date:
-Project / task:
-Route / S-level:
-Parent/child decision:
-Hook useful:
-Hook false positive:
-Flow too heavy:
-Verification result:
-Residual risk:
-Suggested tuning:
-Decision:
-```
-
-## Weekly Questions
-
-### What stayed fast?
-
-- TODO
-
-### What still felt too heavy?
-
-- TODO
-
-### Where did S0-S4 help?
-
-- TODO
-
-### Where did hooks help?
-
-- TODO
-
-### Where did hooks misfire?
-
-- TODO
-
-### What should be downgraded, kept, or removed?
-
-```text
-Keep:
-Downgrade:
-Delete:
-Defer:
-```
-
-## Boundary
-
-Do not add heavy evaluation telemetry or cost fields to production v2. Keep that work in separate evaluation projects.
+Agents append short observations to existing task evidence only when useful; no weekly Human form, monitor or paid comparison run.
+Record already-exposed total elapsed time, Human interventions, root plus child usage/billing, rework, compaction time/count and Git retries. Missing values remain unavailable. Diagnostics can overlap; do not subtract them as independent net waste.
+Use scripts/evaluate-efficiency.py on comparable accepted tasks when data exists. A fixture pass or faster code-writing phase is not evidence of lower end-to-end cost.
+Tune recurring bottlenecks, not every anecdote. Preserve sufficient verification and target authority. The Human initiates model/workflow adaptation; no harness-upgrade Skill.

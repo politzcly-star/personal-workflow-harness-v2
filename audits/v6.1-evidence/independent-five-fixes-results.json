@@ -1,0 +1,159 @@
+[
+  {
+    "case": "artifact_directory",
+    "path": "C:\\Users\\32027\\AppData\\Local\\Temp\\harness-fix-recheck-8larqia4"
+  },
+  {
+    "case": "runner_ps5_success",
+    "result": {
+      "exit": 0,
+      "out": "中文授权\n{\"runnerExit\":0,\"psRestored\":true,\"netRestored\":true}",
+      "err": ""
+    },
+    "inside": true,
+    "outside": false,
+    "content": "中文授权"
+  },
+  {
+    "case": "runner_ps5_throw",
+    "result": {
+      "exit": 0,
+      "out": "[FAIL] authorized runner rejected or failed the request; inspect redacted authority/scope/exit evidence\n{\"runnerExit\":1,\"psRestored\":true,\"netRestored\":true}",
+      "err": ""
+    },
+    "inside": true,
+    "outside": false,
+    "content": "中文授权"
+  },
+  {
+    "case": "runner_ps7_success",
+    "result": {
+      "exit": 0,
+      "out": "中文授权\n{\"runnerExit\":0,\"psRestored\":true,\"netRestored\":true}",
+      "err": ""
+    },
+    "inside": true,
+    "outside": false,
+    "content": "中文授权"
+  },
+  {
+    "case": "runner_ps7_throw",
+    "result": {
+      "exit": 0,
+      "out": "[FAIL] authorized runner rejected or failed the request; inspect redacted authority/scope/exit evidence\n{\"runnerExit\":1,\"psRestored\":true,\"netRestored\":true}",
+      "err": ""
+    },
+    "inside": true,
+    "outside": false,
+    "content": "中文授权"
+  },
+  {
+    "case": "locked_in_scope",
+    "result": {
+      "exit": 0,
+      "out": "{}",
+      "err": ""
+    }
+  },
+  {
+    "case": "locked_out_scope",
+    "result": {
+      "exit": 0,
+      "out": "{\"hookSpecificOutput\":{\"permissionDecision\":\"deny\",\"hookEventName\":\"PreToolUse\",\"permissionDecisionReason\":\"[block] patch target is outside the frozen Goal allowed scope.\"}}",
+      "err": ""
+    }
+  },
+  {
+    "case": "locked_resume",
+    "result": {
+      "exit": 0,
+      "out": "{\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"[info] v6.1 harness: the selected root owns an authorized objective through implementation, acceptance, repair and risk-based independent review without phase-by-phase confirmation. S-level sets evidence, not model identity. Production requires a concrete release envelope.\"}}",
+      "err": ""
+    }
+  },
+  {
+    "case": "invalid_contract_still_denied",
+    "result": {
+      "exit": 0,
+      "out": "{\"hookSpecificOutput\":{\"permissionDecision\":\"deny\",\"hookEventName\":\"PreToolUse\",\"permissionDecisionReason\":\"[block] active Goal state is invalid; diagnose/restore valid continuity before writes.\"}}",
+      "err": ""
+    }
+  },
+  {
+    "case": "checkpoint_no_optional",
+    "result": {
+      "exit": 0,
+      "out": "[OK] checkpointed Goal audit at epoch 1",
+      "err": ""
+    },
+    "validate": {
+      "exit": 0,
+      "out": "[OK] active Goal state is valid",
+      "err": ""
+    },
+    "epoch": 1,
+    "hash_matches": true,
+    "contract_unchanged": true,
+    "in_scope": {
+      "exit": 0,
+      "out": "{}",
+      "err": ""
+    }
+  },
+  {
+    "case": "checkpoint_invalid_epoch_no_optional",
+    "result": {
+      "exit": 1,
+      "out": "[FAIL] checkpoint epoch must advance exactly once; previous state preserved",
+      "err": ""
+    },
+    "files_preserved": true
+  },
+  {
+    "case": "checkpoint_with_optional",
+    "result": {
+      "exit": 0,
+      "out": "[OK] checkpointed Goal audit at epoch 1",
+      "err": ""
+    },
+    "validate": {
+      "exit": 0,
+      "out": "[OK] active Goal state is valid",
+      "err": ""
+    },
+    "epoch": 1,
+    "hash_matches": true,
+    "contract_unchanged": true,
+    "in_scope": {
+      "exit": 0,
+      "out": "{}",
+      "err": ""
+    }
+  },
+  {
+    "case": "checkpoint_invalid_epoch_with_optional",
+    "result": {
+      "exit": 1,
+      "out": "[FAIL] checkpoint epoch must advance exactly once; previous state preserved",
+      "err": ""
+    },
+    "files_preserved": true
+  },
+  {
+    "case": "migration_server_template",
+    "dry_exit": 0,
+    "dry_zero_writes": true,
+    "apply_exit": 0,
+    "template_identical": true,
+    "no_old_wrapper": true,
+    "apply_tail": [
+      "[PLAN] leave non-Git target without .git or Git exclude files",
+      "[OK] project harness migration applied in place; no backups or history cleanup",
+      "[NEXT] inspect project diff and tests; root model remains Human-selected"
+    ]
+  },
+  {
+    "case": "source_unchanged_during_probes",
+    "same": true
+  }
+]

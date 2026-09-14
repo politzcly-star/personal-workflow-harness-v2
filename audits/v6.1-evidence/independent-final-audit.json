@@ -1,0 +1,82 @@
+{
+  "verdict": "GO_WITHIN_REVIEWED_SCOPE",
+  "meaning": "All six previously reproduced defects are closed for the recorded candidate hashes. No remaining reproducible blocker to this candidate coverage was found. Not production authorization or proof of runtime installation.",
+  "recorded_at": "2026-09-08T00:16:30.071600+08:00",
+  "source": "C:\\Users\\32027\\Documents\\Codex\\2026-09-07\\token-astra-codex\\.work\\harness-v6.1",
+  "review_mode": "independent read-only; no candidate/original modifications; no full-suite execution",
+  "final_sha256": {
+    "scripts/verification-evidence.py": "f6169894c01fe0b56cbc6a73ea2741a1c882b12d569daf3046daebfcd03b31c5",
+    "scripts/branch-finish-check.ps1": "9b0b088d3ff1e5a1afd0fc9089b20fd993f0931b853c0b95e1a1a0d24df21ddf",
+    "scripts/scope-check.ps1": "5236449bd4ad43d3df41613fb282f5bdbcd119c0b205127c24d745d81be14252",
+    "docs/verification-and-guardrails.md": "fe2ae3096b6808fd6f349c97493e735ba5b05371d37f95d89879fd9e07785658",
+    "templates/branch-finish.md": "63f1a80695aae43e554a5e4efcd8e133c8af8d6bc56b9318c8e3873bc1c82fea",
+    "docs/external-executor-workflow.md": "c2b91e2d3b0ace7251bf1264dc32ba631b4a736d0b9b595fba81e3d6f0e45d4f"
+  },
+  "previous_five_hash_only_confirmation": {
+    ".codex/hooks/invoke-authorized.ps1": {
+      "sha256": "ca8a5fb1db80f10d7619cf37675cc099c0b6b5075d26b83bb1c3f4bc4e6edf0f",
+      "matches_prior_verified": true
+    },
+    ".codex/hooks/harness-hook.ps1": {
+      "sha256": "44bd217432ee5761a82967d98d24631ca77f0869bb0ff7aab749171aa80924ad",
+      "matches_prior_verified": true
+    },
+    "scripts/goal-state.ps1": {
+      "sha256": "d6af13a229539235bcdbebdc81f55dab268c8d12183bcc8a28cc7ff66f6591ba",
+      "matches_prior_verified": true
+    },
+    "scripts/migrate-project-harness.ps1": {
+      "sha256": "2bc91ca9eb54b0465538beb4b1ea7f1919f75a42928480c43d8beec36bc8c518",
+      "matches_prior_verified": true
+    },
+    "templates/server-inspection.md": {
+      "sha256": "061e7f5f9c2bd39044dcff71f19a1d4e81d55be0959b497bbe39bd1db09a426e",
+      "matches_prior_verified": true
+    }
+  },
+  "focused_cases": 16,
+  "expected_exit_assertions": 52,
+  "focused_cases_all_passed": true,
+  "evidence_file": "C:\\Users\\32027\\AppData\\Local\\Temp\\harness-index-final-review-18iyoryz\\results.json",
+  "prior_five_evidence_file": "C:\\Users\\32027\\AppData\\Local\\Temp\\harness-fix-recheck-8larqia4\\results.json",
+  "reviewed_locations": {
+    "C:\\Users\\32027\\Documents\\Codex\\2026-09-07\\token-astra-codex\\.work\\harness-v6.1\\scripts\\verification-evidence.py": [
+      60,
+      81,
+      102,
+      158,
+      193,
+      205,
+      226
+    ],
+    "C:\\Users\\32027\\Documents\\Codex\\2026-09-07\\token-astra-codex\\.work\\harness-v6.1\\scripts\\branch-finish-check.ps1": [
+      104
+    ],
+    "C:\\Users\\32027\\Documents\\Codex\\2026-09-07\\token-astra-codex\\.work\\harness-v6.1\\docs\\verification-and-guardrails.md": [
+      18,
+      19,
+      20
+    ],
+    "C:\\Users\\32027\\Documents\\Codex\\2026-09-07\\token-astra-codex\\.work\\harness-v6.1\\templates\\branch-finish.md": [
+      19,
+      20
+    ],
+    "C:\\Users\\32027\\Documents\\Codex\\2026-09-07\\token-astra-codex\\.work\\harness-v6.1\\docs\\external-executor-workflow.md": [
+      5,
+      11
+    ]
+  },
+  "documentation_review": "Default verify is local-only with bound semantic index; staged delivery explicitly requires index match, automatically selected for branch EvidencePath. Conversion limits and TestCommand limitations are disclosed. Optional executor policy no longer mandates named model roles.",
+  "worker_report_not_independent_evidence": "User reports evidence40 (37 pass, 3 skip) and branch9 PASS; these suites were not rerun or counted as independent results.",
+  "unverified": [
+    "Actual Codex runtime hook consumption/model routing and live production authorization/health",
+    "Custom conversion delivery remains unsupported and requires a separate verified path; no custom filter ran in the evidence-specific fixture",
+    "Cross-platform OS execution beyond these Windows fixtures; this turn integrated branch-finish using Windows PowerShell 5",
+    "Any future candidate bytes differing from this manifest require applicable delta review"
+  ],
+  "freeze_condition": "All six final scope files match the independently tested snapshot; prior five fix files match previous passing snapshot. Compare this manifest at publication; do not extend GO to later changed bytes.",
+  "process_notes": [
+    "The interrupted process session was no longer attachable; its completed on-disk result was recovered with every case present.",
+    "An initial read-only PowerShell hash-list command had a parser error; corrected command completed and the final Python manifest independently rechecked the hashes."
+  ]
+}

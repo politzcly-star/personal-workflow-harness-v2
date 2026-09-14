@@ -1,13 +1,5 @@
-# Developer Efficiency Mode
-
-Use the fastest feedback path that can produce trustworthy evidence.
-
-1. Inspect only the files that can change the decision.
-2. Run the smallest relevant check first.
-3. Broaden verification only when shared behavior, risk, or acceptance requires it.
-4. Batch independent reads and checks; do not repeatedly reload unchanged durable documents.
-5. Avoid refactors that do not reduce actual risk or complexity.
-
-For scripts, parse syntax and run safe fixtures. For docs, verify required terms, links where relevant, and whitespace. For UI, use browser evidence only when it proves a user-facing outcome. For remote, deployment, or database work, prefer read-only inspection, dry-run, or a checklist over live action.
-
-Cost discipline means root-direct work for clear S0-S2 tasks, one `terra_worker` implementation when delegation helps, and one `luna_verifier` milestone review when required - not a model switch after every small change.
+# Accepted-outcome efficiency
+Optimize Human interventions, accepted quality, elapsed time and whole-task cost together. Do not optimize child count or tool-call count in isolation. Use one cheap discriminating experiment before broad diagnosis. Continue useful bounded repair; stop unchanged retries, duplicate source reads and gratuitous polishing.
+Preflight only relevant dependencies: required Git base, build tool availability, isolated test resources, and correct target/auth/rollback readiness if release is in scope. Read-only preflight is not deployment. Run once or on changed conditions; do not force server checks on a local UI fix. Independent preflight/test preparation may run alongside implementation.
+Use focused checks during changes, combined behavior checks after integration and required acceptance at the release boundary. Reuse deterministic local evidence only for unchanged code/dependencies/config/test scope and re-established environment identity. Evidence files are not authority or proof of independent review. Production/external service observations are time-sensitive and require fresh verification.
+Record normal-task usage passively, no paid A/B replay or extra dashboard. Policy/tests validate behavior, not actual model economics. Review a few comparable real tasks before calling a route faster/cheaper. Do not reduce mandatory acceptance to meet a budget.

@@ -1,24 +1,20 @@
-# Verification And Guardrails
+# Verification and guardrails
+Completion means verified scope and user outcome, not an available command/template. Parse config/scripts; run behavioral fixtures, original symptoms, nearby regressions and relevant UI/API integration. Inspect combined changes. Skipped checks are risk, not PASS.
 
-Completion requires the smallest relevant evidence or a narrow, recorded reason evidence cannot be run.
+## Authority
+Local development authority covers tests/repair/review, not production. One concrete release grant covers named target/service, immutable version, UTC window, exact planned commands or immutable reviewed runner, health/abort conditions and pre-agreed rollback. Reuse it within its envelope, not per-command Human approvals. Code rollback is not data rollback; target/version/window/data changes require new authority.
+No raw credentials/private keys/cookies/private data in commands or evidence. Source placeholders are not automatically real credentials. Inspection uses configured aliases/redacted output. No unapproved destructive/paid/production/database/private-state actions.
 
-## Common Evidence
+## Mechanical support and limits
+.codex/hooks/harness-hook.ps1 catches common direct shell/patch risks; it is not a shell interpreter, sandbox, universal authorization engine or complete wrapper interceptor. Opaque scripts/arbitrary code still follow agent policy and platform permissions.
+The optional .codex/hooks/authorize-command.ps1 checks an externally signed exact-command grant against project/cwd/target/version/UTC window. Trusted launcher supplies HARNESS_AUTHORITY_PUBLIC_KEY_XML; operator/approval service keeps the private key outside Agent access. Agent must never generate/replace that trust root, sign its own grant or interpret approved JSON/comments as authority. Base64 Payload/Signature envelope uses the schema in templates/release-authorization.json.
+Supported structured tool payloads carry harness_authorization envelope, harness_target, harness_version and explicit cwd/workdir. Actual adapter transport must be verified; ordinary exec schemas may not support these fields. If normal tools cannot transport these fields, use the externally signed request adapter described in docs/runtime-readiness-policy.md; default validates only, -Execute requires a valid real grant. Without a trusted grant/integration, prepare the release and request the smallest operator action once. Do not disable the Hook to deploy.
+Signing service owns revocation, non-idempotent/one-use controls and target serialization; local verifier does not track consumption. Use short windows and repeat-safe envelopes. Commands invoking mutable scripts must use a release runner that checks immutable artifact/hash; string signing alone does not pin file contents.
+Goal scope is defense-in-depth. Invalid frozen scope/contract blocks affected writes while allowing diagnostics. A stale/missing/unsafe progress capsule is not injected and can be rebuilt within intact scope; it is not itself an authorization failure. Explicit Harness maintenance is a separately authorized task, not an escape flag for ordinary work.
+The optional local frozen Goal intentionally cannot rewrite its own enforcement, even if an allowed-path entry names it. Start authorized Harness maintenance outside a live local frozen Goal (the platform Goal may still track the maintenance objective). Finish/close the prior task first; if that is impossible, operator-led state recovery is required. Do not edit state/disable hooks to make the maintenance task pass. This upgrade uses the platform Goal, not local active-goal state.
+Direct-command recognition remains conservative: literal Write-Output/Write-Host diagnostics, scoped simple mkdir and a simple SQLite in-memory CREATE TABLE fixture are supported. Complex local DB commands or opaque wrappers require a reviewed project test runner/platform isolation; blanket permission is not inferred from a path or a test label.
 
-| Change | Useful check |
-| --- | --- |
-| Docs | required terms, link sanity when relevant, `git diff --check`. |
-| JSON/YAML/TOML | parse check. |
-| PowerShell | parser check and safe fixture/direct invocation. |
-| Hooks | JSON parse plus safe and blocked simulated events. |
-| Code | focused test/build/lint or reproduction. |
-| Deployment/database | dry-run, impact preview, rollback/checklist, and operator boundary. |
-
-Before acceptance, inspect actual changed paths for scope drift, runtime artifacts, local profiles, and secrets. Record skipped checks and residual risk.
-
-## Strict Boundaries
-
-Never read, print, commit, or request raw secrets, `.env` values, private keys, cookies, database URLs, raw production logs, or private data.
-
-Require a fresh Human objective before destructive actions, database mutation or migration, deployment/restart, production remote mutation, credentialed browser work, or paid external action. Prefer read-only previews, redacted evidence, and checklists.
-
-Hooks can block obvious unsafe calls but cannot prove intent. They must remain strict at these boundaries and quiet for discussion, documentation, and safe inspection.
+## Reusing local evidence
+Use scripts/verification-evidence.py run only for already-authorized local checks; verify binds source content and caller-re-established environment/check identity. It is freshness evidence, not a sandbox, permission, or defense against a forged report. Check the command/acceptance scope independently. Live services, DB state, production and browser acceptance require fresh appropriate observations. branch-finish-check.ps1 accepts -EvidencePath -CheckId -EnvironmentId instead of repeating an unchanged TestCommand; neither makes a whole release PASS.
+Local working-tree verification and staged delivery are distinct outcomes. Ordinary development does not require staging after every edit. Before claiming a commit is tested, establish that its intended staged content is the tested content, not merely that the worktree has returned to a previously passing state. Evidence reuse must not turn an unchecked staged version into an accepted version. Changed content requires affected checks; a changed phase name does not.
+Default verify establishes local working-tree freshness only. For staged acceptance use verify --require-index-match; branch-finish-check selects this mode automatically for EvidencePath. Records bind semantic index identity as well as source bytes, so a changed index invalidates this conservative cache. Stage the intended deliverable once within existing authority before its final checks; do not stage unrelated work or require staging for routine development. Ordinary Git text/autocrlf line-ending normalization is supported. Custom clean filters, working-tree-encoding and other unsupported conversions need a separately verified delivery path, not repeated retries or changes to project conversion settings merely to pass this helper. The TestCommand path must independently cover its intended deliverable; a successful arbitrary command does not prove staged or production acceptance.

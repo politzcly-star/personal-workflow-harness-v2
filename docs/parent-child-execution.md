@@ -1,34 +1,6 @@
-# Execution And Review Protocol
-
-The default `gpt-5.6-terra` Medium root owns daily work, acceptance, progress, and final reporting. For Goal mode, the Human may first use Sol to freeze scope and acceptance; the active root then delegates named roles only when they add evidence or isolate implementation work.
-
-## Default
-
-- S0/S1: root works directly.
-- Clear S2: root works directly unless a bounded child materially improves throughput, isolation, or risk.
-- S3: root freezes scope, spawns `terra_worker`, consumes its compact report, then spawns read-only `luna_verifier`.
-- S4: root repeats the S3 loop one milestone at a time.
-
-Do not ask the Human to switch models between phases. Do not create a child merely because a task is long, and do not run parallel writers by default.
-
-## Goal-Mode Loop
-
-```text
-root freezes scope and acceptance
-> terra_worker implements and verifies locally
-> luna_verifier returns GO / CONDITIONAL GO / NO-GO
-> root accepts or sends narrow findings back to terra_worker
-> root reports final evidence
-```
-
-The root continues this loop overnight without routine phase confirmations. It stops only for a real authority, safety, scope, or verification blocker.
-
-## Handoff Contract
-
-A child receives only the goal, non-goals, allowed/forbidden files, acceptance checks, stop conditions, and directly relevant context. It returns changed files, checks, skipped checks, assumptions, residual risk, and next action.
-
-Use `templates/child-task.md` and `templates/child-report.md` only when a child is actually used. `luna_verifier` remains read-only and receives the final diff plus compact evidence, not full transcripts.
-
-## Optional External Executor
-
-ClaudeCode, Qwen, and similar tools remain disabled unless the Human explicitly enables one named low-final-decision phase. External output never owns architecture or final acceptance.
+# Bounded parallel execution
+Human-approved scheduling uses subagents where independent work, context isolation or independent evidence outweigh duplication/integration, subject to actual user/platform permission. An existing explicit delegation grant does not need renewed GO per child. A copied template is not a grant; record the consent source at adoption and disclose unavailable delegation early.
+S1 defaults to root-direct. S2 may use root + 1-2 bounded children. S3/S4 require a non-author reviewer of the final sensitive boundary; check availability at start, do not discover the gap at delivery. Four threads/depth one is capacity, not topology; stricter runtime limits prevail.
+Root does the next critical-path step locally. Delegate useful sidecars and immediately continue non-overlapping work. Do not delegate a trivial blocker and wait. Each child receives goal/acceptance, exact write or read-only scope, shared interface agreement, ports/data/output ownership, forbidden actions and concise return format. Prefer short packets over full-history forks. Reuse a child only while its same-subsystem context remains useful; close it when done.
+Different files alone are not independence: schema, lockfiles, generated clients, shared test DBs, ports and build outputs each need one owner or isolation. No concurrent releases to one target. Integrate then check combined behavior. Return findings to implementer; repair and affected re-review need no phase approval. Same-model review can be independent but correlated; deterministic evidence complements it.
+Do not use both QA and verifier to restate the same scope automatically. Independent checks can run during implementation; final review must cover the final integrated diff. Never claim that an early review covers later changes.

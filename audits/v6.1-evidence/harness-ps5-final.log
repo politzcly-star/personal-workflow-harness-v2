@@ -1,0 +1,23 @@
+test_bad_goal_state_blocks_writes_but_not_diagnosis (test_harness.HarnessBehavior.test_bad_goal_state_blocks_writes_but_not_diagnosis) ... ok
+test_bad_progress_retains_scope_and_can_recover (test_harness.HarnessBehavior.test_bad_progress_retains_scope_and_can_recover) ... ok
+test_completion_requires_successful_status (test_harness.HarnessBehavior.test_completion_requires_successful_status) ... ok
+test_contradictory_or_wrong_goal_report_cannot_close (test_harness.HarnessBehavior.test_contradictory_or_wrong_goal_report_cannot_close) ... ok
+test_goal_checkpoint_is_validated_before_replacing (test_harness.HarnessBehavior.test_goal_checkpoint_is_validated_before_replacing) ... ok
+test_goal_scope_traversal_move_and_policy (test_harness.HarnessBehavior.test_goal_scope_traversal_move_and_policy) ... ok
+test_initialize_invalid_id_or_contract_does_not_create_active_state (test_harness.HarnessBehavior.test_initialize_invalid_id_or_contract_does_not_create_active_state) ... ok
+test_local_and_schema_work_is_allowed (test_harness.HarnessBehavior.test_local_and_schema_work_is_allowed) ... ok
+test_malformed_input_fails_closed (test_harness.HarnessBehavior.test_malformed_input_fails_closed) ... ok
+test_narrow_remote_inspection_only (test_harness.HarnessBehavior.test_narrow_remote_inspection_only) ... ok
+test_secret_material_is_denied (test_harness.HarnessBehavior.test_secret_material_is_denied) ... ok
+test_signed_exact_command_authorization (test_harness.HarnessBehavior.test_signed_exact_command_authorization) ... ok
+test_signed_runner_binds_dotnet_cwd_and_utf8_request (test_harness.HarnessBehavior.test_signed_runner_binds_dotnet_cwd_and_utf8_request) ... ok
+test_signed_runner_does_not_bypass_secret_or_goal_scope (test_harness.HarnessBehavior.test_signed_runner_does_not_bypass_secret_or_goal_scope) ... ok
+test_signed_runner_rejects_missing_expired_mismatched_and_untrusted_grants (test_harness.HarnessBehavior.test_signed_runner_rejects_missing_expired_mismatched_and_untrusted_grants) ... ok
+test_signed_runner_validates_without_execution_then_executes_exact_marker (test_harness.HarnessBehavior.test_signed_runner_validates_without_execution_then_executes_exact_marker) ... ok
+test_unapproved_protected_commands_and_markers (test_harness.HarnessBehavior.test_unapproved_protected_commands_and_markers) ... ok
+test_unreadable_capsule_does_not_revoke_intact_contract (test_harness.HarnessBehavior.test_unreadable_capsule_does_not_revoke_intact_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 137.500s
+
+OK

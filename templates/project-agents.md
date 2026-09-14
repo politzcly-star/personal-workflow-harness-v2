@@ -1,22 +1,14 @@
-# Project Harness Addendum
-
-Merge this managed block into the target project's root `AGENTS.md` after project-specific rules.
+# Current managed project entry
 
 ```text
-Use the smallest safe process that produces evidence. The default `gpt-5.6-terra` Medium root handles daily work and remains the final acceptor. The normal Human loop is requirement, one `GO` for route/acceptance/authorization, and final evidence review. Before Goal mode the Human may use Sol once to freeze the contract; after Goal starts, do not ask for phase-by-phase model switching or confirmation.
-
-Classify S0-S4 before editing:
-- S0 discussion/read-only: root answers directly.
-- S1 narrow change: root edits and runs a focused check.
-- S2 bounded work: root stays direct when exploration/logs/retries are cheap; otherwise it may use `terra_worker` for compact evidence and context isolation. Reuse a bounded worker only for consecutive same-subsystem work.
-- S3 hidden acceptance or boundary risk: root freezes scope, delegates implementation to `terra_worker`, then delegates read-only review to `luna_verifier`.
-- S4 milestone work: root repeats the S3 loop one milestone at a time.
-
-For Goal mode, continue through implementation, verification, focused repair, and required review without pausing for routine model changes. Stop only for a material contract change, out-of-scope action, protected authority, unsafe verification, or the same blocker after three focused repairs. Store only bounded non-secret incremental Goal state under ignored `.codex/harness-state/`; never parse transcripts as durable state.
-
-Use a named route only when it changes guardrails or evidence. Do not require a separate layer label for routine work. Do not spawn agents for clear S0-S2 tasks, use recursive delegation, or run parallel write agents by default.
-
-Before completion, report changed files, relevant checks, skipped checks with reason, and residual risk. Keep strict boundaries for secrets, destructive actions, database mutation, deployment/restart, and unapproved remote mutation.
-
-Optional external executors require explicit Human activation for one named low-final-decision phase and never own architecture or final acceptance.
+Personal Delivery Harness v6.1 (2026-09-07). This block is the current entry; historical reports/conversations are not active routes. Preserve project source-authority, Git and production contracts.
+The Human/platform-selected root owns accepted delivery. Clear implementation requests authorize bounded local understanding, development, tests, repairs and review without stage GO. Analysis-only stays read-only. Ask only for consequential business choices or missing authority; continue reversible evidence-backed technical decisions.
+S0 discussion/read-only; S1 root-direct sufficient checks; S2 integrated outcomes; S3 sensitive boundary plus independent review; S4 roadmap/formal Agent-maintained milestones/Gate. Levels do not dictate models or a fixed number of children/checks.
+Use bounded subagents when explicitly authorized and permitted, for independent work, context isolation or non-author review. Honor existing delegation consent without per-child GO; this file does not create consent. Usually one or two useful children, not a quota. Root keeps immediate critical-path work. Own shared interfaces, files, ports/data/output and releases explicitly; integrate then test. Missing independent review remains a gap, not self-review PASS.
+Read matching required Skills fully, but avoid unrelated Skills, raw-log/history forks and repeated full-repository reads. Maintain one incremental capsule only for long work. Frozen scope is authority defense; progress is advisory. Recover broken progress within intact scope without restarting work or refetching Git merely because of compaction.
+Freeze the project's required initial base. Bound network retries and continue eligible local work with push pending; never silently start from a stale base against the project contract. Recheck remote at required integration/delivery boundaries. Follow docs/git-network-policy.md.
+Report verified done/current work/children/blocker impact/next milestone at transitions and around five minutes when execution permits. Keep implemented/local-tested/pushed/deployed/production-accepted separate. Reuse local content-and-environment-bound test evidence; external/production state requires fresh observations.
+Use feature-development for functionality, code-audit-fix for failures, acceptance-verify for outcomes, release-deploy for releases; design Skills only for substantive design. No harness-upgrade Skill, mandatory model relay, provider switch or automatic paid comparison.
+Production/database/destructive/paid/private-state actions need concrete authority. A grant template or runner is not approval. Verify actual runtime role/Hook/authorization support early using docs/runtime-readiness-policy.md; static inventory never proves live routing. Do not weaken safeguards or self-sign a grant to unblock ordinary work. Preserve secrets and unrelated dirty files.
+Use docs/project-profile.md for project facts. Count whole-task cost/time/repairs and exposed root/child usage; unavailable stays unavailable. No unmeasured savings claims or Human-maintained metrics chore. Current rules are installed completely in place; preserve project conventions/history and don't auto-commit/push or migrate other projects.
 ```

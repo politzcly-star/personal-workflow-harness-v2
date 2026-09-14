@@ -1,6 +1,6 @@
 # Context Capsule
 
-Use this bounded, incremental state at decision boundaries. Refer to durable files rather than copying them. Do not include raw logs, full diffs, transcripts, secrets, private payloads, database dumps, or browser state.
+Use this bounded, incremental state only for long-running or overnight Goals, expected compaction, or multi-milestone work. Do not create it for routine small fixes. Refer to durable files rather than copying them. Do not include raw logs, full diffs, transcripts, secrets, private payloads, database dumps, or browser state.
 
 ```text
 Goal ID:
@@ -16,4 +16,6 @@ Evidence references:
 Next action:
 ```
 
-Keep the rendered capsule below 16 KiB. If it is stale, malformed, oversized, or secret-like, do not inject it into a resumed session; reload the frozen contract and repository authority files instead.
+Keep the rendered capsule below 16 KiB. If it is stale, malformed, oversized, or secret-like, do not inject it into a resumed session; retain the intact frozen scope, reconstruct progress from local code/evidence and Checkpoint the next epoch; never inject unsafe content or silently widen authority.
+
+Aim for about 1-2k tokens (soft target). Include frozen Git base, local HEAD/dirty summary, current child ownership, verified outcomes, blockers/affected steps and next action. No repeated transcript or mandatory new Git fetch on resume.

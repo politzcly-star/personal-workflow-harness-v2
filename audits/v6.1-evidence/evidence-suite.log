@@ -1,0 +1,54 @@
+CWD: C:\Users\32027\Documents\Codex\2026-09-07\token-astra-codex\.work\harness-v6.1
+COMMAND: D:\Anaconda\python.exe -B -m unittest discover -s tests -p test_evidence.py -v
+SHA256 scripts/verification-evidence.py f6169894c01fe0b56cbc6a73ea2741a1c882b12d569daf3046daebfcd03b31c5
+SHA256 tests/test_evidence.py d9e1b451d037b8c2c08b9f7880d431aef519d8cf5d18a9085ef6e7be9b9d6962
+SHA256 tests/test_branch.py 6befb69a68162b15db7b14b11ea872703164c8ac4e928d5f7592d608681f955c
+SHA256 scripts/branch-finish-check.ps1 9b0b088d3ff1e5a1afd0fc9089b20fd993f0931b853c0b95e1a1a0d24df21ddf
+test_content_change_with_same_length_and_mtime_invalidates (test_evidence.EvidenceTests.test_content_change_with_same_length_and_mtime_invalidates) ... ok
+test_custom_conversions_are_local_only_and_never_executed (test_evidence.EvidenceTests.test_custom_conversions_are_local_only_and_never_executed) ... ok
+test_declared_crlf_normalization_reuses_staged_evidence (test_evidence.EvidenceTests.test_declared_crlf_normalization_reuses_staged_evidence) ... ok
+test_environment_or_check_identity_change_invalidates (test_evidence.EvidenceTests.test_environment_or_check_identity_change_invalidates) ... ok
+test_environment_templates_are_safe_fingerprint_inputs (test_evidence.EvidenceTests.test_environment_templates_are_safe_fingerprint_inputs) ... ok
+test_failed_check_records_failure_and_cannot_be_reused (test_evidence.EvidenceTests.test_failed_check_records_failure_and_cannot_be_reused) ... ok
+test_failed_rerun_replaces_previous_success (test_evidence.EvidenceTests.test_failed_rerun_replaces_previous_success) ... ok
+test_hardlinked_evidence_does_not_overwrite_outside_file (test_evidence.EvidenceTests.test_hardlinked_evidence_does_not_overwrite_outside_file) ... ok
+test_hardlinked_source_is_rejected (test_evidence.EvidenceTests.test_hardlinked_source_is_rejected) ... ok
+test_index_change_after_pass_cannot_hide_behind_restored_worktree (test_evidence.EvidenceTests.test_index_change_after_pass_cannot_hide_behind_restored_worktree) ... ok
+test_index_mode_change_after_pass_invalidates (test_evidence.EvidenceTests.test_index_mode_change_after_pass_invalidates) ... ok
+test_index_mode_change_during_check_invalidates_unchanged_source (test_evidence.EvidenceTests.test_index_mode_change_during_check_invalidates_unchanged_source) ... ok
+test_invalid_record_fields_never_establish_pass (test_evidence.EvidenceTests.test_invalid_record_fields_never_establish_pass) ... ok
+test_junction_evidence_directory_is_rejected (test_evidence.EvidenceTests.test_junction_evidence_directory_is_rejected) ... ok
+test_metadata_only_change_does_not_invalidate_content (test_evidence.EvidenceTests.test_metadata_only_change_does_not_invalidate_content) ... ok
+test_missing_malformed_nonobject_and_oversized_evidence_rejected (test_evidence.EvidenceTests.test_missing_malformed_nonobject_and_oversized_evidence_rejected) ... ok
+test_missing_program_records_no_pass (test_evidence.EvidenceTests.test_missing_program_records_no_pass) ... ok
+test_non_git_project_and_nested_git_directory_rejected (test_evidence.EvidenceTests.test_non_git_project_and_nested_git_directory_rejected) ... ok
+test_outside_traversal_wrong_directory_and_extension_rejected (test_evidence.EvidenceTests.test_outside_traversal_wrong_directory_and_extension_rejected) ... ok
+test_preexisting_index_worktree_mismatch_is_local_only_not_staged_acceptance (test_evidence.EvidenceTests.test_preexisting_index_worktree_mismatch_is_local_only_not_staged_acceptance) ... ok
+test_preexisting_staged_deletion_with_restored_file_is_not_acceptance (test_evidence.EvidenceTests.test_preexisting_staged_deletion_with_restored_file_is_not_acceptance) ... ok
+test_run_requires_nonempty_identities_and_exact_argv (test_evidence.EvidenceTests.test_run_requires_nonempty_identities_and_exact_argv) ... ok
+test_secret_like_sources_fail_closed_without_contents (test_evidence.EvidenceTests.test_secret_like_sources_fail_closed_without_contents) ... ok
+test_staged_addition_invalidates (test_evidence.EvidenceTests.test_staged_addition_invalidates) ... ok
+test_staged_content_agrees_and_reuses_without_rerunning (test_evidence.EvidenceTests.test_staged_content_agrees_and_reuses_without_rerunning) ... ok
+test_staged_deletion_invalidates (test_evidence.EvidenceTests.test_staged_deletion_invalidates) ... ok
+test_startup_failure_invalidates_previous_successful_evidence (test_evidence.EvidenceTests.test_startup_failure_invalidates_previous_successful_evidence) ... ok
+test_success_records_real_execution_and_reuses_without_rerunning (test_evidence.EvidenceTests.test_success_records_real_execution_and_reuses_without_rerunning) ... ok
+test_successful_command_mutating_source_is_not_passing_evidence (test_evidence.EvidenceTests.test_successful_command_mutating_source_is_not_passing_evidence) ... ok
+test_symlink_evidence_directory_is_rejected (test_evidence.EvidenceTests.test_symlink_evidence_directory_is_rejected) ... skipped "symlink creation unavailable: [WinError 1314] 客户端没有所需的特权。: 'C:\\\\Users\\\\32027\\\\AppData\\\\Local\\\\Temp\\\\evidence-tests-ndoee5hx\\\\outside-records' -> 'C:\\\\Users\\\\32027\\\\AppData\\\\Local\\\\Temp\\\\evidence-tests-ndoee5hx\\\\project\\\\.codex\\\\harness-state\\\\verification'"
+test_symlink_evidence_file_is_rejected_for_run_and_verify (test_evidence.EvidenceTests.test_symlink_evidence_file_is_rejected_for_run_and_verify) ... skipped "symlink creation unavailable: [WinError 1314] 客户端没有所需的特权。: 'C:\\\\Users\\\\32027\\\\AppData\\\\Local\\\\Temp\\\\evidence-tests-6u_b87ti\\\\outside-record.json' -> 'C:\\\\Users\\\\32027\\\\AppData\\\\Local\\\\Temp\\\\evidence-tests-6u_b87ti\\\\project\\\\.codex\\\\harness-state\\\\verification\\\\check.json'"
+test_symlink_source_is_rejected (test_evidence.EvidenceTests.test_symlink_source_is_rejected) ... skipped "symlink creation unavailable: [WinError 1314] 客户端没有所需的特权。: 'C:\\\\Users\\\\32027\\\\AppData\\\\Local\\\\Temp\\\\evidence-tests-30qvakq_\\\\outside-source.txt' -> 'C:\\\\Users\\\\32027\\\\AppData\\\\Local\\\\Temp\\\\evidence-tests-30qvakq_\\\\project\\\\linked.txt'"
+test_template_is_not_evidence (test_evidence.EvidenceTests.test_template_is_not_evidence) ... ok
+test_tracked_deletion_invalidates (test_evidence.EvidenceTests.test_tracked_deletion_invalidates) ... ok
+test_undeclared_or_binary_crlf_is_not_silently_normalized (test_evidence.EvidenceTests.test_undeclared_or_binary_crlf_is_not_silently_normalized) ... ok
+test_unmerged_stage_identity_cannot_reuse_unchanged_blob (test_evidence.EvidenceTests.test_unmerged_stage_identity_cannot_reuse_unchanged_blob) ... ok
+test_unstaged_development_result_is_not_staged_acceptance (test_evidence.EvidenceTests.test_unstaged_development_result_is_not_staged_acceptance) ... ok
+test_untracked_addition_invalidates (test_evidence.EvidenceTests.test_untracked_addition_invalidates) ... ok
+test_untracked_deletion_invalidates (test_evidence.EvidenceTests.test_untracked_deletion_invalidates) ... ok
+test_verify_rejects_program_without_executing_it (test_evidence.EvidenceTests.test_verify_rejects_program_without_executing_it) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 87.723s
+
+OK (skipped=3)
+
+EXIT_CODE=0
+ELAPSED_SECONDS=87.846

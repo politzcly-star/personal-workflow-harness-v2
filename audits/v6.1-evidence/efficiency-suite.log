@@ -1,0 +1,29 @@
+COMMAND: ['D:\\Anaconda\\python.exe', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_efficiency.py', '-v']
+SHA256 scripts/evaluate-efficiency.py 82e78782d1f3f2cb0a9ea52100d02fecfe4bfc2873351ed1e5a8f23673a9eeee
+SHA256 tests/test_efficiency.py 7c41e5e78cf3759482f6bb478dd3d8908d54b04670ca71473c262c4562368584
+test_cli_emits_diagnostics_and_nulls_as_strict_json (test_efficiency.EfficiencyDiagnosticTests.test_cli_emits_diagnostics_and_nulls_as_strict_json) ... ok
+test_complete_diagnostics_cannot_invent_missing_billing_or_elapsed (test_efficiency.EfficiencyDiagnosticTests.test_complete_diagnostics_cannot_invent_missing_billing_or_elapsed) ... ok
+test_complete_diagnostics_report_all_means_and_coverage (test_efficiency.EfficiencyDiagnosticTests.test_complete_diagnostics_report_all_means_and_coverage) ... ok
+test_fractional_durations_are_valid_measurements (test_efficiency.EfficiencyDiagnosticTests.test_fractional_durations_are_valid_measurements) ... ok
+test_invalid_diagnostics_rejected_even_on_failed_tasks (test_efficiency.EfficiencyDiagnosticTests.test_invalid_diagnostics_rejected_even_on_failed_tasks) ... ok
+test_missing_and_explicit_null_fields_stay_unknown (test_efficiency.EfficiencyDiagnosticTests.test_missing_and_explicit_null_fields_stay_unknown) ... ok
+test_overlapping_diagnostics_do_not_change_cost_time_or_verdict (test_efficiency.EfficiencyDiagnosticTests.test_overlapping_diagnostics_do_not_change_cost_time_or_verdict) ... ok
+test_partial_coverage_does_not_average_only_known_tasks (test_efficiency.EfficiencyDiagnosticTests.test_partial_coverage_does_not_average_only_known_tasks) ... ok
+test_zero_acceptances_preserve_diagnostics_without_claiming_savings (test_efficiency.EfficiencyDiagnosticTests.test_zero_acceptances_preserve_diagnostics_without_claiming_savings) ... ok
+test_zero_is_an_observed_value_not_missing (test_efficiency.EfficiencyDiagnosticTests.test_zero_is_an_observed_value_not_missing) ... ok
+test_cost_growth_without_time_saving_triggers_review (test_efficiency.EfficiencyTests.test_cost_growth_without_time_saving_triggers_review) ... ok
+test_currency_mismatch_and_partial_usage_are_unmeasured (test_efficiency.EfficiencyTests.test_currency_mismatch_and_partial_usage_are_unmeasured) ... ok
+test_duplicate_ids_rejected_and_missing_ids_remain_preliminary (test_efficiency.EfficiencyTests.test_duplicate_ids_rejected_and_missing_ids_remain_preliminary) ... ok
+test_failed_attempts_cost_counts_and_cache_not_added_twice (test_efficiency.EfficiencyTests.test_failed_attempts_cost_counts_and_cache_not_added_twice) ... ok
+test_failed_task_time_cannot_masquerade_as_overall_speedup (test_efficiency.EfficiencyTests.test_failed_task_time_cannot_masquerade_as_overall_speedup) ... ok
+test_invalid_or_noncomparable_records_rejected (test_efficiency.EfficiencyTests.test_invalid_or_noncomparable_records_rejected) ... ok
+test_missing_billing_cannot_be_invented_from_tokens (test_efficiency.EfficiencyTests.test_missing_billing_cannot_be_invented_from_tokens) ... ok
+test_zero_acceptance_is_not_infinite_or_false_saving (test_efficiency.EfficiencyTests.test_zero_acceptance_is_not_infinite_or_false_saving) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.077s
+
+OK
+
+EXIT_CODE=0
+ELAPSED_SECONDS=0.224

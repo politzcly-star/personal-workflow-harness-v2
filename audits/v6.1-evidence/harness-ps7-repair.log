@@ -1,0 +1,8 @@
+test_signed_runner_binds_dotnet_cwd_and_utf8_request (__main__.HarnessBehavior.test_signed_runner_binds_dotnet_cwd_and_utf8_request) ... ok
+test_unreadable_capsule_does_not_revoke_intact_contract (__main__.HarnessBehavior.test_unreadable_capsule_does_not_revoke_intact_contract) ... ok
+test_bad_progress_retains_scope_and_can_recover (__main__.HarnessBehavior.test_bad_progress_retains_scope_and_can_recover) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 48.941s
+
+OK

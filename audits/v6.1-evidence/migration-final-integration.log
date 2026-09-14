@@ -1,0 +1,6 @@
+test_current_repository_sources_can_be_installed_in_fixture_only (__main__.MigrationTests.test_current_repository_sources_can_be_installed_in_fixture_only) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 11.888s
+
+OK

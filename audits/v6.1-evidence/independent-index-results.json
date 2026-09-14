@@ -1,0 +1,429 @@
+{
+  "source": "C:\\Users\\32027\\Documents\\Codex\\2026-09-07\\token-astra-codex\\.work\\harness-v6.1",
+  "tested_sha256": {
+    "scripts/verification-evidence.py": "f6169894c01fe0b56cbc6a73ea2741a1c882b12d569daf3046daebfcd03b31c5",
+    "scripts/branch-finish-check.ps1": "9b0b088d3ff1e5a1afd0fc9089b20fd993f0931b853c0b95e1a1a0d24df21ddf",
+    "scripts/scope-check.ps1": "5236449bd4ad43d3df41613fb282f5bdbcd119c0b205127c24d745d81be14252",
+    "docs/verification-and-guardrails.md": "fe2ae3096b6808fd6f349c97493e735ba5b05371d37f95d89879fd9e07785658",
+    "templates/branch-finish.md": "63f1a80695aae43e554a5e4efcd8e133c8af8d6bc56b9318c8e3873bc1c82fea",
+    "docs/external-executor-workflow.md": "c2b91e2d3b0ace7251bf1264dc32ba631b4a736d0b9b595fba81e3d6f0e45d4f"
+  },
+  "current_sha256": {
+    "scripts/verification-evidence.py": "f6169894c01fe0b56cbc6a73ea2741a1c882b12d569daf3046daebfcd03b31c5",
+    "scripts/branch-finish-check.ps1": "9b0b088d3ff1e5a1afd0fc9089b20fd993f0931b853c0b95e1a1a0d24df21ddf",
+    "scripts/scope-check.ps1": "5236449bd4ad43d3df41613fb282f5bdbcd119c0b205127c24d745d81be14252",
+    "docs/verification-and-guardrails.md": "fe2ae3096b6808fd6f349c97493e735ba5b05371d37f95d89879fd9e07785658",
+    "templates/branch-finish.md": "63f1a80695aae43e554a5e4efcd8e133c8af8d6bc56b9318c8e3873bc1c82fea",
+    "docs/external-executor-workflow.md": "c2b91e2d3b0ace7251bf1264dc32ba631b4a736d0b9b595fba81e3d6f0e45d4f"
+  },
+  "source_stable": true,
+  "all_passed": true,
+  "results": [
+    {
+      "case": "aligned_positive",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 0,
+        "branch": 0
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 0,
+        "out": "[OK] local check evidence is current for source and matching index",
+        "err": ""
+      },
+      "branch": {
+        "exit": 0,
+        "out": "[INFO] branch: main\n[INFO] head: c99cbd1\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): c99cbd1b2a4c4b50d03d2dce2d453ee675633e7b\n[WARN] no git remotes configured\n[OK] worktree clean\n[OK] no changed files\n[OK] scope-check complete\n[OK] local check evidence is current for source and matching index\n[OK] reused current local evidence; no test rerun, no production acceptance claim\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds\n[OK] branch-finish-check complete",
+        "err": ""
+      }
+    },
+    {
+      "case": "stat_cache_refresh",
+      "passed": true,
+      "expected": {
+        "local": 0,
+        "staged": 0
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 0,
+        "out": "[OK] local check evidence is current for source and matching index",
+        "err": ""
+      }
+    },
+    {
+      "case": "index_mutated_after_pass",
+      "passed": true,
+      "expected": {
+        "local": 1,
+        "staged": 1,
+        "branch": 1
+      },
+      "local": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      },
+      "staged": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      },
+      "branch": {
+        "exit": 1,
+        "out": "[INFO] branch: main\n[INFO] head: c99cbd1\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): c99cbd1b2a4c4b50d03d2dce2d453ee675633e7b\n[WARN] no git remotes configured\n[INFO] changed files:\n  MM source.txt\n[INFO] changed files:\n  source.txt\n[OK] scope-check complete\n[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds",
+        "err": ""
+      }
+    },
+    {
+      "case": "preexisting_index_mismatch",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 1,
+        "branch": 1
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      },
+      "branch": {
+        "exit": 1,
+        "out": "[INFO] branch: main\n[INFO] head: c99cbd1\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): c99cbd1b2a4c4b50d03d2dce2d453ee675633e7b\n[WARN] no git remotes configured\n[INFO] changed files:\n  MM source.txt\n[INFO] changed files:\n  source.txt\n[OK] scope-check complete\n[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds",
+        "err": ""
+      }
+    },
+    {
+      "case": "assume_unchanged_does_not_hide_mismatch",
+      "passed": true,
+      "expected": {
+        "local": 0,
+        "staged": 1
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      }
+    },
+    {
+      "case": "realigned_final_check",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "staged": 0,
+        "branch": 0
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "staged": {
+        "exit": 0,
+        "out": "[OK] local check evidence is current for source and matching index",
+        "err": ""
+      },
+      "branch": {
+        "exit": 0,
+        "out": "[INFO] branch: main\n[INFO] head: c99cbd1\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): c99cbd1b2a4c4b50d03d2dce2d453ee675633e7b\n[WARN] no git remotes configured\n[OK] worktree clean\n[OK] no changed files\n[OK] scope-check complete\n[OK] local check evidence is current for source and matching index\n[OK] reused current local evidence; no test rerun, no production acceptance claim\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds\n[OK] branch-finish-check complete",
+        "err": ""
+      }
+    },
+    {
+      "case": "staged_deletion_restored_worktree",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 1,
+        "branch": 1
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      },
+      "branch": {
+        "exit": 1,
+        "out": "[INFO] branch: main\n[INFO] head: c99cbd1\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): c99cbd1b2a4c4b50d03d2dce2d453ee675633e7b\n[WARN] no git remotes configured\n[INFO] changed files:\n  D  source.txt\n  ?? source.txt\n[INFO] changed files:\n  source.txt\n  source.txt\n[OK] scope-check complete\n[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds",
+        "err": ""
+      }
+    },
+    {
+      "case": "autocrlf_true_positive",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 0,
+        "branch": 0
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 0,
+        "out": "[OK] local check evidence is current for source and matching index",
+        "err": ""
+      },
+      "branch": {
+        "exit": 0,
+        "out": "[INFO] branch: main\n[INFO] head: f2245e9\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): f2245e9fc0661c0894eae2366fe050578ece876c\n[WARN] no git remotes configured\n[OK] worktree clean\n[OK] no changed files\n[OK] scope-check complete\n[OK] local check evidence is current for source and matching index\n[OK] reused current local evidence; no test rerun, no production acceptance claim\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds\n[OK] branch-finish-check complete",
+        "err": ""
+      }
+    },
+    {
+      "case": "crlf_does_not_hide_real_staged_change",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 1,
+        "branch": 1
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      },
+      "branch": {
+        "exit": 1,
+        "out": "[INFO] branch: main\n[INFO] head: f2245e9\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): f2245e9fc0661c0894eae2366fe050578ece876c\n[WARN] no git remotes configured\n[INFO] changed files:\n  MM source.txt\n[INFO] changed files:\n  source.txt\n[OK] scope-check complete\n[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds",
+        "err": ""
+      }
+    },
+    {
+      "case": "autocrlf_input_positive",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 0,
+        "branch": 0
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 0,
+        "out": "[OK] local check evidence is current for source and matching index",
+        "err": ""
+      },
+      "branch": {
+        "exit": 0,
+        "out": "[INFO] branch: main\n[INFO] head: ad087d5\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): ad087d5923fa2e7a3eacc6a6c2f5d7eee82de3a9\n[WARN] no git remotes configured\n[OK] worktree clean\n[OK] no changed files\n[OK] scope-check complete\n[OK] local check evidence is current for source and matching index\n[OK] reused current local evidence; no test rerun, no production acceptance claim\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds\n[OK] branch-finish-check complete",
+        "err": ""
+      }
+    },
+    {
+      "case": "text_eol_lf_positive",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 0,
+        "branch": 0
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 0,
+        "out": "[OK] local check evidence is current for source and matching index",
+        "err": ""
+      },
+      "branch": {
+        "exit": 0,
+        "out": "[INFO] branch: main\n[INFO] head: a734d1f\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): a734d1f3a9580251acec6288e9bc28f6a338790e\n[WARN] no git remotes configured\n[OK] worktree clean\n[OK] no changed files\n[OK] scope-check complete\n[OK] local check evidence is current for source and matching index\n[OK] reused current local evidence; no test rerun, no production acceptance claim\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds\n[OK] branch-finish-check complete",
+        "err": ""
+      }
+    },
+    {
+      "case": "text_auto_positive",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 0,
+        "branch": 0
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 0,
+        "out": "[OK] local check evidence is current for source and matching index",
+        "err": ""
+      },
+      "branch": {
+        "exit": 0,
+        "out": "[INFO] branch: main\n[INFO] head: 70f0d28\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): 70f0d28bbfed03aa5a2c7f93e14cdd2016613f59\n[WARN] no git remotes configured\n[OK] worktree clean\n[OK] no changed files\n[OK] scope-check complete\n[OK] local check evidence is current for source and matching index\n[OK] reused current local evidence; no test rerun, no production acceptance claim\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds\n[OK] branch-finish-check complete",
+        "err": ""
+      }
+    },
+    {
+      "case": "binary_unset_positive",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 0,
+        "branch": 0
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 0,
+        "out": "[OK] local check evidence is current for source and matching index",
+        "err": ""
+      },
+      "branch": {
+        "exit": 0,
+        "out": "[INFO] branch: main\n[INFO] head: 410a5fc\n[INFO] worktree: normal\n[INFO] local base reference (no network freshness claim): 410a5fcab9e8d4bb8677d41e65e28555a32d4a22\n[WARN] no git remotes configured\n[OK] worktree clean\n[OK] no changed files\n[OK] scope-check complete\n[OK] local check evidence is current for source and matching index\n[OK] reused current local evidence; no test rerun, no production acceptance claim\n[INFO] branch_finish options: push/PR, keep, merge with approval, or discard with exact confirmation\n[INFO] do not delete branch/worktree before chosen integration action succeeds\n[OK] branch-finish-check complete",
+        "err": ""
+      }
+    },
+    {
+      "case": "custom_filter",
+      "passed": true,
+      "expected": {
+        "run": 0,
+        "local": 0,
+        "staged": 1
+      },
+      "run": {
+        "exit": 0,
+        "out": "[OK] local check recorded; staged acceptance requires verify --require-index-match",
+        "err": ""
+      },
+      "local": {
+        "exit": 0,
+        "out": "[OK] local worktree evidence is current with bound index identity; not staged acceptance",
+        "err": ""
+      },
+      "staged": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      }
+    },
+    {
+      "case": "custom_filter_not_executed",
+      "passed": true
+    },
+    {
+      "case": "index_changed_during_check",
+      "passed": true,
+      "expected": {
+        "run": 1,
+        "local": 1,
+        "staged": 1
+      },
+      "run": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      },
+      "local": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      },
+      "staged": {
+        "exit": 1,
+        "out": "[FAIL] failed, stale or source/index-mismatched evidence; align intended content/index and rerun affected checks when changed",
+        "err": ""
+      }
+    }
+  ]
+}

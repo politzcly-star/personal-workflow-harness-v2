@@ -25,5 +25,6 @@ Scope Guard:
 Residual Risk:
 Next Recommended Action:
 
-Independent Review: not needed | Luna pending | Luna GO | Luna CONDITIONAL GO | Luna NO-GO
+Independent Review: not needed | pending | GO | CONDITIONAL GO | NO-GO (reviewer identity/evidence)
+Cost / elapsed (when exposed): usage source, input/cached/output tokens, provider billed cost, wall time, repair effort, Human interventions; otherwise unavailable
 ```

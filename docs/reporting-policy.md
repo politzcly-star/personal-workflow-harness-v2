@@ -1,14 +1,9 @@
-# Reporting Policy
-
-Reports preserve evidence; they are not a second implementation task.
-
-| Weight | Minimum report |
-| --- | --- |
-| S0 | Direct answer; state no files changed when useful. |
-| S1 | Changed files, focused check, residual risk. |
-| S2 | S-level/route when relevant, changed files, checks, skipped checks with reason, residual risk. |
-| S3/S4 | Explicit scope, evidence, independent review/checklist result, residual risk, next action. |
-
-If a check is not run, record the exact check, why that is allowed, and the remaining risk. Never claim completion from a template existing or a command merely being available.
-
-Use the external-executor report only when the Human enabled that optional mode. Do not add its activation fields to normal daily reports.
+# Visible progress and compact completion
+At start state goal/acceptance and next useful action, not a long routing ceremony. At milestone, blocker/recovery or strategy change report:
+- Verified completed outcomes (not merely edited files).
+- Current concrete work; useful child/owner work when present.
+- Blocker and affected/unaffected steps.
+- Next observable milestone.
+For long work, target about five minutes between meaningful updates at available tool-return/execution boundaries. This is not a scheduler/timer promise. No invented percentages, unchanged polling, per-command chatter or Human-maintained board.
+Keep implemented / local checks passed / integrated-reviewed / pushed / deployed / production-accepted distinct. If external work is pending say so, even when local work is finished.
+Completion: S0 direct answer; S1 changed files/check/residual risk; S2 add outcome/integration and skipped checks with reason; S3/S4 add explicit scope and independent review evidence. Reports are not a second implementation. Append available whole-task elapsed/usage/interventions/repair/compaction evidence under cost-efficiency-policy.md; unavailable remains unavailable. Do not reread full logs to fill optional metrics.

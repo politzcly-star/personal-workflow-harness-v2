@@ -1,63 +1,17 @@
-# Server Inspection
+# Server inspection — bounded read-only evidence
 
-Use this for read-only server inspection through preconfigured access. Do not use it for deploys, writes, restarts, database changes, or raw credential handling.
+Use already-authorized inspection scope and preconfigured access. Not deployment, restart, data mutation or credential handling. No extra phase approval or mandatory formal report for a routine status query.
 
 ```text
-Task ID:
-Selected Route: server_inspection
-Layer: review_gated
-Status: ready | blocked | not-verified
-
-Fresh Human Objective:
-- TODO
-
-Target:
-- environment:
-- host alias:
-- service/app:
-- paths allowed:
-- paths forbidden:
-
-New Project Alias Check:
-- alias supplied by Human/project profile: yes | no
-- check command: scripts/server-inspection-check.ps1 -HostAlias <alias>
-- if alias exists: proceed with read-only server_inspection
-- if alias missing: ask Human to configure Windows SSH config alias once
-- raw password requested from Human: no
-
-Access Boundary:
-- access method: SSH config alias | SSH agent | operator session | platform CLI
-- BatchMode/no-interactive-password: yes | no
-- raw password/token/private key exposed to Codex: no
-- command contains secrets: no
-
-Allowed Read-only Commands:
-- TODO
-
-Forbidden Commands:
-- deploy
-- restart/reload
-- write/edit files
-- chmod/chown
-- rm/mv/cp destructive changes
-- package install
-- database write/migration
-- reading .env/private keys/database URLs/cookies
-
-Evidence To Capture:
-- command:
-- exit code:
-- redacted summary:
-- evidence limit:
-
-Checks Run:
-- TODO
-
-Checks Skipped:
-- check:
-  allowed reason:
-  residual risk:
-
-Residual Risk:
-- TODO
+Task / existing objective:
+Target environment / configured SSH alias / service:
+Allowed read-only command and purpose:
+Access availability / noninteractive connection policy:
+Output bound / redaction plan:
+Actual command / exit code / observed result:
+Unverified checks / blocker / next action:
 ```
+
+Resolve access from the project profile and supported client tools, without reading private keys or dumping SSH configuration. If no usable access exists, ask once for the smallest operator setup; never ask for raw passwords.
+The Hook recognizes only narrowly bounded simple remote inspection forms, e.g. `ssh alias 'systemctl is-active service' # harness:server-inspection`. The comment is not authority. Other syntax needs its applicable reviewed transport; do not weaken checks or use a wrapper to evade them. Connection options/timeouts must use a genuinely configured approved client/runner, not a promise made by this template.
+Capture only necessary redacted output. No deploy/restart, writes, package installs, data mutation or secret-file reads. A local template or helper being present does not prove network reachability or production health.

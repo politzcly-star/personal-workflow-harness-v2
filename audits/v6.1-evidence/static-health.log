@@ -1,0 +1,2 @@
+[OK] TOML and optional role boundaries valid (not live routing proof)
+[OK] static health only; run canonical harness-self-test.ps1 for isolated behavior tests. No MCP/production calls.

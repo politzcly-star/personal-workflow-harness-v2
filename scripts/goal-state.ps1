@@ -6,6 +6,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 $root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+. (Join-Path $root '.codex/hooks/validate-report.ps1')
 if (-not $StateRoot) { $StateRoot = Join-Path $root ".codex/harness-state" }
 $StateRoot = [IO.Path]::GetFullPath($StateRoot)
 $activePath = Join-Path $StateRoot "active-goal.json"
@@ -23,7 +24,9 @@ function Get-ActiveState {
     if (-not (Test-Path -LiteralPath $activePath -PathType Leaf)) { return $null }
     try { Get-Content -Raw -LiteralPath $activePath | ConvertFrom-Json -ErrorAction Stop } catch { Fail "active Goal state is malformed" }
 }
-function Test-SecretLike([string]$Text) { $Text -match '(?i)(-----BEGIN (RSA|OPENSSH|PRIVATE) KEY-----|\b(api[_-]?key|secret|token|password|database_url|connectionstring)\s*[:=]|authorization\s*:\s*bearer)' }
+function Test-SecretLike([string]$Text) {
+    $Text -match '(?i)(-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----|authorization\s*:\s*bearer\s+(?!\$|<|REDACTED)[a-z0-9._~-]{8,}|\b(?:api[_-]?key|password|token|secret)\s*[:=]\s*["'']?(?!\$|<|REDACTED|PLACEHOLDER|EXAMPLE|TEST|STRING)[a-z0-9/+_.-]{12,})'
+}
 function Get-AllowedPaths([string]$Contract) {
     $match = [regex]::Match($Contract, '(?s)<!-- harness:allowed-paths:start -->\s*(.*?)\s*<!-- harness:allowed-paths:end -->')
     if (-not $match.Success) { return @() }
@@ -32,22 +35,25 @@ function Get-AllowedPaths([string]$Contract) {
 function Test-CompletionReport([string]$Path) {
     if ([string]::IsNullOrWhiteSpace($Path)) { return $false }
     $full = Resolve-InputPath $Path
+    $null = Get-RelativeSafePath $full
     if (-not (Test-Path -LiteralPath $full -PathType Leaf)) { return $false }
     $text = Get-Content -Raw -LiteralPath $full
-    foreach ($term in @('Task ID', 'Status', 'Changed Files', 'Checks Run', 'Scope Guard', 'Residual Risk', 'Next Recommended Action')) {
-        if ($text -notmatch [regex]::Escape($term)) { return $false }
-    }
-    return $text -notmatch 'TODO'
+    return Test-HarnessCompletionReport -Text $text -ExpectedTaskId $state.GoalId
 }
-function Test-State([object]$State) {
+function Test-State([object]$State, [switch]$ContractOnly) {
     if ($null -eq $State) { Fail "no active Goal state" }
-    foreach ($name in @('GoalId','Status','ContractPath','ContractHash','ContextEpoch','CapsuleHash')) {
+    foreach ($name in @('GoalId','Status','ContractPath','ContractHash','ContextEpoch')) {
         if ($null -eq $State.PSObject.Properties[$name] -or [string]::IsNullOrWhiteSpace([string]$State.$name)) { Fail "active state is missing $name" }
     }
-    $contract = Join-Path $root ([string]$State.ContractPath)
+    if ($State.GoalId -notmatch '^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$') { Fail 'invalid GoalId' }
+    if ([string]$State.ContextEpoch -notmatch '^\d+$') { Fail 'invalid context epoch' }
+    if ($State.Status -notin @('PENDING_HUMAN_GO','ACTIVE')) { Fail 'invalid Goal status' }
+    $contract = Resolve-InputPath ([string]$State.ContractPath)
+    $null = Get-RelativeSafePath $contract
     if (-not (Test-Path -LiteralPath $contract -PathType Leaf)) { Fail "frozen contract is missing" }
     if ((Get-Sha256 $contract) -ne [string]$State.ContractHash) { Fail "frozen contract hash mismatch" }
     $capsule = Join-Path $StateRoot "capsule-$($State.GoalId).md"
+    if ($ContractOnly) { return @{ Contract=$contract; Capsule=$capsule; AllowedPaths=@(Get-AllowedPaths (Get-Content -Raw -LiteralPath $contract)) } }
     if (-not (Test-Path -LiteralPath $capsule -PathType Leaf)) { Fail "active capsule is missing" }
     if ((Get-Item -LiteralPath $capsule).Length -gt $maxCapsuleBytes) { Fail "capsule exceeds 16 KiB bound" }
     $text = Get-Content -Raw -LiteralPath $capsule
@@ -61,15 +67,22 @@ function Test-State([object]$State) {
 
 if ($Action -eq 'Initialize') {
     if ([string]::IsNullOrWhiteSpace($GoalId) -or [string]::IsNullOrWhiteSpace($ContractPath)) { Fail "Initialize requires GoalId and ContractPath" }
+    if ($GoalId -notmatch '^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$') { Fail 'invalid GoalId' }
     if (Test-Path -LiteralPath $activePath -PathType Leaf) { Fail "an existing Goal state must be closed before Initialize can create another contract" }
     $contract = Resolve-InputPath $ContractPath
+    $null = Get-RelativeSafePath $contract
     if (-not (Test-Path -LiteralPath $contract -PathType Leaf)) { Fail "contract does not exist" }
     if (Test-SecretLike (Get-Content -Raw -LiteralPath $contract)) { Fail "contract contains secret-like content" }
     New-Item -ItemType Directory -Force -Path $StateRoot | Out-Null
     $capsule = Join-Path $StateRoot "capsule-$GoalId.md"
-    if ($CapsulePath) { Copy-Item -LiteralPath $CapsulePath -Destination $capsule -Force } else { Set-Content -LiteralPath $capsule -Value "Goal ID: $GoalId`nContext epoch: 0`nContract reference / hash: $(Get-RelativeSafePath $contract) / $(Get-Sha256 $contract)`nNext action: activate after Human GO" -Encoding utf8 -NoNewline }
+    if ($CapsulePath) {
+        $initial = Resolve-InputPath $CapsulePath
+        $initialText = Get-Content -Raw -LiteralPath $initial
+        if ((Get-Item -LiteralPath $initial).Length -gt $maxCapsuleBytes -or (Test-SecretLike $initialText) -or $initialText -notmatch '(?im)^Context epoch:\s*0\s*$') { Fail 'initial capsule is invalid' }
+        Copy-Item -LiteralPath $initial -Destination $capsule -Force
+    } else { Set-Content -LiteralPath $capsule -Value "Goal ID: $GoalId`nContext epoch: 0`nContract reference / hash: $(Get-RelativeSafePath $contract) / $(Get-Sha256 $contract)`nNext action: activate already-authorized task" -Encoding utf8 -NoNewline }
     if ((Get-Item -LiteralPath $capsule).Length -gt $maxCapsuleBytes -or (Test-SecretLike (Get-Content -Raw -LiteralPath $capsule))) { Fail "initial capsule is unsafe" }
-    $state = [ordered]@{ GoalId=$GoalId; Status='PENDING_HUMAN_GO'; ContractPath=(Get-RelativeSafePath $contract); ContractHash=(Get-Sha256 $contract); ContextEpoch=0; CapsuleHash=(Get-Sha256 $capsule); Milestone=''; NextAction='activate after Human GO'; UpdatedUtc=(Get-Date).ToUniversalTime().ToString('o') }
+    $state = [ordered]@{ GoalId=$GoalId; Status='PENDING_HUMAN_GO'; ContractPath=(Get-RelativeSafePath $contract); ContractHash=(Get-Sha256 $contract); ContextEpoch=0; CapsuleHash=(Get-Sha256 $capsule); Milestone=''; NextAction='activate already-authorized task (legacy status name is not approval)'; UpdatedUtc=(Get-Date).ToUniversalTime().ToString('o') }
     $state | ConvertTo-Json | Set-Content -LiteralPath $activePath -Encoding utf8 -NoNewline
     Write-Output "[OK] initialized pending Goal $GoalId"; exit 0
 }
@@ -82,12 +95,23 @@ if ($Action -eq 'Activate') {
     $state | ConvertTo-Json | Set-Content -LiteralPath $activePath -Encoding utf8 -NoNewline; Write-Output "[OK] activated Goal $($state.GoalId)"; exit 0
 }
 if ($Action -eq 'Checkpoint') {
-    $valid = Test-State $state; if ($state.Status -ne 'ACTIVE') { Fail "only an active Goal can checkpoint" }; if (-not $CapsulePath) { Fail "Checkpoint requires CapsulePath" }
-    $source = Resolve-InputPath $CapsulePath; if (-not (Test-Path -LiteralPath $source -PathType Leaf)) { Fail "capsule input does not exist" }
+    $valid = Test-State $state -ContractOnly; if ($state.Status -ne 'ACTIVE') { Fail "only an active Goal can checkpoint" }; if (-not $CapsulePath) { Fail "Checkpoint requires CapsulePath" }
+    $source = Resolve-InputPath $CapsulePath; $null = Get-RelativeSafePath $source; if (-not (Test-Path -LiteralPath $source -PathType Leaf)) { Fail "capsule input does not exist" }
     if ((Get-Item -LiteralPath $source).Length -gt $maxCapsuleBytes -or (Test-SecretLike (Get-Content -Raw -LiteralPath $source))) { Fail "capsule is unsafe" }
-    Copy-Item -LiteralPath $source -Destination $valid.Capsule -Force; $state.ContextEpoch = [int]$state.ContextEpoch + 1; $state.CapsuleHash = Get-Sha256 $valid.Capsule
-    if ($Milestone) { $state.Milestone = $Milestone }; if ($NextAction) { $state.NextAction = $NextAction }; $state.UpdatedUtc = (Get-Date).ToUniversalTime().ToString('o')
-    $state | ConvertTo-Json | Set-Content -LiteralPath $activePath -Encoding utf8 -NoNewline; Write-Output "[OK] checkpointed Goal $($state.GoalId) at epoch $($state.ContextEpoch)"; exit 0
+    $candidate = Get-Content -Raw -LiteralPath $source
+    $nextEpoch = [regex]::Match($candidate, '(?im)^Context epoch:\s*(\d+)\s*$')
+    if (-not $nextEpoch.Success -or [int]$nextEpoch.Groups[1].Value -ne ([int]$state.ContextEpoch + 1)) { Fail 'checkpoint epoch must advance exactly once; previous state preserved' }
+    # Build and serialize the full next progress state before touching either file.
+    # Missing advisory fields must not fail after the capsule has been replaced.
+    $next = [ordered]@{}
+    foreach ($property in $state.PSObject.Properties) { $next[$property.Name] = $property.Value }
+    $next.ContextEpoch = [int]$state.ContextEpoch + 1; $next.CapsuleHash = Get-Sha256 $source
+    if ($Milestone) { $next.Milestone = $Milestone }; if ($NextAction) { $next.NextAction = $NextAction }
+    $next.UpdatedUtc = (Get-Date).ToUniversalTime().ToString('o')
+    $serialized = $next | ConvertTo-Json
+    Copy-Item -LiteralPath $source -Destination $valid.Capsule -Force
+    $serialized | Set-Content -LiteralPath $activePath -Encoding utf8 -NoNewline
+    Write-Output "[OK] checkpointed Goal $($next.GoalId) at epoch $($next.ContextEpoch)"; exit 0
 }
 if ($Action -eq 'Show' -or $Action -eq 'Validate') {
     $valid = Test-State $state
@@ -95,6 +119,7 @@ if ($Action -eq 'Show' -or $Action -eq 'Validate') {
     exit 0
 }
 if ($Action -eq 'Close') {
+    $null = Test-State $state
     if (-not (Test-CompletionReport $ReportPath)) { Fail "Close requires a concrete completion ReportPath that passes report validation" }
     if (Test-Path -LiteralPath $activePath) { Remove-Item -LiteralPath $activePath -Force }; $capsule = Join-Path $StateRoot "capsule-$($state.GoalId).md"; if (Test-Path -LiteralPath $capsule) { Remove-Item -LiteralPath $capsule -Force }
     Write-Output "[OK] closed Goal $($state.GoalId)"; exit 0

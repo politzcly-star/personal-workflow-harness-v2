@@ -17,3 +17,5 @@ Next Action:
 
 Key Commands / Artifacts:
 ```
+
+Use only at an ownership boundary, long pause, expected compaction, overnight Goal, or multi-milestone transition. Keep it exact; do not paste transcripts, raw logs, full source, or unrelated context. Parallel work needs disjoint ownership and integrated checks; runtime capacity is a ceiling.

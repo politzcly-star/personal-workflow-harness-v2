@@ -1,0 +1,21 @@
+COMMAND: ['D:\\Anaconda\\python.exe', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_branch.py', '-v']
+SHA256 scripts/verification-evidence.py f6169894c01fe0b56cbc6a73ea2741a1c882b12d569daf3046daebfcd03b31c5
+SHA256 scripts/branch-finish-check.ps1 9b0b088d3ff1e5a1afd0fc9089b20fd993f0931b853c0b95e1a1a0d24df21ddf
+SHA256 tests/test_branch.py 6befb69a68162b15db7b14b11ea872703164c8ac4e928d5f7592d608681f955c
+test_aligned_staged_content_reuses_across_finish_checks (test_branch.BranchEvidence.test_aligned_staged_content_reuses_across_finish_checks) ... ok
+test_autocrlf_staged_content_reuses_across_finish_checks (test_branch.BranchEvidence.test_autocrlf_staged_content_reuses_across_finish_checks) ... ok
+test_command_result_is_checked (test_branch.BranchEvidence.test_command_result_is_checked) ... ok
+test_current_evidence_reused_without_running_check_twice (test_branch.BranchEvidence.test_current_evidence_reused_without_running_check_twice) ... ok
+test_legacy_evidence_without_index_binding_blocks_finish (test_branch.BranchEvidence.test_legacy_evidence_without_index_binding_blocks_finish) ... ok
+test_missing_verification_or_ambiguous_inputs_fail (test_branch.BranchEvidence.test_missing_verification_or_ambiguous_inputs_fail) ... ok
+test_preexisting_index_worktree_mismatch_blocks_finish (test_branch.BranchEvidence.test_preexisting_index_worktree_mismatch_blocks_finish) ... ok
+test_source_change_blocks_reuse (test_branch.BranchEvidence.test_source_change_blocks_reuse) ... ok
+test_staged_change_after_pass_and_restored_worktree_blocks_finish (test_branch.BranchEvidence.test_staged_change_after_pass_and_restored_worktree_blocks_finish) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 25.630s
+
+OK
+
+EXIT_CODE=0
+ELAPSED_SECONDS=25.757

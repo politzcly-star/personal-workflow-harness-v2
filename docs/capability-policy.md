@@ -1,16 +1,5 @@
-# Capability Policy
-
-Choose tools because they change confidence or speed for the current task, not because a checklist exists.
-
-| Capability | Use when | Do not use when |
-| --- | --- | --- |
-| `rg` | Literal search, file ownership, scope inspection. | A relationship graph is actually needed. |
-| CodeGraph/MCP | Callers, callees, shared ownership, or affected tests are unclear. | Docs-only or obvious local work. |
-| `code-audit-fix` | A check fails, a regression is suspected, or repair loops begin. | Normal planned implementation without a failure. |
-| `openai-docs` | Current OpenAI/Codex/API behavior affects the decision. | General research or stable local facts. |
-| `luna_verifier` | S3/S4, hidden acceptance, or a listed boundary. | Every S1/S2 task by habit. |
-| Browser/UI | Code/tests cannot prove user-facing behavior. | Personal logged-in state would be needed. |
-
-If CodeGraph is unavailable, record the `rg` + file tree + test entry-point + manual impact fallback. It improves localization, not proof of correctness.
-
-Do not automatically delegate, install a tool, invoke a browser, or enable an external executor because a task is large. External executors require explicit Human activation and remain subject to root-thread acceptance and any required `luna_verifier` review.
+# Capability policy
+Choose tools that improve the current result. No S0/S1 blanket ban on browser, Skill or sufficient checks. Higher-priority trigger rules apply.
+Use direct reads/rg for facts; graph tools for unclear relationships; native checks and deterministic fixtures for confidence; isolated UI/browser evidence for observable outcomes. Never use private logged-in state without authority.
+Reviewers receive compact scope, changes, evidence and enough raw source for concrete risks. Batch independent reads/checks; delegate only when permitted, with disjoint ownership.
+Approved isolated test-data writes are not automatically production writes; establish actual target/data risk. Unavailable optional tools lead to honest fallback, not automatic installation, MCP changes or model switching. Hooks do not prove actual tool/model selection.

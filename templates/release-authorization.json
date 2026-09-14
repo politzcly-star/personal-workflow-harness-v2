@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "operator-issued-release-id",
+  "project_root": "D:\\example-project",
+  "cwd": "D:\\example-project",
+  "target": "configured-alias/service",
+  "version": "immutable-artifact-digest",
+  "not_before": "2026-09-07T00:00:00Z",
+  "expires_at": "2026-09-07T01:00:00Z",
+  "repeat_safe": true,
+  "command_sha256": [],
+  "health_checks": ["exact expected version and business smoke"],
+  "abort_conditions": ["health timeout or version mismatch"],
+  "rollback": {"artifact": "previous-immutable-digest", "data_rollback_authorized": false}
+}

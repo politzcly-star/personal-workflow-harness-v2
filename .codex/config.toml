@@ -1,6 +1,4 @@
-model = "gpt-5.6-terra"
-model_reasoning_effort = "medium"
-
+# Inherit the Human/platform-selected root model and provider.
 [agents]
-max_threads = 2
+max_threads = 4
 max_depth = 1

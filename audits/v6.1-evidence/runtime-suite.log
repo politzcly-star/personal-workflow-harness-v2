@@ -1,0 +1,31 @@
+COMMAND: ['D:\\Anaconda\\python.exe', '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_runtime.py', '-v']
+SHA256 scripts/runtime-inspect.py 3e4b23ea0cd05efc3b13be9ba194b98c810dd482d37428e072fef023f3ffec7c
+SHA256 tests/test_runtime.py b98858ad5988b73004c5e46c414a708e2236a6fe606d73944b6c46b3d54fd7a8
+test_auth_global_config_and_transcripts_are_not_inventory_inputs (test_runtime.RuntimeTests.test_auth_global_config_and_transcripts_are_not_inventory_inputs) ... ok
+test_bom_encoded_project_and_role_configuration_is_supported (test_runtime.RuntimeTests.test_bom_encoded_project_and_role_configuration_is_supported) ... ok
+test_config_and_role_secrets_never_appear_in_success_output (test_runtime.RuntimeTests.test_config_and_role_secrets_never_appear_in_success_output) ... ok
+test_context_values_are_labeled_project_only (test_runtime.RuntimeTests.test_context_values_are_labeled_project_only) ... ok
+test_empty_configuration_is_not_live_readiness (test_runtime.RuntimeTests.test_empty_configuration_is_not_live_readiness) ... ok
+test_empty_or_unrelated_registration_does_not_register_role (test_runtime.RuntimeTests.test_empty_or_unrelated_registration_does_not_register_role) ... ok
+test_existing_config_directory_is_invalid_not_missing_configuration (test_runtime.RuntimeTests.test_existing_config_directory_is_invalid_not_missing_configuration) ... ok
+test_invalid_context_values_are_not_effective_runtime_facts (test_runtime.RuntimeTests.test_invalid_context_values_are_not_effective_runtime_facts) ... ok
+test_invalid_role_name_type_or_length_is_rejected (test_runtime.RuntimeTests.test_invalid_role_name_type_or_length_is_rejected) ... ok
+test_invalid_utf8_config_is_redacted_and_fails_closed (test_runtime.RuntimeTests.test_invalid_utf8_config_is_redacted_and_fails_closed) ... ok
+test_malformed_config_is_redacted_and_fails_closed (test_runtime.RuntimeTests.test_malformed_config_is_redacted_and_fails_closed) ... ok
+test_malformed_role_is_redacted_and_fails_closed (test_runtime.RuntimeTests.test_malformed_role_is_redacted_and_fails_closed) ... ok
+test_missing_configuration_returns_only_unknown_runtime_facts (test_runtime.RuntimeTests.test_missing_configuration_returns_only_unknown_runtime_facts) ... ok
+test_non_table_agents_configuration_is_invalid (test_runtime.RuntimeTests.test_non_table_agents_configuration_is_invalid) ... ok
+test_partial_context_does_not_invent_other_limit (test_runtime.RuntimeTests.test_partial_context_does_not_invent_other_limit) ... ok
+test_registered_roles_and_present_files_do_not_prove_runtime (test_runtime.RuntimeTests.test_registered_roles_and_present_files_do_not_prove_runtime) ... ok
+test_registration_by_role_file_stem_matches_migrator_convention (test_runtime.RuntimeTests.test_registration_by_role_file_stem_matches_migrator_convention) ... ok
+test_registration_without_role_file_does_not_invent_role (test_runtime.RuntimeTests.test_registration_without_role_file_does_not_invent_role) ... ok
+test_role_file_without_configuration_is_unregistered (test_runtime.RuntimeTests.test_role_file_without_configuration_is_unregistered) ... ok
+test_role_inventory_is_sorted_and_exposes_only_public_metadata (test_runtime.RuntimeTests.test_role_inventory_is_sorted_and_exposes_only_public_metadata) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 3.747s
+
+OK
+
+EXIT_CODE=0
+ELAPSED_SECONDS=3.841

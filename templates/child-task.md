@@ -30,3 +30,7 @@ Return:
 - skipped checks with reason
 - assumptions, risks, and next action
 ```
+
+Delegation permission source / context-isolation or parallel benefit:
+Shared interface owner / isolated port-data-output ownership:
+Maximum useful return: changed paths, checks, findings, integration next step; no transcript.

@@ -1,12 +1,14 @@
 # Feature Plan
 
-Use this for `feature_plan` or for `feature_discovery` that becomes multi-step.
+Use only when a bounded feature benefits from written sequencing. `feature-discovery` may instead return its compact contract directly.
 
 ```text
 Task ID:
 Feature Name:
-Selected Route: feature_discovery | feature_plan
+Selected Route: feature_discovery | feature_development
+Selected Skill (if any):
 S-Level: S2
+Escalate to S3 only for hidden acceptance or boundary risk:
 
 Problem:
 
@@ -19,6 +21,8 @@ Recommendation:
 
 Goal:
 Non-Goals:
+Compatibility:
+Authorization:
 
 Acceptance Criteria:
 - TODO
@@ -37,7 +41,7 @@ Implementation Steps:
 2.
 3.
 
-Capabilities:
+Job-shaped capabilities (only those needed):
 - rg:
 - CodeGraph/MCP:
 - openai-docs:

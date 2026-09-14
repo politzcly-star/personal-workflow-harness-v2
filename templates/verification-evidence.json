@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "kind": "template_only_not_evidence",
+  "check_id": "replace-with-required-check",
+  "environment_id": "re-establish-tools-config-and-fixture-identity",
+  "exit_code": null,
+  "source_unchanged": false,
+  "note": "Do not hand-fill this into a PASS. scripts/verification-evidence.py run records actual local execution. It checks content freshness, not production health or reviewer independence."
+}

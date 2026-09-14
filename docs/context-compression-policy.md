@@ -1,15 +1,7 @@
-# Context Compression Policy
-
-Use built-in compaction and concise handoff state; this harness does not replace the platform compactor. For an active Goal, checkpoint a bounded incremental Context Capsule at decision boundaries, before long verification, after a changed repair diagnosis, before independent review, and before pausing.
-
-Before pausing a long or risky task, preserve:
-
-- goal and constraints;
-- S-level/route when relevant;
-- decisions and allowed/forbidden scope;
-- changed files and verification evidence;
-- open risks, key commands, and next action.
-
-Link repository artifacts instead of pasting them. Store the frozen contract hash, context epoch, changed-since summary, hot files/symbols, checks, risks, and next action in ignored `.codex/harness-state/`. On compact/resume, inject only a safe capsule pointer and minimum contract context. Missing, malformed, stale, oversized, or secret-like state is ignored with a concise warning; do not parse `transcript_path`.
-
-Use a long-lived worker only while its same-subsystem context remains relevant. Search, builds, test logs, and retry noise belong in a bounded worker; durable architecture decisions remain with the root.
+# Context growth and recovery
+Use built-in compaction, not a replacement compactor or forced window enlargement. Runtime context window/threshold must come from actual exposed runtime metadata; project config values alone are not proof. Inspect once at an integration boundary, not on each task. Never read auth files or scan all transcripts to obtain these values.
+Root keeps scope, durable decisions, interfaces, integration and acceptance. Search before reading; bound command output; keep noisy subsystem exploration/test diagnosis in a useful child where permitted. Required Skill instructions are still read fully; eliminate duplicate/unrelated material, not required instructions.
+For a long task, keep ONE incremental capsule at milestones or changed diagnosis, pointing to source/evidence. Aim for roughly 1-2k tokens; 16 KiB remains a safe-injection byte bound, not a permission rule. Store no raw logs, full diffs, transcript, credentials or private browser data. Do not create reports/capsules for routine small fixes.
+Resume: validate frozen scope -> local HEAD/dirty state -> capsule and changed facts -> next action. Compaction is not a new task, Git refresh trigger, full-repository reread or reason to rerun unchanged checks. Re-read required instructions and relevant changed material only.
+Contract integrity and progress health are separate. Invalid/missing frozen contract or malformed scope state blocks affected writes. Unsafe/missing/stale capsule is never injected, but intact scope still permits bounded work. Reconstruct progress from current code/evidence and use goal-state Checkpoint to advance epoch without altering contract hash/allowed scope. Validate/Close still require repaired continuity. Never edit authorization state or disable Hooks as a recovery shortcut.
+PreCompact/PostCompact no-op registrations are removed; built-in compaction is unchanged. SessionStart can supply a validated pointer, not a promise that every client invokes Hooks. Record exposed compaction time separately; it may overlap background work and must not be subtracted as proven net waste.
