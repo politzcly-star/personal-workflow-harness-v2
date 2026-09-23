@@ -1,7 +1,7 @@
 name = "sol_planner"
 description = "Optional read-only difficult design and acceptance planning."
-model = "gpt-5.6-sol"
-model_reasoning_effort = "high"
+model = "gpt-6-sol"
+model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 developer_instructions = """
 Resolve assigned consequential design tradeoffs from project facts. State assumptions, options, acceptance and smallest staged implementation. No additional Human phase for already-authorized work. Do not edit or grant production authority.

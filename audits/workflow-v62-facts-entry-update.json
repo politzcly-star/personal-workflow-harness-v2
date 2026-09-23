@@ -1,0 +1,27 @@
+[
+  {
+    "path": "D:\\jinsha\\jinshaxinxi\\docs\\project-facts\\jinshaxinxi.md",
+    "before_sha256": "bd6fbeff4ad69f3ec295f5638b191f92a78fa5aab5849184bcb61e4dd86b13bb",
+    "after_sha256": "a81b55ef765da952f1ea3acf7365bfbb1a06b166eddec82fa74024582998dcab"
+  },
+  {
+    "path": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2\\docs\\project-facts\\jinshaxinxi.md",
+    "before_sha256": "9a1f57386d7e3ad53fbfebf1076f2ac5f61e440cb7216d5324dfa74920bf44d7",
+    "after_sha256": "9b5f73afe4fd267261c3244dce1e8b3b49362e94a3fefb747d4c1ef1a68e5485"
+  },
+  {
+    "path": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi\\docs\\project-facts\\jinshaxinxi.md",
+    "before_sha256": "9a1f57386d7e3ad53fbfebf1076f2ac5f61e440cb7216d5324dfa74920bf44d7",
+    "after_sha256": "9b5f73afe4fd267261c3244dce1e8b3b49362e94a3fefb747d4c1ef1a68e5485"
+  },
+  {
+    "path": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi\\docs\\project-facts\\jinshaxinxi.md",
+    "before_sha256": "082fd25a0e2ef161e85024601c0f564247efef9c1eeaef2958640cef28e1ddb3",
+    "after_sha256": "613d483c9bb9768043b798314fd1af4c2e9ba940c1a3afb26c390318ccfa8d6d"
+  },
+  {
+    "path": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi\\docs\\project-facts\\jinshaxinxi.md",
+    "before_sha256": "9a1f57386d7e3ad53fbfebf1076f2ac5f61e440cb7216d5324dfa74920bf44d7",
+    "after_sha256": "9b5f73afe4fd267261c3244dce1e8b3b49362e94a3fefb747d4c1ef1a68e5485"
+  }
+]

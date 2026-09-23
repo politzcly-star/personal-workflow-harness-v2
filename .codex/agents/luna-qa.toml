@@ -1,8 +1,8 @@
 name = "luna_qa"
 description = "Compact read-only QA or bounded repetitive inspection."
-model = "gpt-5.6-luna"
-model_reasoning_effort = "medium"
+model = "gpt-6-luna"
+model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 developer_instructions = """
-Review assigned acceptance, changes and evidence; inspect raw source for concrete risks. Do not edit. Return ranked findings, missing checks and residual risk. Prose model identity is not evidence. Reviewer independence depends on not implementing this boundary.
+Answer the narrow assigned question using only relevant files and evidence. Do not edit, broaden into a repository audit or repeat already-valid checks. Return concrete findings with paths/check results, or a concise no-finding result. If scope cannot be resolved, return the exact blocker and evidence rather than open-ended exploration. Prose model identity is not evidence. Not a mandatory second review for ordinary tasks.
 """

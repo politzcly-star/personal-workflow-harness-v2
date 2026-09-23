@@ -1,0 +1,546 @@
+{
+  "reason": "User-authorized old workflow removal; generic files independently reviewed; other copies exact-hash matched",
+  "files": [
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "adapters/claude-code.md",
+      "sha256": "5ffcae3832b336945587e2fadc2fe126ddbdcdf3d5f46dbcf45396ef214009d5"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "adapters/codex.md",
+      "sha256": "d5467a66b71fc43bc992fdae1a2f3eadf34baeca4f8844c0fdd69236d4129a34"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "docs/workflows/ai-ci-review-release.md",
+      "sha256": "38dd3706598526423f9baa81b2f85ff31e7f24666a2bb9028127ecabc738cdc8"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "docs/workflows/brainstorm-plan-implement.md",
+      "sha256": "758e304e76c1f67e7ea4daba715c1272f0cca28b92ca29a8d018a45da1886a34"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "docs/workflows/bugfix-fast-lane.md",
+      "sha256": "f91b8af607d0b7d24367108ee8a8b1fc3c9cda6d252ade06a0439ad995cbb1f4"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "docs/workflows/module-delivery-gates.md",
+      "sha256": "9fab443729f68c13e275cf06417811baf0e0eb3f2617788a103ba38137bb0c1f"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "docs/workflows/parallel-worktree-delivery.md",
+      "sha256": "ca3b4a34ba3da8b83a5589a8e3a0a768083e27e109f0047aa0cab75983df1f5b"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "docs/workflows/pr-review-loop.md",
+      "sha256": "cde0d27adbf5afdcfb702995fca9c17b0dfd3bbc447cbcd22ab1f1d3dbecafff"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "docs/workflows/project-context-intake.md",
+      "sha256": "44624fe48ff2f399618f06e47f349e090a68586be5a74c9a67106e9ace72728a"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "docs/workflows/tdd-review-loop.md",
+      "sha256": "8b713afda4dec42a1299dc9837c313bf0716c6d38b9244c7d5ff54d88a27a102"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "docs/workflows/workflow-selection.md",
+      "sha256": "a9fe1dbc59e72a6bb80b4c9124fea30ae67d2c9a9a42dff40c1a8ff7af15ff35"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "templates/codex-new-project-startup-prompt.md",
+      "sha256": "763437dc3f526667c04b40b0882cf759d0ac139c234c3a654c0a7db22bff4cdf"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "templates/codex-parent-dispatch-prompt.md",
+      "sha256": "0fe2ac7903b6bb0b88e635bd57ad3998ce7546145d8a9eefe94c21c10e4f1a66"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "templates/subthread-generation-rules.md",
+      "sha256": "54e340f3b81a02ea139e40098cd639e2c015baa6fb31e161fbd3da100fe9f399"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "templates/subthread-task-packet.md",
+      "sha256": "490bbad2ef80d383c35583c1e7ebd1501b4bdfe94db3da89f3ac4e51c985e7ec"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "templates/task-packet.md",
+      "sha256": "504c748565276415a5315ca7e3cd83f67c8c2ffb88842c3127c391276647245c"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "templates/review-handoff.md",
+      "sha256": "46b120b91d4f2e293c68e87ed9eba5a9a2d64accdb3085a20a095423bb66d8c2"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "templates/risk-levels.md",
+      "sha256": "eedb1921157347934ea19ec20a9add051dbd01cbc21420312fe13322236b0815"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "templates/bugfix-automation-loop.md",
+      "sha256": "b2ba7d1ea53507e627d04e7a6c309a052213f7e68cda6167df6d0dd20b05a443"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "templates/gate-report.md",
+      "sha256": "a39a946afbcba7afd6549247a8aa275c0a93a4908560b382693f14fba11d6b5a"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "scripts/new-task.ps1",
+      "sha256": "189734afcc64246dfc64b94d93967660faddac4a6436be42602fa7b42a34d83a"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "scripts/new-worktree.ps1",
+      "sha256": "e6a8d321966e9d875699aef0f07455c75133d1b810377b0a715ebd9b6de23b40"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "scripts/local-gate.ps1",
+      "sha256": "fcff0f759323df8fd6192f4162742b1c560ce554988ae7231998097a944ec602"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "scripts/scope-gate.ps1",
+      "sha256": "0f4c2d664280c7122a0d91e76bf8ab725d1a6bc35e17a0133abacc7617485615"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "scripts/review-module.ps1",
+      "sha256": "00cc90fc68e65b34930758acd921491bfb3a5fbd6543cbd10fa25fed2ceeae90"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "scripts/init-codegraph.ps1",
+      "sha256": "6209d7c1884f86c8be2b690c0baed99abe33ebd76de7d6bd58c4b427e3204fbc"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "relative_path": "scripts/validate-workflow-repo.ps1",
+      "sha256": "d0fe9cd9af20c078cdc27f4eb211fe7d626fa73027582a88f6254ba5ee708cb6"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "adapters/claude-code.md",
+      "sha256": "5ffcae3832b336945587e2fadc2fe126ddbdcdf3d5f46dbcf45396ef214009d5"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "adapters/codex.md",
+      "sha256": "d5467a66b71fc43bc992fdae1a2f3eadf34baeca4f8844c0fdd69236d4129a34"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "docs/workflows/ai-ci-review-release.md",
+      "sha256": "38dd3706598526423f9baa81b2f85ff31e7f24666a2bb9028127ecabc738cdc8"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "docs/workflows/brainstorm-plan-implement.md",
+      "sha256": "758e304e76c1f67e7ea4daba715c1272f0cca28b92ca29a8d018a45da1886a34"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "docs/workflows/bugfix-fast-lane.md",
+      "sha256": "f91b8af607d0b7d24367108ee8a8b1fc3c9cda6d252ade06a0439ad995cbb1f4"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "docs/workflows/module-delivery-gates.md",
+      "sha256": "9fab443729f68c13e275cf06417811baf0e0eb3f2617788a103ba38137bb0c1f"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "docs/workflows/parallel-worktree-delivery.md",
+      "sha256": "ca3b4a34ba3da8b83a5589a8e3a0a768083e27e109f0047aa0cab75983df1f5b"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "docs/workflows/pr-review-loop.md",
+      "sha256": "cde0d27adbf5afdcfb702995fca9c17b0dfd3bbc447cbcd22ab1f1d3dbecafff"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "docs/workflows/project-context-intake.md",
+      "sha256": "44624fe48ff2f399618f06e47f349e090a68586be5a74c9a67106e9ace72728a"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "docs/workflows/tdd-review-loop.md",
+      "sha256": "8b713afda4dec42a1299dc9837c313bf0716c6d38b9244c7d5ff54d88a27a102"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "docs/workflows/workflow-selection.md",
+      "sha256": "a9fe1dbc59e72a6bb80b4c9124fea30ae67d2c9a9a42dff40c1a8ff7af15ff35"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "templates/codex-new-project-startup-prompt.md",
+      "sha256": "763437dc3f526667c04b40b0882cf759d0ac139c234c3a654c0a7db22bff4cdf"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "templates/codex-parent-dispatch-prompt.md",
+      "sha256": "0fe2ac7903b6bb0b88e635bd57ad3998ce7546145d8a9eefe94c21c10e4f1a66"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "templates/subthread-generation-rules.md",
+      "sha256": "54e340f3b81a02ea139e40098cd639e2c015baa6fb31e161fbd3da100fe9f399"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "templates/subthread-task-packet.md",
+      "sha256": "490bbad2ef80d383c35583c1e7ebd1501b4bdfe94db3da89f3ac4e51c985e7ec"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "templates/task-packet.md",
+      "sha256": "504c748565276415a5315ca7e3cd83f67c8c2ffb88842c3127c391276647245c"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "templates/review-handoff.md",
+      "sha256": "46b120b91d4f2e293c68e87ed9eba5a9a2d64accdb3085a20a095423bb66d8c2"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "templates/risk-levels.md",
+      "sha256": "eedb1921157347934ea19ec20a9add051dbd01cbc21420312fe13322236b0815"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "templates/bugfix-automation-loop.md",
+      "sha256": "b2ba7d1ea53507e627d04e7a6c309a052213f7e68cda6167df6d0dd20b05a443"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "templates/gate-report.md",
+      "sha256": "a39a946afbcba7afd6549247a8aa275c0a93a4908560b382693f14fba11d6b5a"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "scripts/new-task.ps1",
+      "sha256": "189734afcc64246dfc64b94d93967660faddac4a6436be42602fa7b42a34d83a"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "scripts/new-worktree.ps1",
+      "sha256": "e6a8d321966e9d875699aef0f07455c75133d1b810377b0a715ebd9b6de23b40"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "scripts/local-gate.ps1",
+      "sha256": "fcff0f759323df8fd6192f4162742b1c560ce554988ae7231998097a944ec602"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "scripts/scope-gate.ps1",
+      "sha256": "0f4c2d664280c7122a0d91e76bf8ab725d1a6bc35e17a0133abacc7617485615"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "scripts/review-module.ps1",
+      "sha256": "00cc90fc68e65b34930758acd921491bfb3a5fbd6543cbd10fa25fed2ceeae90"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "scripts/init-codegraph.ps1",
+      "sha256": "6209d7c1884f86c8be2b690c0baed99abe33ebd76de7d6bd58c4b427e3204fbc"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "relative_path": "scripts/validate-workflow-repo.ps1",
+      "sha256": "d0fe9cd9af20c078cdc27f4eb211fe7d626fa73027582a88f6254ba5ee708cb6"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "adapters/claude-code.md",
+      "sha256": "5ffcae3832b336945587e2fadc2fe126ddbdcdf3d5f46dbcf45396ef214009d5"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "adapters/codex.md",
+      "sha256": "d5467a66b71fc43bc992fdae1a2f3eadf34baeca4f8844c0fdd69236d4129a34"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "docs/workflows/ai-ci-review-release.md",
+      "sha256": "38dd3706598526423f9baa81b2f85ff31e7f24666a2bb9028127ecabc738cdc8"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "docs/workflows/brainstorm-plan-implement.md",
+      "sha256": "758e304e76c1f67e7ea4daba715c1272f0cca28b92ca29a8d018a45da1886a34"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "docs/workflows/bugfix-fast-lane.md",
+      "sha256": "f91b8af607d0b7d24367108ee8a8b1fc3c9cda6d252ade06a0439ad995cbb1f4"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "docs/workflows/module-delivery-gates.md",
+      "sha256": "9fab443729f68c13e275cf06417811baf0e0eb3f2617788a103ba38137bb0c1f"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "docs/workflows/parallel-worktree-delivery.md",
+      "sha256": "ca3b4a34ba3da8b83a5589a8e3a0a768083e27e109f0047aa0cab75983df1f5b"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "docs/workflows/pr-review-loop.md",
+      "sha256": "cde0d27adbf5afdcfb702995fca9c17b0dfd3bbc447cbcd22ab1f1d3dbecafff"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "docs/workflows/project-context-intake.md",
+      "sha256": "44624fe48ff2f399618f06e47f349e090a68586be5a74c9a67106e9ace72728a"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "docs/workflows/tdd-review-loop.md",
+      "sha256": "8b713afda4dec42a1299dc9837c313bf0716c6d38b9244c7d5ff54d88a27a102"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "docs/workflows/workflow-selection.md",
+      "sha256": "a9fe1dbc59e72a6bb80b4c9124fea30ae67d2c9a9a42dff40c1a8ff7af15ff35"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "templates/codex-new-project-startup-prompt.md",
+      "sha256": "763437dc3f526667c04b40b0882cf759d0ac139c234c3a654c0a7db22bff4cdf"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "templates/codex-parent-dispatch-prompt.md",
+      "sha256": "0fe2ac7903b6bb0b88e635bd57ad3998ce7546145d8a9eefe94c21c10e4f1a66"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "templates/subthread-generation-rules.md",
+      "sha256": "54e340f3b81a02ea139e40098cd639e2c015baa6fb31e161fbd3da100fe9f399"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "templates/subthread-task-packet.md",
+      "sha256": "490bbad2ef80d383c35583c1e7ebd1501b4bdfe94db3da89f3ac4e51c985e7ec"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "templates/task-packet.md",
+      "sha256": "504c748565276415a5315ca7e3cd83f67c8c2ffb88842c3127c391276647245c"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "templates/review-handoff.md",
+      "sha256": "46b120b91d4f2e293c68e87ed9eba5a9a2d64accdb3085a20a095423bb66d8c2"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "templates/risk-levels.md",
+      "sha256": "eedb1921157347934ea19ec20a9add051dbd01cbc21420312fe13322236b0815"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "templates/bugfix-automation-loop.md",
+      "sha256": "b2ba7d1ea53507e627d04e7a6c309a052213f7e68cda6167df6d0dd20b05a443"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "templates/gate-report.md",
+      "sha256": "a39a946afbcba7afd6549247a8aa275c0a93a4908560b382693f14fba11d6b5a"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "scripts/new-task.ps1",
+      "sha256": "189734afcc64246dfc64b94d93967660faddac4a6436be42602fa7b42a34d83a"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "scripts/new-worktree.ps1",
+      "sha256": "e6a8d321966e9d875699aef0f07455c75133d1b810377b0a715ebd9b6de23b40"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "scripts/local-gate.ps1",
+      "sha256": "fcff0f759323df8fd6192f4162742b1c560ce554988ae7231998097a944ec602"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "scripts/scope-gate.ps1",
+      "sha256": "0f4c2d664280c7122a0d91e76bf8ab725d1a6bc35e17a0133abacc7617485615"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "scripts/review-module.ps1",
+      "sha256": "00cc90fc68e65b34930758acd921491bfb3a5fbd6543cbd10fa25fed2ceeae90"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "scripts/init-codegraph.ps1",
+      "sha256": "6209d7c1884f86c8be2b690c0baed99abe33ebd76de7d6bd58c4b427e3204fbc"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "relative_path": "scripts/validate-workflow-repo.ps1",
+      "sha256": "d0fe9cd9af20c078cdc27f4eb211fe7d626fa73027582a88f6254ba5ee708cb6"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "adapters/claude-code.md",
+      "sha256": "5ffcae3832b336945587e2fadc2fe126ddbdcdf3d5f46dbcf45396ef214009d5"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "adapters/codex.md",
+      "sha256": "d5467a66b71fc43bc992fdae1a2f3eadf34baeca4f8844c0fdd69236d4129a34"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "docs/workflows/ai-ci-review-release.md",
+      "sha256": "38dd3706598526423f9baa81b2f85ff31e7f24666a2bb9028127ecabc738cdc8"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "docs/workflows/brainstorm-plan-implement.md",
+      "sha256": "758e304e76c1f67e7ea4daba715c1272f0cca28b92ca29a8d018a45da1886a34"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "docs/workflows/bugfix-fast-lane.md",
+      "sha256": "f91b8af607d0b7d24367108ee8a8b1fc3c9cda6d252ade06a0439ad995cbb1f4"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "docs/workflows/module-delivery-gates.md",
+      "sha256": "9fab443729f68c13e275cf06417811baf0e0eb3f2617788a103ba38137bb0c1f"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "docs/workflows/parallel-worktree-delivery.md",
+      "sha256": "ca3b4a34ba3da8b83a5589a8e3a0a768083e27e109f0047aa0cab75983df1f5b"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "docs/workflows/pr-review-loop.md",
+      "sha256": "cde0d27adbf5afdcfb702995fca9c17b0dfd3bbc447cbcd22ab1f1d3dbecafff"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "docs/workflows/project-context-intake.md",
+      "sha256": "44624fe48ff2f399618f06e47f349e090a68586be5a74c9a67106e9ace72728a"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "docs/workflows/tdd-review-loop.md",
+      "sha256": "8b713afda4dec42a1299dc9837c313bf0716c6d38b9244c7d5ff54d88a27a102"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "docs/workflows/workflow-selection.md",
+      "sha256": "a9fe1dbc59e72a6bb80b4c9124fea30ae67d2c9a9a42dff40c1a8ff7af15ff35"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "templates/codex-new-project-startup-prompt.md",
+      "sha256": "763437dc3f526667c04b40b0882cf759d0ac139c234c3a654c0a7db22bff4cdf"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "templates/codex-parent-dispatch-prompt.md",
+      "sha256": "0fe2ac7903b6bb0b88e635bd57ad3998ce7546145d8a9eefe94c21c10e4f1a66"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "templates/subthread-generation-rules.md",
+      "sha256": "54e340f3b81a02ea139e40098cd639e2c015baa6fb31e161fbd3da100fe9f399"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "templates/subthread-task-packet.md",
+      "sha256": "490bbad2ef80d383c35583c1e7ebd1501b4bdfe94db3da89f3ac4e51c985e7ec"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "templates/task-packet.md",
+      "sha256": "504c748565276415a5315ca7e3cd83f67c8c2ffb88842c3127c391276647245c"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "templates/review-handoff.md",
+      "sha256": "46b120b91d4f2e293c68e87ed9eba5a9a2d64accdb3085a20a095423bb66d8c2"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "templates/risk-levels.md",
+      "sha256": "eedb1921157347934ea19ec20a9add051dbd01cbc21420312fe13322236b0815"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "templates/bugfix-automation-loop.md",
+      "sha256": "b2ba7d1ea53507e627d04e7a6c309a052213f7e68cda6167df6d0dd20b05a443"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "templates/gate-report.md",
+      "sha256": "a39a946afbcba7afd6549247a8aa275c0a93a4908560b382693f14fba11d6b5a"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "scripts/new-task.ps1",
+      "sha256": "189734afcc64246dfc64b94d93967660faddac4a6436be42602fa7b42a34d83a"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "scripts/new-worktree.ps1",
+      "sha256": "e6a8d321966e9d875699aef0f07455c75133d1b810377b0a715ebd9b6de23b40"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "scripts/local-gate.ps1",
+      "sha256": "fcff0f759323df8fd6192f4162742b1c560ce554988ae7231998097a944ec602"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "scripts/scope-gate.ps1",
+      "sha256": "0f4c2d664280c7122a0d91e76bf8ab725d1a6bc35e17a0133abacc7617485615"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "scripts/review-module.ps1",
+      "sha256": "00cc90fc68e65b34930758acd921491bfb3a5fbd6543cbd10fa25fed2ceeae90"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "scripts/init-codegraph.ps1",
+      "sha256": "6209d7c1884f86c8be2b690c0baed99abe33ebd76de7d6bd58c4b427e3204fbc"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "relative_path": "scripts/validate-workflow-repo.ps1",
+      "sha256": "d0fe9cd9af20c078cdc27f4eb211fe7d626fa73027582a88f6254ba5ee708cb6"
+    }
+  ],
+  "different_retained": []
+}

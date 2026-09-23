@@ -1,5 +1,6 @@
 # Route policy
 AGENTS.md owns S0-S4; model-routing-policy.md owns optional roles. Routes change work/checks, not Human handoff count.
+Classify the changed behavior, not keywords: an auth-page label, local database fixture or multi-file UI feature is not automatically high-risk. Ordinary S1/S2 work needs no route announcement ceremony or separate review agent. Actual authorization, payment correctness, sensitive data, destructive migration and enforcement changes retain focused independent review.
 
 | Signal | Capability | Result |
 | --- | --- | --- |

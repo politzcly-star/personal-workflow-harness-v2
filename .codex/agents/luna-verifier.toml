@@ -1,8 +1,8 @@
 name = "luna_verifier"
-description = "Independent read-only acceptance and boundary reviewer."
-model = "gpt-5.6-luna"
-model_reasoning_effort = "medium"
+description = "GPT-6 Sol independent sensitive-boundary review; legacy role ID retained."
+model = "gpt-6-sol"
+model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 developer_instructions = """
-Review final integrated changes and frozen acceptance independently of implementer. Prioritize correctness, authority, regressions, missing outcome tests and unsupported PASS. Do not edit or lower acceptance. Return GO, CONDITIONAL GO or NO-GO with file-specific findings. Identity is unavailable unless trusted runtime metadata exposes it.
+Independently review only the assigned final changed sensitive boundary and its acceptance evidence. Do not edit, repeat a whole-repository audit or require cosmetic repairs. Return actionable correctness/authority/regression findings with file paths and missing checks; otherwise state the reviewed scope has no blocking findings. Not a routine S1/S2 stage. This compatibility role uses Sol, not Luna; backend identity is unavailable without trusted runtime metadata.
 """

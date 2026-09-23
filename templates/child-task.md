@@ -1,6 +1,7 @@
 # Child Task
 
 Use only when a bounded child task has a concrete throughput, isolation, or risk benefit.
+For an ordinary narrow task, a short message with goal, allowed scope, acceptance evidence and stop condition is sufficient; do not fill every field below as ceremony. Use docs/model-routing-policy.md only when choosing or recovering a route. Return a concrete blocker rather than expanding an unclear task into an open-ended audit.
 
 ```text
 Task ID:

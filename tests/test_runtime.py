@@ -122,7 +122,11 @@ class RuntimeTests(unittest.TestCase):
         self.assertIs(data['hooks_file_present'], True)
         self.assertIs(data['signed_request_runner_present'], True)
         self.assertEqual(data['roles'], [dict(role='offline_reviewer', file='reviewer.toml',
+                                            standalone_definition='invalid_metadata',
+                                            legacy_registration='matches_definition',
                                             registration_present=True,
+                                            configured_model=None,
+                                            configured_reasoning_effort=None,
                                             runtime_consumed='unverified')])
 
     def test_role_file_without_configuration_is_unregistered(self):
@@ -130,6 +134,7 @@ class RuntimeTests(unittest.TestCase):
         data = self.inventory()
         self.assert_runtime_unknown(data)
         self.assertIs(data['roles'][0]['registration_present'], False)
+        self.assertEqual(data['roles'][0]['legacy_registration'], 'absent')
 
     def test_registration_by_role_file_stem_matches_migrator_convention(self):
         self.write('.codex/config.toml',
@@ -158,7 +163,60 @@ class RuntimeTests(unittest.TestCase):
                    '[agents.missing]\nconfig_file = "agents/missing.toml"\n')
         data = self.inventory()
         self.assertEqual(data['roles'], [])
+        self.assertEqual(data['legacy_registrations'], [dict(role='missing',
+                                                             target_status='missing_target',
+                                                             target_file=None)])
         self.assert_runtime_unknown(data)
+
+    def test_standalone_definition_and_configured_routing_are_distinct_from_runtime(self):
+        self.write('.codex/agents/sol-planner.toml', '''
+name = "sol_planner"
+description = "Read-only planning"
+developer_instructions = "Plan with project facts"
+model = "gpt-6-sol"
+model_reasoning_effort = "high"
+''')
+        data = self.inventory()
+        self.assert_runtime_unknown(data)
+        self.assertEqual(data['roles'][0]['standalone_definition'], 'valid_metadata')
+        self.assertEqual(data['roles'][0]['legacy_registration'], 'absent')
+        self.assertIs(data['roles'][0]['registration_present'], False)
+        self.assertEqual(data['roles'][0]['configured_model'], 'gpt-6-sol')
+        self.assertEqual(data['roles'][0]['configured_reasoning_effort'], 'high')
+
+    def test_incomplete_standalone_metadata_is_reported_without_instructions(self):
+        self.write('.codex/agents/luna-qa.toml',
+                   f'name = "luna_qa"\ndescription = "{SECRET}"\n'
+                   'model = "gpt-6-luna"\nmodel_reasoning_effort = "low"\n')
+        data = self.inventory()
+        self.assertEqual(data['roles'][0]['standalone_definition'], 'invalid_metadata')
+        self.assertEqual(data['roles'][0]['configured_model'], 'gpt-6-luna')
+
+    def test_registration_target_must_exist_and_match_role_file(self):
+        self.write('.codex/agents/worker.toml', 'name = "worker"\n')
+        self.write('.codex/agents/other.toml', 'name = "other"\n')
+        self.write('.codex/config.toml',
+                   '[agents.worker]\nconfig_file = "agents/other.toml"\n')
+        data = self.inventory()
+        worker = next(role for role in data['roles'] if role['role'] == 'worker')
+        self.assertEqual(worker['legacy_registration'], 'wrong_definition')
+        self.assertIs(worker['registration_present'], False)
+        self.write('.codex/config.toml',
+                   '[agents.worker]\nconfig_file = "agents/absent.toml"\n')
+        data = self.inventory()
+        worker = next(role for role in data['roles'] if role['role'] == 'worker')
+        self.assertEqual(worker['legacy_registration'], 'missing_target')
+        self.assertIs(worker['registration_present'], False)
+
+    def test_registration_outside_project_agents_is_not_probed(self):
+        self.write('.codex/agents/worker.toml', 'name = "worker"\n')
+        self.write('.codex/config.toml',
+                   f'[agents.worker]\nconfig_file = "../../{SECRET}.toml"\n')
+        data = self.inventory()
+        self.assertEqual(data['roles'][0]['legacy_registration'], 'invalid_target')
+        self.assertEqual(data['legacy_registrations'][0]['target_status'],
+                         'outside_agent_directory')
+        self.assertIsNone(data['legacy_registrations'][0]['target_file'])
 
     def test_role_inventory_is_sorted_and_exposes_only_public_metadata(self):
         self.write('.codex/agents/z.toml', 'name = "z_worker"\n')
@@ -166,7 +224,10 @@ class RuntimeTests(unittest.TestCase):
         data = self.inventory()
         self.assertEqual([r['file'] for r in data['roles']], ['a.toml', 'z.toml'])
         for role in data['roles']:
-            self.assertEqual(set(role), {'role', 'file', 'registration_present', 'runtime_consumed'})
+            self.assertEqual(set(role), {'role', 'file', 'standalone_definition',
+                                         'legacy_registration', 'registration_present',
+                                         'configured_model', 'configured_reasoning_effort',
+                                         'runtime_consumed'})
 
     def test_config_and_role_secrets_never_appear_in_success_output(self):
         self.write('.codex/config.toml', f'''

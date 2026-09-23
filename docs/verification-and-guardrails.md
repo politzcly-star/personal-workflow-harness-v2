@@ -1,5 +1,5 @@
 # Verification and guardrails
-Completion means verified scope and user outcome, not an available command/template. Parse config/scripts; run behavioral fixtures, original symptoms, nearby regressions and relevant UI/API integration. Inspect combined changes. Skipped checks are risk, not PASS.
+Completion means the requested outcome checked at a depth proportional to the actual change. S1/S2 use root diff review plus the smallest meaningful affected check; choose original-symptom, fixture or UI/API checks only where relevant, not as a mandatory stack. No blanket security audit, double review or full-suite rerun by default. Required checks and materially affected sensitive boundaries remain mandatory. Once acceptance passes, stop unless changed code, failure or concrete unresolved risk justifies more. A genuinely unnecessary check is not an unfinished gate; a required but unavailable check is a disclosed gap, not PASS.
 
 ## Authority
 Local development authority covers tests/repair/review, not production. One concrete release grant covers named target/service, immutable version, UTC window, exact planned commands or immutable reviewed runner, health/abort conditions and pre-agreed rollback. Reuse it within its envelope, not per-command Human approvals. Code rollback is not data rollback; target/version/window/data changes require new authority.

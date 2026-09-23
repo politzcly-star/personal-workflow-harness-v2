@@ -1,0 +1,50 @@
+{
+  "reason": "Explicit workflow replacement; exact legacy files reviewed as generic, not project contracts",
+  "files": [
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "path": "scripts/scope-check.ps1",
+      "reviewed_sha256": "d754b9fec95509d639e71b16f3963ead6a95f631bc1706a1e2a1e270955df214"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "path": "docs/capability-policy.md",
+      "reviewed_sha256": "f2e565efe1ea5fe3bf7cf54f9d82f18ee5fc3a8f2a73ba0f6ede1895f254ab58"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "path": "scripts/health-check.ps1",
+      "reviewed_sha256": "2a40cddb208d563bffe74c0ca84be264d09dcbaa5fab7ecba61495916fe18339"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "path": "scripts/scope-check.ps1",
+      "reviewed_sha256": "d754b9fec95509d639e71b16f3963ead6a95f631bc1706a1e2a1e270955df214"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "path": "docs/capability-policy.md",
+      "reviewed_sha256": "f2e565efe1ea5fe3bf7cf54f9d82f18ee5fc3a8f2a73ba0f6ede1895f254ab58"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "path": "scripts/health-check.ps1",
+      "reviewed_sha256": "2a40cddb208d563bffe74c0ca84be264d09dcbaa5fab7ecba61495916fe18339"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "path": "scripts/scope-check.ps1",
+      "reviewed_sha256": "d754b9fec95509d639e71b16f3963ead6a95f631bc1706a1e2a1e270955df214"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "path": "docs/capability-policy.md",
+      "reviewed_sha256": "f2e565efe1ea5fe3bf7cf54f9d82f18ee5fc3a8f2a73ba0f6ede1895f254ab58"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "path": "scripts/health-check.ps1",
+      "reviewed_sha256": "2a40cddb208d563bffe74c0ca84be264d09dcbaa5fab7ecba61495916fe18339"
+    }
+  ]
+}

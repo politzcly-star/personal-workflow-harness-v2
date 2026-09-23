@@ -1,0 +1,91 @@
+{
+  "version": "6.2",
+  "kind": "local-installation-verification-not-provider-or-production-test",
+  "targets": [
+    {
+      "path": "D:\\jinsha\\jinshaxinxi",
+      "owned_files_match_source": 48,
+      "entry": "v6.2",
+      "configured_roles": "valid",
+      "runtime": "unverified"
+    },
+    {
+      "path": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "owned_files_match_source": 48,
+      "entry": "v6.2",
+      "configured_roles": "valid",
+      "runtime": "unverified",
+      "docs/workflows/git-delivery-policy.md": {
+        "sha256": "a3f25af6287b8d632eb7eb46385c927e2e005474fec569baf6f7830a14635f17",
+        "matches_HEAD_normalized": true
+      },
+      "scripts/git-delivery-gate.mjs": {
+        "sha256": "2bda3a3cdaedb46bc059a38d168f038b662681216e90980ef659be5bf2685af6",
+        "matches_HEAD_normalized": true
+      }
+    },
+    {
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "owned_files_match_source": 48,
+      "entry": "v6.2",
+      "configured_roles": "valid",
+      "runtime": "unverified"
+    },
+    {
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "owned_files_match_source": 48,
+      "entry": "v6.2",
+      "configured_roles": "valid",
+      "runtime": "unverified"
+    },
+    {
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "owned_files_match_source": 48,
+      "entry": "v6.2",
+      "configured_roles": "valid",
+      "runtime": "unverified"
+    },
+    {
+      "path": "D:\\ai直聘",
+      "owned_files_match_source": 48,
+      "entry": "v6.2",
+      "configured_roles": "valid",
+      "runtime": "unverified"
+    },
+    {
+      "path": "D:\\sub2api",
+      "owned_files_match_source": 48,
+      "entry": "v6.2",
+      "configured_roles": "valid",
+      "runtime": "unverified"
+    },
+    {
+      "path": "C:\\Users\\32027\\Desktop\\cursor助手",
+      "owned_files_match_source": 48,
+      "entry": "v6.2",
+      "configured_roles": "valid",
+      "runtime": "unverified"
+    },
+    {
+      "path": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\jinsha-token-source-r1",
+      "owned_files_match_source": 48,
+      "entry": "v6.2",
+      "configured_roles": "valid",
+      "runtime": "unverified",
+      "docs/workflows/git-delivery-policy.md": {
+        "sha256": "eb1cbb6564c2953b01841f6e5f85d2d6b8c6ce8925f100b542ceb8c149bdeca7",
+        "matches_HEAD_normalized": true
+      },
+      "scripts/git-delivery-gate.mjs": {
+        "sha256": "2bda3a3cdaedb46bc059a38d168f038b662681216e90980ef659be5bf2685af6",
+        "matches_HEAD_normalized": true
+      }
+    }
+  ],
+  "removed_legacy_files": 108,
+  "checks": {
+    "runtime_suite": "24 PASS",
+    "migration_suite": "34 PASS"
+  },
+  "git": "not committed or pushed"
+}

@@ -1,0 +1,146 @@
+{
+  "version": "6.2",
+  "kind": "entry-replacement-not-runtime-proof",
+  "files": [
+    {
+      "root": "D:\\jinsha\\jinshaxinxi",
+      "path": "D:\\jinsha\\jinshaxinxi\\AGENTS.md",
+      "before_sha256": "99214a98a2000eab932709200a8a71fbdb7b6d3fb6005e291264cf63cd27c4ea",
+      "after_sha256": "81b32619c0dad356929e73d372ec600db74fadf306eb345cfe80887182eead7a",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "D:\\jinsha\\jinshaxinxi",
+      "path": "D:\\jinsha\\jinshaxinxi\\CLAUDE.md",
+      "before_sha256": "d3090a294c85ca87f0076c682c88d8790646fd9d253983826f3aee1aff425390",
+      "after_sha256": "d2c10b99fa1e2b3326d28f63d76750ae5b57da304bf045d610d82a50856ed1a1",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "D:\\jinsha\\jinshaxinxi",
+      "path": "D:\\jinsha\\jinshaxinxi\\docs\\project-profile.md",
+      "before_sha256": "a6aaf8833fa6fe2e55f889edc754d29ab2b55c90ff0e2c7767cc73a18af3fd38",
+      "after_sha256": "dcacbb25715b0f04e57fbfb51fb64e6aa189cf1d5bf289983a2abe6b633c09bd",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "D:\\jinsha\\jinshaxinxi",
+      "path": "D:\\jinsha\\jinshaxinxi\\.cursor\\rules\\project.mdc",
+      "before_sha256": "43b7c7ff04bb6ca1e4f8c2f81a368151653daddc31653c82b8f37803f4c8a7ae",
+      "after_sha256": "9869b2c41536a5d6d3541d56eb4e22d0e329efe7ff449d084a3c496fb9877844",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "D:\\jinsha\\jinshaxinxi",
+      "path": "D:\\jinsha\\jinshaxinxi\\.codex\\harness-owned.json",
+      "before_sha256": "a310d1220e60d183e1b7eb4642667bd1f6ec1b221a61dafd7b7a0edc0ae7b752",
+      "after_sha256": "1dcdde35ace5a5dd008de576ac906e881c845c35f3094b2ec6ebc9a12227e144",
+      "reason": "record manually reviewed legacy checklist ownership"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "path": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2\\AGENTS.md",
+      "before_sha256": "00ce9f3e39b46d5a14a06e55f84bc75ace60868f66317aab0edc249a2d7b80e4",
+      "after_sha256": "48766a6aff9c53e4a17f85c3637eaba6c1019072d91d322410bb5f8db34be9c7",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "path": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2\\CLAUDE.md",
+      "before_sha256": "af4b06ef4ada1c9cb4f7b5e011bb1bf1fa33db4f2f5c05107ed92fd0df167ea3",
+      "after_sha256": "d2c10b99fa1e2b3326d28f63d76750ae5b57da304bf045d610d82a50856ed1a1",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "path": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2\\docs\\project-profile.md",
+      "before_sha256": "1610ff68500b58fdc71c01dc2f65f2c4f7fdf6f4d3ebb11ae9b2c9b843236666",
+      "after_sha256": "b63e576b32e84898f0f70ea8ac78c792ec71f641a0b7988277271876ffe2c98d",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2",
+      "path": "D:\\jinsha\\git-migration\\20260818-dual-private-baseline\\wetoken-source-r2\\.cursor\\rules\\project.mdc",
+      "before_sha256": "8d2c58a3d2007a20080b76c600e16bad689c7ac5e7d4546a593a5345c964f85b",
+      "after_sha256": "46faa44e7dd155df24f51f991b626d5819fb3f24678a40343830a514c05b9d6a",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi\\AGENTS.md",
+      "before_sha256": "2f0b382570b0908332648053b6843a07411ffd90a2f5f14290ced717671ad0bd",
+      "after_sha256": "c92750ac58cc596acef9a16cb933651dc201890e47110b573c09ae414ba3ea2f",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi\\CLAUDE.md",
+      "before_sha256": "af4b06ef4ada1c9cb4f7b5e011bb1bf1fa33db4f2f5c05107ed92fd0df167ea3",
+      "after_sha256": "d2c10b99fa1e2b3326d28f63d76750ae5b57da304bf045d610d82a50856ed1a1",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi\\docs\\project-profile.md",
+      "before_sha256": "1610ff68500b58fdc71c01dc2f65f2c4f7fdf6f4d3ebb11ae9b2c9b843236666",
+      "after_sha256": "b63e576b32e84898f0f70ea8ac78c792ec71f641a0b7988277271876ffe2c98d",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\e520\\jinshaxinxi\\.cursor\\rules\\project.mdc",
+      "before_sha256": "8d2c58a3d2007a20080b76c600e16bad689c7ac5e7d4546a593a5345c964f85b",
+      "after_sha256": "46faa44e7dd155df24f51f991b626d5819fb3f24678a40343830a514c05b9d6a",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi\\AGENTS.md",
+      "before_sha256": "2cae4df80852620910783418a1ebd9318af62b9f74176057c89d799d6f149f20",
+      "after_sha256": "c92750ac58cc596acef9a16cb933651dc201890e47110b573c09ae414ba3ea2f",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi\\CLAUDE.md",
+      "before_sha256": "af4b06ef4ada1c9cb4f7b5e011bb1bf1fa33db4f2f5c05107ed92fd0df167ea3",
+      "after_sha256": "d2c10b99fa1e2b3326d28f63d76750ae5b57da304bf045d610d82a50856ed1a1",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\6caf\\jinshaxinxi\\.cursor\\rules\\project.mdc",
+      "before_sha256": "8d2c58a3d2007a20080b76c600e16bad689c7ac5e7d4546a593a5345c964f85b",
+      "after_sha256": "46faa44e7dd155df24f51f991b626d5819fb3f24678a40343830a514c05b9d6a",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi\\AGENTS.md",
+      "before_sha256": "2f0b382570b0908332648053b6843a07411ffd90a2f5f14290ced717671ad0bd",
+      "after_sha256": "c92750ac58cc596acef9a16cb933651dc201890e47110b573c09ae414ba3ea2f",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi\\CLAUDE.md",
+      "before_sha256": "af4b06ef4ada1c9cb4f7b5e011bb1bf1fa33db4f2f5c05107ed92fd0df167ea3",
+      "after_sha256": "d2c10b99fa1e2b3326d28f63d76750ae5b57da304bf045d610d82a50856ed1a1",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi\\docs\\project-profile.md",
+      "before_sha256": "1610ff68500b58fdc71c01dc2f65f2c4f7fdf6f4d3ebb11ae9b2c9b843236666",
+      "after_sha256": "b63e576b32e84898f0f70ea8ac78c792ec71f641a0b7988277271876ffe2c98d",
+      "reason": "replace workflow entry; preserve project sections"
+    },
+    {
+      "root": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi",
+      "path": "C:\\Users\\32027\\.codex\\worktrees\\6636\\jinshaxinxi\\.cursor\\rules\\project.mdc",
+      "before_sha256": "8d2c58a3d2007a20080b76c600e16bad689c7ac5e7d4546a593a5345c964f85b",
+      "after_sha256": "46faa44e7dd155df24f51f991b626d5819fb3f24678a40343830a514c05b9d6a",
+      "reason": "replace workflow entry; preserve project sections"
+    }
+  ]
+}
